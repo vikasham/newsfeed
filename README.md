@@ -1,11 +1,11 @@
 # CSCI 201 Group Project: Newsfeed
 
-## Authors | GitHub|
+Authors | GitHub|
 -----------|-------|
-|Austin Traver|[link](github.com/user/austintraver)
-|Claire Powers|[link](github.com/user/clairepo)
-|Arif Ahmed|[link](github.com/user/arifahme)
-|Vikash Mody|[link](github.com/user/vikasham)
+|Austin Traver|[link](github.com/user/austintraver)|
+|Claire Powers|[link](github.com/user/clairepo)|
+|Arif Ahmed|[link](github.com/user/arifahme)|
+|Vikash Mody|[link](github.com/user/vikasham)|
 
 ## Dependencies
 
