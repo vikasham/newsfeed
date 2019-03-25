@@ -2,10 +2,10 @@
 
 Authors | GitHub|
 -----------|-------|
-|Austin Traver|[link](github.com/user/austintraver)|
-|Claire Powers|[link](github.com/user/clairepo)|
-|Arif Ahmed|[link](github.com/user/arifahme)|
-|Vikash Mody|[link](github.com/user/vikasham)|
+|Austin Traver|[austintraver](github.com/user/austintraver)|
+|Claire Powers|[clairepo](github.com/user/clairepo)|
+|Arif Ahmed|[arifahme](github.com/user/arifahme)|
+|Vikash Mody|[vikasham](github.com/user/vikasham)|
 
 ## Dependencies
 
