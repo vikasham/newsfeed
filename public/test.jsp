@@ -55,7 +55,7 @@
 		</nav>
 		
 		
-		<h1 id="pagetitle">Today's News: All Categories</h1>
+		<h1 id="pagetitle" style="padding: 0px 30px" >Today's News: All Categories</h1>
 		
 		
 		<div class="container-fluid" >
