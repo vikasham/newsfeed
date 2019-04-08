@@ -12,30 +12,30 @@ class NavigationBar extends Component
       <div class="container-fluid">
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
           <div class="navbar-header">
-            <a class="navbar-brand" href="#">Newsfeed
+            <div class="navbar-brand">Newsfeed
               <FontAwesomeIcon icon={faDove}/>
-            </a>
+            </div>
           </div>
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="#">Log In
+              <div class="nav-link">Log In
                 <FontAwesomeIcon icon={faSignInAlt}/>
-              </a>
+              </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Log Out
+              <div class="nav-link">Log Out
                 <FontAwesomeIcon icon={faSignOutAlt}/>
-              </a>
+              </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Register
+              <div class="nav-link">Register
                 <FontAwesomeIcon icon={faDoorOpen}/>
-              </a>
+              </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Profile
+              <div class="nav-link">Profile
                 <FontAwesomeIcon icon={faAddressCard}/>
-              </a>
+              </div>
             </li>
           </ul>
         </nav>
