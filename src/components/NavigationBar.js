@@ -10,7 +10,7 @@ class NavigationBar extends Component
   {
     return(
       <div class="container-fluid fixed-top">
-			<div class="row">
+			<div class="row w-100">
 				<nav class="navbar navbar-expand-sm bg-dark navbar-dark w-100">
 		          <div class="navbar-header">
 		            <div class="navbar-brand">Newsfeed
@@ -34,7 +34,7 @@ class NavigationBar extends Component
 		              </div>
 		            </li>
 		            <li class="nav-item">
-		              <div class="nav-link">Profile
+		              <div class="nav-link">Profile 
 		                <FontAwesomeIcon icon={faAddressCard}/>
 		              </div>
 		            </li>
