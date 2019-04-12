@@ -52,7 +52,7 @@ class App extends Component {
     return (
       <div className="App">
       <NavigationBar/>
-      <h1 id="pagetitle">Today's News: All Categories</h1>
+      
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>

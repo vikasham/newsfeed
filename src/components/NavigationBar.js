@@ -34,7 +34,7 @@ class NavigationBar extends Component
 		              </div>
 		            </li>
 		            <li class="nav-item">
-		              <div class="nav-link">Profile 
+		              <div class="nav-link">Profile
 		                <FontAwesomeIcon icon={faAddressCard}/>
 		              </div>
 		            </li>
