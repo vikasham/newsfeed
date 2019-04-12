@@ -10,7 +10,7 @@ class NavigationBar extends Component
   {
     return(
       <div class="container-fluid fixed-top">
-			<div class="row w-100">
+			<div class="row">
 				<nav class="navbar navbar-expand-sm bg-dark navbar-dark w-100">
 		          <div class="navbar-header">
 		            <div class="navbar-brand">Newsfeed
