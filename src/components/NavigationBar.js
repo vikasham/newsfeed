@@ -2,12 +2,27 @@ import React, { Component } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDove, faSignInAlt, faSignOutAlt, faDoorOpen, faAddressCard } from '@fortawesome/free-solid-svg-icons'
+import { faKey} from '@fortawesome/free-solid-svg-icons'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../css/LoginPage.css'
 
 class NavigationBar extends Component
 {
+  constructor(props) {
+    super(props)
+    this.state = {
+      displayLogin: false,
+    };
+    this.toggleBox = this.toggleBox.bind(this);
+  }
+  toggleBox() {
+    this.setState(oldState => ({ displayLogin: !oldState.displayLogin }));
+  }
+
   render()
   {
+    const { displayLogin } = this.state;
+    const { title, children } = this.props;
     return(
       <div class="container-fluid fixed-top">
 			<div class="row">
@@ -19,7 +34,7 @@ class NavigationBar extends Component
 		          </div>
 		          <ul class="navbar-nav">
 		            <li class="nav-item">
-		              <div class="nav-link">Log In
+		              <div class="nav-link" onClick={this.toggleBox}>Log In
 		                <FontAwesomeIcon icon={faSignInAlt}/>
 		              </div>
 		            </li>
@@ -75,6 +90,23 @@ class NavigationBar extends Component
 				  	</ul>
 				</nav>
 			</div>
+      {displayLogin && (
+        <div className="boxContent" >
+          <form method="POST" action="Login" id="loginform">
+              <FontAwesomeIcon icon={faKey}/> <br />
+              <div class="form-group">
+                <label for="email">Username:</label>
+                <input type="email" class="form-control" id="email" />
+              </div>
+              <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" id="pwd" />
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        </div>
+      )}
+
       </div>
     )
   }

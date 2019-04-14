@@ -5,6 +5,7 @@ import logo from '../img/logo.svg'
 import NavigationBar from './NavigationBar'
 
 
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -47,12 +48,15 @@ class App extends Component {
     })
   }
 
+
+
   render() {
+
     const { name, age, status} = this.state // save all the state variables
     return (
       <div className="App">
       <NavigationBar/>
-      
+
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
@@ -64,6 +68,7 @@ class App extends Component {
       </div>
     )
   }
+
 }
 
 export default App
