@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDove, faSignInAlt, faSignOutAlt, faDoorOpen, faAddressCard } from '@fortawesome/free-solid-svg-icons'
-import { faKey, faCircle} from '@fortawesome/free-solid-svg-icons'
+import { faKey, faCircle, faUserPlus} from '@fortawesome/free-solid-svg-icons'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import '../css/LoginPage.css'
@@ -37,7 +37,7 @@ class NavigationBar extends Component
                   <ul class="navbar-nav">
                     <li class="nav-item">
 
-                      <div class="nav-link" data-toggle="modal" data-target="#myModal" onClick={this.toggleBox}>Log In
+                      <div class="nav-link" data-toggle="modal" data-target="#myModal1" onClick={this.toggleBox}>Log In
                         <FontAwesomeIcon icon={faSignInAlt}/>
                       </div>
                     </li>
@@ -47,7 +47,7 @@ class NavigationBar extends Component
                       </div>
                     </li>
                     <li class="nav-item">
-                      <div class="nav-link">Register
+                      <div class="nav-link" data-toggle="modal" data-target="#myModal2">Register
                         <FontAwesomeIcon icon={faDoorOpen}/>
                       </div>
                     </li>
@@ -95,12 +95,43 @@ class NavigationBar extends Component
           </div>
         </div>
         <div class="container">
-          <div class="modal fade" id="myModal" role="dialog">
+          <div class="modal fade" id="myModal1" role="dialog">
             <div class="modal-dialog">
 
               <div class="modal-content">
                 <div class="modal-header">
                   <h4 class="modal-title">Login  <FontAwesomeIcon icon={faKey}/></h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                  <form method="POST" action="Login">
+                      <div id="userlabel">
+                        Username <br />
+                      </div>
+                      <input type="text" name="user" id="user" value=""/><br />
+                      <div id="pwlabel">
+                        Password <br />
+                      </div>
+                      <input type="text" name="pw" id="pw"/><br /><br />
+                      <input type="submit" name="submit" value="Login" id="login" />
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+        <div class="container">
+          <div class="modal fade" id="myModal2" role="dialog">
+            <div class="modal-dialog">
+
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title">Register  <FontAwesomeIcon icon={faUserPlus}/></h4>
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
