@@ -5,7 +5,6 @@ import { faDove, faSignInAlt, faSignOutAlt, faDoorOpen, faAddressCard } from '@f
 import { faKey, faCircle, faUserPlus} from '@fortawesome/free-solid-svg-icons'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
-import '../css/LoginPage.css'
 
 class NavigationBar extends Component
 {
@@ -104,19 +103,16 @@ class NavigationBar extends Component
                 </div>
                 <div class="modal-body">
                   <form method="POST" action="Login">
-                      <div id="userlabel">
-                        Username <br />
-                      </div>
-                      <input type="text" name="loginuser" id="user" onChange={this.handleChange}/><br />
-                      <div id="pwlabel">
-                        Password <br />
-                      </div>
-                      <input type="text" name="loginpw" id="pw"/><br /><br />
-                      <input type="submit" name="submit" value="Login" id="login" />
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Username</label>
+                      <input type="user" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Username"/>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Password</label>
+                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
                   </form>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
               </div>
 
@@ -134,20 +130,17 @@ class NavigationBar extends Component
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                  <form method="POST" action="Login">
-                      <div id="userlabel">
-                        Username <br />
-                      </div>
-                      <input type="text" name="registeruser" id="user" onChange={this.handleChange}/><br />
-                      <div id="pwlabel">
-                        Password <br />
-                      </div>
-                      <input type="text" name="registerpw" id="pw"/><br /><br />
-                      <input type="submit" name="submit" value="Login" id="login" />
+                  <form method="POST" action="Register">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Username</label>
+                      <input type="user" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Username"/>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Password</label>
+                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Register</button>
                   </form>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
               </div>
 
