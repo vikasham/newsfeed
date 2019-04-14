@@ -13,17 +13,16 @@ class NavigationBar extends Component
     super(props)
     this.state = {
       displayLogin: false,
+      loginuser: "",
+      registeruser:""
     };
-    this.toggleBox = this.toggleBox.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
-  toggleBox() {
-    this.setState(oldState => ({ displayLogin: !oldState.displayLogin }));
+  handleChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
   }
-
   render()
   {
-    const { displayLogin } = this.state;
-    const { title, children } = this.props;
     return(
       <div id ="hello">
         <div class="container-fluid fixed-top">
@@ -108,11 +107,11 @@ class NavigationBar extends Component
                       <div id="userlabel">
                         Username <br />
                       </div>
-                      <input type="text" name="user" id="user" value=""/><br />
+                      <input type="text" name="loginuser" id="user" onChange={this.handleChange}/><br />
                       <div id="pwlabel">
                         Password <br />
                       </div>
-                      <input type="text" name="pw" id="pw"/><br /><br />
+                      <input type="text" name="loginpw" id="pw"/><br /><br />
                       <input type="submit" name="submit" value="Login" id="login" />
                   </form>
                 </div>
@@ -139,11 +138,11 @@ class NavigationBar extends Component
                       <div id="userlabel">
                         Username <br />
                       </div>
-                      <input type="text" name="user" id="user" value=""/><br />
+                      <input type="text" name="registeruser" id="user" onChange={this.handleChange}/><br />
                       <div id="pwlabel">
                         Password <br />
                       </div>
-                      <input type="text" name="pw" id="pw"/><br /><br />
+                      <input type="text" name="registerpw" id="pw"/><br /><br />
                       <input type="submit" name="submit" value="Login" id="login" />
                   </form>
                 </div>
