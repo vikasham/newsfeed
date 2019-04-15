@@ -2,6 +2,9 @@ const express = require('express');
 const favicon = require('express-favicon');
 const path = require('path'); // still have to import this in server.js
 // however, this is a default node app, no need to 'yarn add path'
+var bodyParser = require('body-parser');
+
+
 
 /*
 this is the syntax to import express, don't ask.
@@ -14,13 +17,12 @@ This is just how you include things in Node, the server-side
 
 // app is a variable returned by the express() method
 const app = express();
+const router = express.Router();
 
 // all caps because its a constant
 const PORT = process.env.PORT || 3000;
 // similar to os.env() in Python
 // if there is no environment variable called PORT in the server, make it 3000
-
-// use the favicon of the current directory name in the build folder
 
 // the use() method lets you define middleware
 // middleware: a piece of code that runs on the server in between requests
@@ -30,9 +32,15 @@ const PORT = process.env.PORT || 3000;
 // before the server responds, the middleware runs, then finishes, and then
 // the response will send only once the middleware has completed and returned
 app.use(favicon(__dirname + '/build/favicon.ico'));
-// app.use(express.static(path.join(__dirname)); // SECURITY FLAW! root directory access
+
 // client can look at our server code ^ .join() defaults to the root directory if none is specified
 app.use(express.static(path.join(__dirname, 'build')));
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 // .static()
 // we don't want any user to access any item on our file system.
@@ -51,10 +59,29 @@ app.use(express.static(path.join(__dirname, 'build')));
 // what this is doing is "no matter where we try to go, send it to index.html"
 // reason: react code only uses "index.html"
 
+// when the client calls "fetch('api/login')" this is where it will go
+router.route('/login').post(function(request, response) {
+  console.log(request.body)
+  // return a 400 HTTP message, with the following JSON object inside
+  response.status(400).json({
+    message: "hello"
+  })
+})
 
-app.get('/*', (request, response) => {
-  response.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
+// when the client calls "fetch('api/logout')" this is where it will go
+router.route('/logout').post(function(request, response) {
+  delete request.session.userID
+  res.redirect('/index.html')
+} )
+
+app.use(bodyParser());
+// commands can be routed to api/RequestName
+app.use('/api', router)
+
+
+// app.get('/', (request, response) => {
+//   response.sendFile(path.join(__dirname, 'build', 'index.html'));
+// })
 
 // call the listen method, on this port number, with a callback function
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
