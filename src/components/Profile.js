@@ -2,7 +2,7 @@ import React from 'react'
 import { Component } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserCircle} from '@fortawesome/free-solid-svg-icons'
+import { faUserCircle, faHistory, faUserFriends} from '@fortawesome/free-solid-svg-icons'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import TitleNav from './TitleNav'
 import '../css/Profile.css'
@@ -21,8 +21,26 @@ class Profile extends Component{
               <br />
               <FontAwesomeIcon icon={faUserCircle} size="8x"/>
               <br />
-              <h1 class="display-3"><strong>Claire Powers</strong> </h1>
-
+              <h1 class="display-3"><strong>Claire Powers</strong></h1>
+              <button type="button" class="btn btn-success btn-lg">Add Friend</button>
+              <br /><br />
+              <div class="container">
+                <div class="row justify-content-md-center">
+                  <div class="col-1">
+                    <a href="/" id="friends">
+                      <FontAwesomeIcon icon={faUserFriends}/>
+                      <h5> Friends </h5>
+                    </a>
+                  </div>
+                  <div class="col-1">
+                    <a href="/" id="friends">
+                      <FontAwesomeIcon icon={faHistory} />
+                      <h5>History </h5>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <br />
                 <h3>My Topics:</h3>
                 <span> &nbsp; </span>
                 <div class="funkyradio">
