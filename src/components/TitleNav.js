@@ -1,7 +1,7 @@
 import React from "react";
 import { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faDove, faSignInAlt, faSignOutAlt, faDoorOpen, faAddressCard } from '@fortawesome/free-solid-svg-icons'
+import { faDove, faSignInAlt, faSignOutAlt, faDoorOpen, faAddressCard, faKey, faUserPlus, faUser, faLock } from '@fortawesome/free-solid-svg-icons'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import '../css/NavigationBar.css'
