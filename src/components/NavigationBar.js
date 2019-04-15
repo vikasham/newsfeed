@@ -29,29 +29,29 @@ class NavigationBar extends Component
           <div class="row">
             <nav class="navbar navbar-expand-sm bg-dark navbar-dark w-100">
                   <div class="navbar-header">
-                    <div class="navbar-brand">Newsfeed
+                    <div class="navbar-brand">Newsfeed &nbsp;
                       <FontAwesomeIcon icon={faDove}/>
                     </div>
                   </div>
                   <ul class="navbar-nav">
                     <li class="nav-item">
 
-                      <div class="nav-link" data-toggle="modal" data-target="#myModal1" onClick={this.toggleBox}>Log In
+                      <div class="nav-link" data-toggle="modal" data-target="#myModal1" onClick={this.toggleBox}>Log In &nbsp;
                         <FontAwesomeIcon icon={faSignInAlt}/>
                       </div>
                     </li>
                     <li class="nav-item">
-                      <div class="nav-link">Log Out
+                      <div class="nav-link">Log Out &nbsp;
                         <FontAwesomeIcon icon={faSignOutAlt}/>
                       </div>
                     </li>
                     <li class="nav-item">
-                      <div class="nav-link" data-toggle="modal" data-target="#myModal2">Register
+                      <div class="nav-link" data-toggle="modal" data-target="#myModal2">Register &nbsp;
                         <FontAwesomeIcon icon={faDoorOpen}/>
                       </div>
                     </li>
                     <li class="nav-item">
-                      <div class="nav-link">Profile
+                      <div class="nav-link">Profile &nbsp;
                         <FontAwesomeIcon icon={faAddressCard}/>
                       </div>
                     </li>
