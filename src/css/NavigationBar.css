@@ -1,3 +1,7 @@
 #topics{
   border-bottom: 1px solid darkgrey;
 }
+
+#profilelink{
+  text-decoration: none;
+}

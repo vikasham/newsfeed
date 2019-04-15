@@ -3,5 +3,11 @@ a{
   color: black;
 }
 #comments{
-  font-size:85%;
+  font-size: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+#iconcol{
+  padding-left: 0;
+  padding-right: 0;
 }

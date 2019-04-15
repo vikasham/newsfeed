@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import stock from '../img/stock.jpg'
 import '../css/ArticleThumbnail.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faCommentAlt, faArrowUp, faArrowDown, faPaperPlane} from '@fortawesome/free-solid-svg-icons'
+import {faCommentAlt, faArrowCircleUp, faArrowCircleDown, faPaperPlane} from '@fortawesome/free-solid-svg-icons'
 
 class Dash extends Component
 {
@@ -19,16 +19,15 @@ class Dash extends Component
           <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id.</p>
         </div>
         <div class="card-body row" id="comments">
-          <div class="col-sm-4">
-            <a  id="comments" href="/"><FontAwesomeIcon icon={faCommentAlt}/>&nbsp; Comments</a>
+          <div id="iconcol" class="col-sm-4">
+            &nbsp; <a  id="comments" href="/"><FontAwesomeIcon icon={faCommentAlt}/>&nbsp; Comments</a>
           </div>
-          <div class="col-sm-4">
-            <a id="comments" href="/"><FontAwesomeIcon icon={faArrowUp}/>  </a> &nbsp; 26k &nbsp;
-
-            <a  id="comments" href="/"><FontAwesomeIcon icon={faArrowDown}/>  </a>
+          <div id="iconcol" class="col-sm-4">
+            <a id="comments" href="/"><FontAwesomeIcon icon={faArrowCircleUp}/></a>&nbsp; 26k &nbsp;
+            <a  id="comments" href="/"><FontAwesomeIcon icon={faArrowCircleDown}/>  </a>
           </div>
-          <div class="col-sm-4">
-            <a id="comments" href="/"><FontAwesomeIcon icon={faPaperPlane}/>&nbsp; Share link</a>
+          <div id="iconcol" class="col-sm-4">
+            <a id="comments" href="/"><FontAwesomeIcon icon={faPaperPlane}/>&nbsp; Share link</a>&nbsp;
           </div>
         </div>
 
