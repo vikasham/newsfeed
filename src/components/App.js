@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 
 import '../css/App.css'
-import logo from '../img/logo.svg'
 import NavigationBar from './NavigationBar'
+import Dash from './Dash'
 
 
 
@@ -11,9 +11,6 @@ class App extends Component {
     super(props)
     // state is initialized in JSON notation
     this.state = {
-      name: "User",
-      age: 21,
-      status: ""
     }
 
     // you must add this line!
@@ -51,19 +48,10 @@ class App extends Component {
 
 
   render() {
-
-    const { name, age, status} = this.state // save all the state variables
     return (
       <div className="App">
       <NavigationBar/>
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Hi {name}, edit <code>src/App.js</code> and save to reload.
-          </p>
-          <input type="text" name="Status" placeholder="Feeling good." value={status} onChange={this.handleChange}></input>
-          {/* This is a JSX Style Comment */}
-        </header>
+      <Dash/>
       </div>
     )
   }
