@@ -103,7 +103,7 @@ class NavigationBar extends Component
                   <button type="button" class="close text-white" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                  <form method="POST" action="Login">
+                  <form method="POST" action="/login">
                     <div class="form-group row">
                       <label for="exampleInputEmail1" class="col-sm-1 col-form-label text-secondary"><FontAwesomeIcon icon={faUser }/></label>
                       <div class="col-sm-11">

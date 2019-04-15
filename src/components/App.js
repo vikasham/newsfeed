@@ -45,6 +45,21 @@ class App extends Component {
     })
   }
 
+  handleClick(e) {
+    fetch('/api/login', {
+      method: 'POST', // or 'PUT'
+      body: JSON.stringify({
+        username: "tommy",
+        password: "trojan"
+      }), // data can be `string` or {object}!
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.text())
+    .then(messages => {alert(messages)})
+  }
+
 
 
   render() {
