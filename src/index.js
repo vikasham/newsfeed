@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import { Route, BrowserRouter as Router } from 'react-router-dom'
 import Profile from './components/Profile'
 import App from './components/App'
+import ArticlePage from './components/ArticlePage'
 import * as serviceWorker from './serviceWorker'
 
 const routing = (
@@ -10,6 +11,7 @@ const routing = (
     <div>
       <Route exact path="/" component={App} />
       <Route path="/profile" component={Profile} />
+      <Route path="/articlepage" component={ArticlePage} />
     </div>
   </Router>
 )
