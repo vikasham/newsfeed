@@ -19,7 +19,7 @@ class ArticlePage extends Component{
             <div class="col col-lg-2">
             </div>
             <div class="col-md">
-                <h1><strong>Article Title</strong></h1>
+                <h1 class="text-center" id="articleTitle"><strong>Article Title</strong></h1>
 
                 <br />
                 <div class="text-center">
@@ -39,10 +39,10 @@ class ArticlePage extends Component{
                   </div>
                 </div>
                 <br />
-                <div><strong>By Author Name</strong></div>
-                <div><small>April 17, 2019</small></div>
+                <div id="articleAuthor"><strong>By Author Name</strong></div>
+                <div id="articleDate"><small>April 17, 2019</small></div>
                 <br />
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id.</p>
+                <p id="articleContent">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id.</p>
                 <br /><br />
             </div>
             <div class="col col-lg-2">
@@ -59,7 +59,7 @@ class ArticlePage extends Component{
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body">
+              <div class="modal-body" >
                 ...
               </div>
               <div class="modal-footer">
