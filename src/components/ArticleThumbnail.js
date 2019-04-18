@@ -15,12 +15,12 @@ class Dash extends Component
         </a>
         <div class="card-body">
           <a href="/">
-            <h5 class="card-title">Article Title</h5>
+            <h5 class="text-center card-title">Article Title</h5>
           </a>
           <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id.</p>
         </div>
 
-        <div class="card-body row" id="comments">
+        <div class="card-body row text-center" id="comments">
           <div id="iconcoltn" class="col-sm-4">
             &nbsp; <a  id="commentstn" href="/" data-toggle="modal" data-target="#commentsModal"><FontAwesomeIcon icon={faCommentAlt}/>&nbsp; Comments</a>
           </div>

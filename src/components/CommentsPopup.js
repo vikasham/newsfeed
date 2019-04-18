@@ -33,7 +33,7 @@ class CommentsPopup extends Component{
                 <div id="menu1" class="tab-pane fade">
                   <form action="#" method="post" class="form-horizontal" id="commentForm" role="form">
                       <div class="form-group">
-                          <label for="email" class="col-sm-2 control-label">Comment</label>
+                          <label for="email" class="col-sm-3 control-label">Comment</label>
                           <div class="col-sm-10">
                             <textarea class="form-control" name="addComment" id="addComment" rows="5"></textarea>
                           </div>
