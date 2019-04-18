@@ -42,12 +42,12 @@ class TitleNav extends Component{
                       </a>
                   </li>
                 </ul>
-                </div>
-                  <form class="navbar-search form-inline my-2 my-lg-0 pull-right">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                  </form>
 
+                <form class="navbar-search form-inline my-2 my-lg-0 pull-right">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+              </div>
             </nav>
     )
   }
