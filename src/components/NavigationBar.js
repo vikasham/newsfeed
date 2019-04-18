@@ -6,7 +6,6 @@ import { faDove, faSignInAlt, faSignOutAlt, faDoorOpen, faAddressCard, faKey, fa
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import '../css/NavigationBar.css'
-import TitleNav from './TitleNav'
 import TopicNav from './TopicNav'
 
 

@@ -3,17 +3,21 @@ import { Component } from 'react'
 import stock from '../img/stock.jpg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import TitleNav from './TitleNav'
-import {faCommentAlt, faArrowCircleUp, faArrowCircleDown, faPaperPlane} from '@fortawesome/free-solid-svg-icons'
+import {faCommentAlt, faArrowCircleUp, faArrowCircleDown, faPaperPlane, faUndo, faNewspaper} from '@fortawesome/free-solid-svg-icons'
+import '../css/ArticlePage.css'
 
 class ArticlePage extends Component{
   render(){
     return(
       <div>
+
         <div class="container-fluid fixed-top">
           <TitleNav />
         </div>
-        <br /><br /><br /><br />
-
+        <br /><br /><br />
+        <div id="returnhome" class="float-left"><a href="/"><FontAwesomeIcon icon={faUndo}/> Return to homepage</a></div>
+        <div id="originalarticle" class="float-right"><a href="/"><FontAwesomeIcon icon={faNewspaper}/> View original article</a></div>
+        <br />
         <div class="container">
           <div class="row justify-content-md-center">
             <div class="col col-lg-2">
@@ -39,8 +43,10 @@ class ArticlePage extends Component{
                   </div>
                 </div>
                 <br />
+                <hr />
                 <div id="articleAuthor"><strong>By Author Name</strong></div>
                 <div id="articleDate"><small>April 17, 2019</small></div>
+                <hr />
                 <br />
                 <p id="articleContent">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id.</p>
                 <br /><br />

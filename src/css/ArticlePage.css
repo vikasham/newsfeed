@@ -1,0 +1,28 @@
+hr.style1{
+	border-top: 1px solid #8c8b8b;
+}
+
+a{
+  text-decoration: none;
+}
+#articleTitle{
+  font-size: 42pt;
+}
+#returnhome{
+  padding-left: 30px;
+}
+
+#originalarticle{
+  padding-right: 30px;
+}
+
+#iconcol{
+  font-size: 16pt;
+}
+
+#articleAuthor, #articleDate{
+  font-size: 20pt;
+}
+#articleContent{
+  font-size: 16pt;
+}
