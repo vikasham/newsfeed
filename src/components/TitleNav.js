@@ -9,39 +9,46 @@ import '../css/NavigationBar.css'
 class TitleNav extends Component{
   render(){
     return(
-      <div class="row">
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark w-100">
               <div class="navbar-header">
-                <div class="navbar-brand">Newsfeed &nbsp;
+                <a class="navbar-brand" href="/" id="logotitle">Newsfeed &nbsp;
                   <FontAwesomeIcon icon={faDove}/>
-                </div>
+                </a>
               </div>
-              <ul class="navbar-nav">
-                <li class="nav-item">
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" data-toggle="modal" data-target="#myModal1">Log In &nbsp;
+                      <FontAwesomeIcon icon={faSignInAlt}/>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link">Log Out &nbsp;
+                      <FontAwesomeIcon icon={faSignOutAlt}/>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-toggle="modal" data-target="#myModal2">Register &nbsp;
+                      <FontAwesomeIcon icon={faDoorOpen}/>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="/profile">
+                      Profile &nbsp;<FontAwesomeIcon icon={faAddressCard}/>
 
-                  <div class="nav-link" data-toggle="modal" data-target="#myModal1">Log In &nbsp;
-                    <FontAwesomeIcon icon={faSignInAlt}/>
-                  </div>
-                </li>
-                <li class="nav-item">
-                  <div class="nav-link">Log Out &nbsp;
-                    <FontAwesomeIcon icon={faSignOutAlt}/>
-                  </div>
-                </li>
-                <li class="nav-item">
-                  <div class="nav-link" data-toggle="modal" data-target="#myModal2">Register &nbsp;
-                    <FontAwesomeIcon icon={faDoorOpen}/>
-                  </div>
-                </li>
-                <li class="nav-item">
-                    <div class="nav-link" >
-                    Profile &nbsp;<FontAwesomeIcon icon={faAddressCard}/>
+                      </a>
+                  </li>
+                </ul>
+                </div>
+                  <form class="navbar-search form-inline my-2 my-lg-0 pull-right">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                  </form>
 
-                    </div>
-                </li>
-              </ul>
             </nav>
-      </div>
     )
   }
 }

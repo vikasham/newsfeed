@@ -10,7 +10,23 @@ import {faCommentAlt, faArrowCircleUp, faArrowCircleDown, faPaperPlane, faUndo, 
 import '../css/ArticlePage.css'
 
 class ArticlePage extends Component{
+  constructor(props) {
+    super(props);
+
+    this.state = { articlescore: 29}
+    this.increaseScore = this.increaseScore.bind(this);
+    this.decreaseScore = this.decreaseScore.bind(this);
+  }
+  increaseScore = (e) => {
+      this.setState({ articlescore: this.state.articlescore + 1 });
+      //increment article score member variable
+  };
+  decreaseScore = (e) => {
+      this.setState({ articlescore: this.state.articlescore - 1 });
+      //decrement article score member variable
+  };
   render(){
+    var score = this.state.articlescore;
     return(
       <div>
 
@@ -38,8 +54,8 @@ class ArticlePage extends Component{
                     &nbsp; <a  id="comments" href="/" data-toggle="modal" data-target="#commentsModal"><FontAwesomeIcon icon={faCommentAlt}/>&nbsp; Comments</a>
                   </div>
                   <div id="iconcol" class="col-sm-4">
-                    <a id="comments" href="/"><FontAwesomeIcon icon={faArrowCircleUp}/></a>&nbsp; 26k &nbsp;
-                    <a  id="comments" href="/"><FontAwesomeIcon icon={faArrowCircleDown}/>  </a>
+                    <a class="incdec" id="comments" onClick={this.increaseScore.bind(this)}><FontAwesomeIcon icon={faArrowCircleUp}/></a>&nbsp; {score} &nbsp;
+                    <a class="incdec" id="comments" onClick={this.decreaseScore.bind(this)}><FontAwesomeIcon icon={faArrowCircleDown}/>  </a>
                   </div>
                   <div id="iconcol" class="col-sm-4">
                     <a id="comments" href="/"data-toggle="modal" data-target="#shareModal"><FontAwesomeIcon icon={faPaperPlane}/>&nbsp; Share link</a>&nbsp;

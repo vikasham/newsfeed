@@ -8,18 +8,12 @@ import {faPaperPlane} from '@fortawesome/free-solid-svg-icons'
 
 class SharePopup extends Component{
 
-  constructor(props) {
-    super(props);
-
-    this.state = { copySuccess: '' }
-  }
   copyToClipboard = (e) => {
       this.textArea.select();
       document.execCommand('copy');
       // This is just personal preference.
       // I prefer to not show the the whole text area selected.
       e.target.focus();
-      this.setState({ copySuccess: 'Copied!' });
     };
 
   render(){

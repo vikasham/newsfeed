@@ -5,3 +5,19 @@
 #profilelink{
   text-decoration: none;
 }
+
+#topic:hover{
+  font-weight: 500;
+}
+
+.navlink{
+  text-decoration: none;
+}
+
+a{
+    font-size: 1em !important;
+}
+
+#logotitle{
+  font-size: 1.2em !important;
+}

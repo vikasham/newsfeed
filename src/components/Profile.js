@@ -9,10 +9,23 @@ import '../css/Profile.css'
 
 
 class Profile extends Component{
+  constructor(props) {
+        super(props);
+        this.toggleClass= this.toggleClass.bind(this);
+        this.state = {
+            condition: true,
+        };
+    }
+
+  toggleClass() {
+    this.setState({
+      condition: !this.state.condition
+    });
+   };
   render(){
     return(
       <div id ="profilepage">
-        <div class="container-fluid fixed-top">
+        <div class="container-fluid fixed-top" id="navcontainer">
           <TitleNav />
         </div>
         <div class="jumbotron vertical-center" id ="profilepage">
@@ -22,7 +35,7 @@ class Profile extends Component{
               <FontAwesomeIcon icon={faUserCircle} size="8x"/>
               <br />
               <h1 class="display-3"><strong>Claire Powers</strong></h1>
-              <button type="button" class="btn btn-success btn-lg">Add Friend</button>
+              <button type="button" class= { this.state.condition ? "btn btn-success btn-lg" : "btn btn-danger btn-lg" } onClick={this.toggleClass} >{ this.state.condition ? "Add Friend" : "Remove Friend" }</button>
               <br /><br />
               <div class="container">
                 <div class="row justify-content-md-center">

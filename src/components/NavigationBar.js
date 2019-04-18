@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import '../css/NavigationBar.css'
 import TopicNav from './TopicNav'
+import TitleNav from './TitleNav'
 
 
 class NavigationBar extends Component
@@ -28,39 +29,7 @@ class NavigationBar extends Component
     return(
       <div id ="navbar">
         <div class="container-fluid fixed-top">
-        <div class="row">
-          <nav class="navbar navbar-expand-sm bg-dark navbar-dark w-100">
-                <div class="navbar-header">
-                  <div class="navbar-brand">Newsfeed &nbsp;
-                    <FontAwesomeIcon icon={faDove}/>
-                  </div>
-                </div>
-                <ul class="navbar-nav">
-                  <li class="nav-item">
-
-                    <div class="nav-link" data-toggle="modal" data-target="#myModal1">Log In &nbsp;
-                      <FontAwesomeIcon icon={faSignInAlt}/>
-                    </div>
-                  </li>
-                  <li class="nav-item">
-                    <div class="nav-link">Log Out &nbsp;
-                      <FontAwesomeIcon icon={faSignOutAlt}/>
-                    </div>
-                  </li>
-                  <li class="nav-item">
-                    <div class="nav-link" data-toggle="modal" data-target="#myModal2">Register &nbsp;
-                      <FontAwesomeIcon icon={faDoorOpen}/>
-                    </div>
-                  </li>
-                  <li class="nav-item">
-                      <div class="nav-link" >
-                      Profile &nbsp;<FontAwesomeIcon icon={faAddressCard}/>
-
-                      </div>
-                  </li>
-                </ul>
-              </nav>
-              </div>
+          <TitleNav />
           <TopicNav />
         </div>
         <div class="container">
