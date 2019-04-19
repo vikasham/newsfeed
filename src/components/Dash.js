@@ -13,7 +13,7 @@ class Dash extends Component
     return(
       <div class="bg-light w-100">
         <br/><br/><br/><br/><br/><br/>
-        <h1 class="text-center">Todays News: All Categories</h1>
+        <h1 class="text-center">Today's News: All Categories</h1>
         <br/><br/><br/>
         <Dashrow/>
         <br/><br/>

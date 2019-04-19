@@ -5,14 +5,28 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle, faHistory, faUserFriends, faKey, faUserPlus, faUser, faLock } from '@fortawesome/free-solid-svg-icons'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import TitleNav from './TitleNav'
+import Friend from './Friend'
 import '../css/Profile.css'
 
 
 class Profile extends Component{
+  constructor(props) {
+        super(props);
+        this.toggleClass= this.toggleClass.bind(this);
+        this.state = {
+            condition: true,
+        };
+    }
+
+  toggleClass() {
+    this.setState({
+      condition: !this.state.condition
+    });
+   };
   render(){
     return(
       <div id ="profilepage">
-        <div class="container-fluid fixed-top">
+        <div class="container-fluid fixed-top" id="navcontainer">
           <TitleNav />
         </div>
         <div class="jumbotron vertical-center" id ="profilepage">
@@ -22,8 +36,9 @@ class Profile extends Component{
               <FontAwesomeIcon icon={faUserCircle} size="8x"/>
               <br />
               <h1 class="display-3"><strong>Claire Powers</strong></h1>
-              <button type="button" class="btn btn-success btn-lg">Add Friend</button>
+              <button type="button" class= { this.state.condition ? "btn btn-success btn-lg" : "btn btn-danger btn-lg" } onClick={this.toggleClass} >{ this.state.condition ? "Add Friend" : "Remove Friend" }</button>
               <br /><br />
+
               <div class="container">
                 <div class="row justify-content-md-center">
                   <div class="col-1">
@@ -39,7 +54,9 @@ class Profile extends Component{
                     </a>
                   </div>
                 </div>
+                <hr />
               </div>
+
               <br />
                 <h3>My Topics:</h3>
                 <span> &nbsp; </span>
@@ -89,11 +106,15 @@ class Profile extends Component{
                 </button>
               </div>
               <div class="modal-body">
-                ...
+                <h4> 3 Friends: </h4> <br/>
+                <ul class="list-unstyled">
+                  <Friend /><br />
+                  <Friend /><br />
+                  <Friend />
+                </ul>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
               </div>
             </div>
           </div>
@@ -108,11 +129,16 @@ class Profile extends Component{
                 </button>
               </div>
               <div class="modal-body">
-                ...
+                <ul class="list-group">
+                  <li class="list-group-item">Cras justo odio</li>
+                  <li class="list-group-item">Dapibus ac facilisis in</li>
+                  <li class="list-group-item">Morbi leo risus</li>
+                  <li class="list-group-item">Porta ac consectetur ac</li>
+                  <li class="list-group-item">Vestibulum at eros</li>
+                </ul>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
               </div>
             </div>
           </div>

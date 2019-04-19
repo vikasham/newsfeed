@@ -5,11 +5,28 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import TitleNav from './TitleNav'
 
 import CommentsPopup from './CommentsPopup'
+import SharePopup from './SharePopup'
 import {faCommentAlt, faArrowCircleUp, faArrowCircleDown, faPaperPlane, faUndo, faNewspaper} from '@fortawesome/free-solid-svg-icons'
 import '../css/ArticlePage.css'
 
 class ArticlePage extends Component{
+  constructor(props) {
+    super(props);
+
+    this.state = { articlescore: 29}
+    this.increaseScore = this.increaseScore.bind(this);
+    this.decreaseScore = this.decreaseScore.bind(this);
+  }
+  increaseScore = (e) => {
+      this.setState({ articlescore: this.state.articlescore + 1 });
+      //increment article score member variable
+  };
+  decreaseScore = (e) => {
+      this.setState({ articlescore: this.state.articlescore - 1 });
+      //decrement article score member variable
+  };
   render(){
+    var score = this.state.articlescore;
     return(
       <div>
 
@@ -37,8 +54,8 @@ class ArticlePage extends Component{
                     &nbsp; <a  id="comments" href="/" data-toggle="modal" data-target="#commentsModal"><FontAwesomeIcon icon={faCommentAlt}/>&nbsp; Comments</a>
                   </div>
                   <div id="iconcol" class="col-sm-4">
-                    <a id="comments" href="/"><FontAwesomeIcon icon={faArrowCircleUp}/></a>&nbsp; 26k &nbsp;
-                    <a  id="comments" href="/"><FontAwesomeIcon icon={faArrowCircleDown}/>  </a>
+                    <a class="incdec" id="comments" onClick={this.increaseScore.bind(this)}><FontAwesomeIcon icon={faArrowCircleUp}/></a>&nbsp; {score} &nbsp;
+                    <a class="incdec" id="comments" onClick={this.decreaseScore.bind(this)}><FontAwesomeIcon icon={faArrowCircleDown}/>  </a>
                   </div>
                   <div id="iconcol" class="col-sm-4">
                     <a id="comments" href="/"data-toggle="modal" data-target="#shareModal"><FontAwesomeIcon icon={faPaperPlane}/>&nbsp; Share link</a>&nbsp;
@@ -59,24 +76,7 @@ class ArticlePage extends Component{
         </div>
 
         <CommentsPopup />
-        <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Share</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                ...
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <SharePopup />
       </div>
     )
   }
