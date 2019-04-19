@@ -15,7 +15,7 @@ class NavigationBar extends Component
   constructor(props) {
     super(props)
     this.state = {
-      displayLogin: false,
+      displayLogin: true,
       loginuser: "",
       registeruser:""
     };
