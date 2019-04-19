@@ -36,11 +36,10 @@ class Profile extends Component{
         <div class="row w-100">
           <div class="col">
           </div>
-          <div class="col-5">
-            <div class="card bg-light align-middle">
-              <div class="card-body">
+          <div class="col-xl-auto">
+            <div class="card bg-light align-middle" id="profilecard" >
+              <div class="card-body" >
                 <center>
-                  <br /><br /><br />
                   <FontAwesomeIcon icon={faUserCircle} size="8x"/><br />
                   <h1 class="display-3"><strong>Claire Powers</strong></h1>
                   <h5>@username</h5><br /><br />
@@ -48,7 +47,6 @@ class Profile extends Component{
                     <button type="button" class="btn btn-outline-dark btn-lg" data-toggle="modal" data-target="#topicsmodal"><FontAwesomeIcon icon={faListUl} /> Topics</button>  &nbsp;
                     <button type="button" class="btn btn-outline-dark btn-lg" data-toggle="modal" data-target="#modal2"> <FontAwesomeIcon icon={faHistory} /> History</button>
                   </div>
-                  <br /><br /><br />
                 </center>
 
               </div>

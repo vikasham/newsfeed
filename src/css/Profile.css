@@ -15,6 +15,9 @@ a{
   min-height: 100vh;
 }
 
+#profilecard{
+  padding: 10%;
+}
 center{
   top: 50%;
   height: 100%;
