@@ -2,17 +2,8 @@
   padding-left: 0;
   padding-right: 0;
 }
-.jumbotron {
-  position: absolute;
-  height: 120%;
-  width: 100%;
-}
-#info{
-  top: 50%;
+.container{
   height: 100%;
-}
-#friends{
-  line-height: 10%;
 }
 a{
   text-decoration: none;
