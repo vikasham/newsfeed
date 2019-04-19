@@ -5,7 +5,7 @@ import NavigationBar from './NavigationBar'
 import Dash from './Dash'
 
 
-
+const loggedInContext = React.createContext(false);
 class App extends Component {
   constructor(props) {
     super(props)

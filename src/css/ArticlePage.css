@@ -5,9 +5,6 @@ hr.style1{
 a{
   text-decoration: none;
 }
-#comments a:hover{
-	color: royalblue;
-}
 #articleTitle{
   font-size: 42pt;
 }

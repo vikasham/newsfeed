@@ -13,18 +13,45 @@ class ArticlePage extends Component{
   constructor(props) {
     super(props);
 
-    this.state = { articlescore: 29}
+    this.state = {
+      articlescore: 29,
+      loggedIn: false,
+      isMouseInside1: false,
+      isMouseInside2: false,
+    }
+
     this.increaseScore = this.increaseScore.bind(this);
     this.decreaseScore = this.decreaseScore.bind(this);
+
   }
   increaseScore = (e) => {
+    if(this.state.loggedIn){
       this.setState({ articlescore: this.state.articlescore + 1 });
+    }
       //increment article score member variable
   };
   decreaseScore = (e) => {
+    if(this.state.loggedIn){
       this.setState({ articlescore: this.state.articlescore - 1 });
+    }
       //decrement article score member variable
   };
+  hoverOn1 = (e) =>{
+    if(this.state.loggedIn){
+      this.setState({ isMouseInside1: true });
+    }
+  };
+  hoverOff1 = (e)=>{
+    this.setState({ isMouseInside1: false});
+  }
+  hoverOn2 = (e) =>{
+    if(this.state.loggedIn){
+      this.setState({ isMouseInside2: true });
+    }
+  };
+  hoverOff2 = (e)=>{
+    this.setState({ isMouseInside2: false});
+  }
   render(){
     var score = this.state.articlescore;
     return(
@@ -54,8 +81,8 @@ class ArticlePage extends Component{
                     &nbsp; <a  id="comments" href="/" data-toggle="modal" data-target="#commentsModal"><FontAwesomeIcon icon={faCommentAlt}/>&nbsp; Comments</a>
                   </div>
                   <div id="iconcol" class="col-sm-4">
-                    <a class="incdec" id="comments" onClick={this.increaseScore.bind(this)}><FontAwesomeIcon icon={faArrowCircleUp}/></a>&nbsp; {score} &nbsp;
-                    <a class="incdec" id="comments" onClick={this.decreaseScore.bind(this)}><FontAwesomeIcon icon={faArrowCircleDown}/>  </a>
+                    <span class="incdec" id="comments" style={{color: this.state.isMouseInside1 ? 'royalblue' : 'black' }} onMouseEnter={this.hoverOn1} onMouseLeave={this.hoverOff1} onClick={this.increaseScore.bind(this)}><FontAwesomeIcon icon={faArrowCircleUp}/></span>&nbsp; {score} &nbsp;
+                    <span class="incdec" id="comments" style={{color: this.state.isMouseInside2 ? 'royalblue' : 'black' }} onMouseEnter={this.hoverOn2} onMouseLeave={this.hoverOff2} onClick={this.decreaseScore.bind(this)}><FontAwesomeIcon icon={faArrowCircleDown}/>  </span>
                   </div>
                   <div id="iconcol" class="col-sm-4">
                     <a id="comments" href="/"data-toggle="modal" data-target="#shareModal"><FontAwesomeIcon icon={faPaperPlane}/>&nbsp; Share link</a>&nbsp;
@@ -64,7 +91,6 @@ class ArticlePage extends Component{
                 <br />
                 <hr />
                 <div id="articleAuthor"><strong>By Author Name</strong></div>
-                <div id="articleDate"><small>April 17, 2019</small></div>
                 <hr />
                 <br />
                 <p id="articleContent">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id.</p>

@@ -2,7 +2,7 @@ import React from "react";
 import { Component } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faDove, faSignInAlt, faSignOutAlt, faDoorOpen, faAddressCard, faKey, faUserPlus, faUser, faLock} from '@fortawesome/free-solid-svg-icons'
+import { faKey, faUserPlus, faUser, faLock} from '@fortawesome/free-solid-svg-icons'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import '../css/NavigationBar.css'
@@ -74,17 +74,28 @@ class NavigationBar extends Component
                   <button type="button" class="close text-white" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
+
                   <form method="POST" action="Register">
                     <div class="form-group row">
-                      <label for="exampleInputEmail1" class="col-sm-1 col-form-label text-secondary"><FontAwesomeIcon icon={faUser }/></label>
-                      <div class="col-sm-11">
-                        <input type="user" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Username"/>
+                      <div class="col-sm-1">
+                      </div>
+                      <div class="col-sm-5">
+                        <input type="text" class="form-control" id="firstName" placeholder="First Name"/>
+                      </div>
+                      <div class="col-sm-6">
+                        <input type="text" class="form-control" id="lastName" placeholder="Last Name"/>
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="exampleInputEmail1" class="col-sm-1 col-form-label text-secondary"><FontAwesomeIcon icon={faLock}/></label>
+                      <label for="username" class="col-sm-1 col-form-label text-secondary"><FontAwesomeIcon icon={faUser }/></label>
                       <div class="col-sm-11">
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
+                        <input type="user" class="form-control" id="username" placeholder="Username"/>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="password" class="col-sm-1 col-form-label text-secondary"><FontAwesomeIcon icon={faLock}/></label>
+                      <div class="col-sm-11">
+                        <input type="password" class="form-control" id="password" placeholder="Password"/>
                       </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Register</button>
