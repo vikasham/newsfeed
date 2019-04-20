@@ -7,7 +7,14 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import '../css/NavigationBar.css'
 
 class TitleNav extends Component{
+  constructor(props){
+    super(props)
+    this.state = {
+      loggedIn: true,
+    }
+  }
   render(){
+    var disabled = !this.state.loggedIn;
     return(
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark w-100">
               <div class="navbar-header">
@@ -21,31 +28,31 @@ class TitleNav extends Component{
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                   <li class="nav-item">
-                    <a class="nav-link" data-toggle="modal" data-target="#myModal1">Log In &nbsp;
+                    <span class="nav-link" data-toggle="modal" data-target="#myModal1">Log In &nbsp;
                       <FontAwesomeIcon icon={faSignInAlt}/>
-                    </a>
+                    </span>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link">Log Out &nbsp;
+                    <span class= { this.state.loggedIn ? "nav-link" : "nav-link disabled" }>Log Out &nbsp;
                       <FontAwesomeIcon icon={faSignOutAlt}/>
-                    </a>
+                    </span>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" data-toggle="modal" data-target="#myModal2">Register &nbsp;
+                    <span class="nav-link" data-toggle="modal" data-target="#myModal2">Register &nbsp;
                       <FontAwesomeIcon icon={faDoorOpen}/>
-                    </a>
+                    </span>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="/profile">
+                      <a class= { this.state.loggedIn ? "nav-link" : "nav-link disabled" } href="/profile">
                       Profile &nbsp;<FontAwesomeIcon icon={faAddressCard}/>
 
                       </a>
                   </li>
                 </ul>
 
-                <form class="navbar-search form-inline my-2 my-lg-0 pull-right">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <form class="navbar-search form-inline my-2 my-lg-0">
+                  <input class="form-control mr-sm-2 diabled" type="search" placeholder="Search" aria-label="Search" disabled={ disabled }/>
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit" disabled={ disabled }>Search</button>
                 </form>
               </div>
             </nav>

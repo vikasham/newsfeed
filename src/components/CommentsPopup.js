@@ -5,7 +5,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faCommentAlt} from '@fortawesome/free-solid-svg-icons'
 
 class CommentsPopup extends Component{
+  constructor(props){
+    super(props)
+    this.state={
+      loggedIn: false
+    }
+  }
   render(){
+    var disabled = !this.state.loggedIn;
+    let message;
+    if (!this.state.loggedIn) {
+      message = <h5>Must <a href="/" data-toggle="modal" data-target="#myModal1" data-dismiss="modal" class="text-primary">log in</a> to comment.</h5>;
+    }else{
+      message ="Comment"
+    }
     return(
       <div class="modal fade" id="commentsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -32,15 +45,17 @@ class CommentsPopup extends Component{
                 </div>
                 <div id="menu1" class="tab-pane fade">
                   <form action="#" method="post" class="form-horizontal" id="commentForm" role="form">
+
                       <div class="form-group">
-                          <label for="email" class="col-sm-3 control-label">Comment</label>
+
+                          <label for="email" class="col-sm-auto control-label">{message}</label>
                           <div class="col-sm-10">
-                            <textarea class="form-control" name="addComment" id="addComment" rows="5"></textarea>
+                            <textarea class="form-control" name="addComment" id="addComment" rows="5" disabled={ disabled }></textarea>
                           </div>
                       </div>
                       <div class="form-group">
                           <div class="col-sm-offset-2 col-sm-10">
-                              <button class="btn btn-success btn-circle text-uppercase" type="submit" id="submitComment"><span class="glyphicon glyphicon-send"></span> Submit comment</button>
+                              <button class="btn btn-success btn-circle text-uppercase" type="submit" id="submitComment" disabled={ disabled }><span class="glyphicon glyphicon-send"></span> Submit comment</button>
                           </div>
                       </div>
                   </form>
