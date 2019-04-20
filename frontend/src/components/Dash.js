@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Dashrow from './Dashrow'
+import Bubbles from './Bubbles'
 
 class Dash extends Component
 {
@@ -12,9 +13,11 @@ class Dash extends Component
 
   render(){
     return(
-      <div class="bg-light w-100">
+      <div>
+        <Bubbles/>
         <br/><br/><br/><br/><br/><br/>
-        <h1 class="text-center">{this.state.loggedIn ? "Today's News: My Topics" : "Today's News: All Topics" }</h1>
+        <h1 class="text-center">{"Today's News"}</h1>
+        <h2 class="text-center">{this.state.loggedIn ? "My Topics" : "All Topics"}</h2>
         <br/><br/><br/>
         <Dashrow/>
         <br/><br/>

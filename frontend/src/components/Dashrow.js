@@ -6,7 +6,7 @@ class Dashrow extends Component
 {
   render(){
     return(
-      <div class="bg-light">
+      <div>
         <div id="dashrow" class="row">
           <div class="col-sm-4">
             <ArticleThumbnail/>

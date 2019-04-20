@@ -1,45 +1,19 @@
 {
-  "name": "newsfeed201",
-  "version": "0.1.0",
-  "private": true,
+  "name": "newsfeed",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/austintraver/newsfeed",
+  "author": "Austin Traver <austintraver@icloud.com>",
+  "license": "MIT",
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.17",
-    "@fortawesome/free-brands-svg-icons": "^5.8.1",
-    "@fortawesome/free-solid-svg-icons": "^5.8.1",
-    "@fortawesome/react-fontawesome": "^0.1.4",
-    "body-parser": "^1.18.3",
-    "bootstrap": "^4.3.1",
-    "express": "^4.16.4",
-    "express-favicon": "^2.0.1",
-    "jquery": "^3.3.1",
-    "mysql": "^2.16.0",
-    "popper": "^1.0.1",
-    "popper.js": "^1.15.0",
-    "react": "^16.8.5",
-    "react-bootstrap": "^1.0.0-beta.6",
-    "react-dom": "^16.8.5",
-    "react-router-dom": "^5.0.0",
-    "react-scripts": "2.1.8"
+    "concurrently": "^4.1.0",
+    "global": "^4.3.2",
+    "nodemon": "^1.18.11"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "myscript": "echo $'Hello World'",
-    "production": "yarn run test && yarn run build && node server.js"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-flow": "^6.23.0"
+  "scripts":
+  {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./backend/app.js",
+    "heroku-postbuild": "cd frontend && yarn install && yarn build"
   }
 }

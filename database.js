@@ -32,4 +32,6 @@ connection.connect(function(error){
 
   var sql = "DELETE FROM customers WHERE address = 'Mountain 21'";
 
-});
+)
+
+https://newsapi.org/v2/top-headlines?apiKey=ae32b8b44bde4ae4871588be957c99ad&country=us&category=business
