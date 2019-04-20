@@ -10,10 +10,9 @@
     "global": "^4.3.2",
     "nodemon": "^1.18.11"
   },
-  "scripts":
-  {
+  "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./backend/app.js",
+    "start": "node ./backend/server.js",
     "heroku-postbuild": "cd frontend && yarn install && yarn build"
   }
 }
