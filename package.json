@@ -6,9 +6,27 @@
   "author": "Austin Traver <austintraver@icloud.com>",
   "license": "MIT",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.17",
+    "@fortawesome/free-solid-svg-icons": "^5.8.1",
+    "@fortawesome/react-fontawesome": "^0.1.4",
+    "body-parser": "^1.18.3",
+    "bootstrap": "^4.3.1",
     "concurrently": "^4.1.0",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "express-favicon": "^2.0.1",
+    "express-session": "^1.16.1",
     "global": "^4.3.2",
-    "nodemon": "^1.18.11"
+    "java": "^0.11.0",
+    "jquery": "^3.4.0",
+    "mysql": "^2.17.1",
+    "nodemon": "^1.18.11",
+    "popper.js": "^1.15.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-particles-js": "^2.6.0",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "^2.1.8"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
