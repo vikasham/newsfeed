@@ -1,55 +1,44 @@
-var createError = require('http-errors')
-var express = require('express')
-var path = require('path')
-var cookieParser = require('cookie-parser')
-var logger = require ('morgan')
-var cors = require('cors')
+const express = require('express')
+const path = require('path')
+const bodyParser = require('body-parser')
+const session = require('express-session')
+const app = express()
+const router = express.Router()
+const favicon = require('express-favicon')
+const cors = require('cors')
+app.use(bodyParser());
+app.use(favicon(__dirname + '../frontend/build/favicon.ico'))
+app.use(session(
+  {
+    secret: "hashedforprotection"
+  }
+))
+// client can look at our server code ^ .join() defaults to the root directory if none is specified
+app.use(express.static(path.join(__dirname, '../frontend/build')))
 
-var indexRouter = require('./routes/index')
-var usersRouter = require('./routes/users')
+app.use( (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*")
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+  next();
+});
 
-const app = express();
+app.use(express.static(path.join(__dirname, '../frontend/build')))
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-
-app.use(logger('dev'));
-// enable support for JSON
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-// Serve static files from the React front-end app
-// app.use(express.static(path.join(__dirname, '../frontend/build')))
-
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-
-// Serve our api route /cow that returns a custom talking text cow
+// Serve our api route /cow
 app.get('/api/cow/:say', cors(), async (req, res, next) => {
-  try {
-    const text = req.params.say
-    res.status(400).json({
+  const text = req.params.say
+  res.status(400).json({
     hello: "world",
     goodbye: "world"
-   })
-  } catch (err) {
-    console.log(err)
-    next(err)
-  }
+  })
 })
 
-// Serve our base route that returns a Hello World cow
+// Serve our base route that returns "world"
 app.get('/api/cow/', cors(), async (req, res, next) => {
-  try {
-    res.status(400).json({
+  res.status(400).json({
     hello: "Message from the server: world",
     goodbye: "Message from the server: world"
-   })
-  } catch (err) {
-    console.log(err)
-    next(err)
-  }
+  })
 })
 
 // Choose the port and start the server

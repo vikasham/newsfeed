@@ -21,33 +21,10 @@ Authors | GitHub|
 #### MySQL (8.0.15)
 `$ brew install mysql`
 
-#### Node (11.11.0)
-`$ brew install node`
-
 #### Yarn (1.15.2)
 `$ brew install yarn`
 
-### Java Archives
-gson.jar
-jdbc.jar
+## Before Deploying
 
-### SQL Database
-newsfeed.sql
-
-
-### Deprecated
-
-Eclipse
-`$ brew cask install eclipse-jee`
-
-Tomcat
-`$ brew install tomcat`
-
-Popper.js (1.14.7)
-`$ npm install popper.js`
-
-jQuery (3.3.1)
-`$ npm install jquery`
-
-Bootstrap (4.3.1)
-`$ npm install bootstrap`
+Clone this repository, type `yarn install` inside of the root directory
+as well as the frontend and backend directories
