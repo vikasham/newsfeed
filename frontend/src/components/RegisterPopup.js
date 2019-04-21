@@ -6,7 +6,7 @@ import { faUserPlus, faUser, faLock } from '@fortawesome/free-solid-svg-icons'
 class RegisterPopup extends Component{
   render(){
     return(
-      <div class="container">
+      <div class="container" id="registerpopup">
         <div class="modal fade" id="myModal2" role="dialog">
           <div class="modal-dialog modal-dialog-centered">
 

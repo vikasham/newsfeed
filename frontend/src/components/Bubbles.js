@@ -19,7 +19,7 @@ export default () => (
       {
         "number":
         {
-          "value":100,"density":
+          "value":30,"density":
           {
             "enable":false,"value_area":800
           }

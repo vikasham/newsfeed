@@ -52,7 +52,7 @@ class Dash extends Component
   }
   render(){
     return(
-      <div class="card">
+      <div id="articlethumbnail" class="card">
         <a href="/articlepage">
           <img class="card-img-top" alt="article thumbnail" src={stock}/>
         </a>

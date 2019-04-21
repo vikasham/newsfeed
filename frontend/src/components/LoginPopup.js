@@ -6,8 +6,7 @@ import {  faKey, faUser, faLock } from '@fortawesome/free-solid-svg-icons'
 class LoginPopup extends Component{
   render(){
     return(
-      <div class="container">
-        <div class="modal fade" id="myModal1" role="dialog">
+        <div class="modal hide fade" id="myModal1" role="dialog">
           <div class="modal-dialog modal-dialog-centered">
 
             <div class="modal-content">
@@ -35,7 +34,6 @@ class LoginPopup extends Component{
             </div>
 
         </div>
-      </div>
 
       </div>
     )

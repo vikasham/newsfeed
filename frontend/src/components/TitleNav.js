@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import '../css/NavigationBar.css'
 
+
 class TitleNav extends Component{
   constructor(props){
     super(props)
@@ -16,6 +17,7 @@ class TitleNav extends Component{
   render(){
     var disabled = !this.state.loggedIn;
     return(
+
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark w-100">
               <div class="navbar-header">
                 <a class="navbar-brand" href="/" id="logotitle">Newsfeed &nbsp;
@@ -55,6 +57,7 @@ class TitleNav extends Component{
                   <button class="btn btn-outline-success my-2 my-sm-0" type="submit" disabled={ disabled }>Search</button>
                 </form>
               </div>
+
             </nav>
     )
   }

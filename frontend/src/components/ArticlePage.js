@@ -3,6 +3,8 @@ import { Component } from 'react'
 import stock from '../img/stock.jpg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import TitleNav from './TitleNav'
+import LoginPopup from './LoginPopup'
+import RegisterPopup from './RegisterPopup'
 
 import CommentsPopup from './CommentsPopup'
 import SharePopup from './SharePopup'
@@ -55,7 +57,7 @@ class ArticlePage extends Component{
   render(){
     var score = this.state.articlescore;
     return(
-      <div>
+      <div id="articlepage">
 
         <div class="container-fluid fixed-top">
           <TitleNav />
@@ -100,7 +102,8 @@ class ArticlePage extends Component{
             </div>
           </div>
         </div>
-
+        <LoginPopup />
+        <RegisterPopup />
         <CommentsPopup />
         <SharePopup />
       </div>

@@ -4,17 +4,20 @@ import '../css/App.css'
 import NavigationBar from './NavigationBar'
 import Dash from './Dash'
 import Practice from './Practice'
-
+import LoginPopup from './LoginPopup'
+import RegisterPopup from './RegisterPopup'
 
 class App extends Component
 {
   render() {
     return (
       <div className="App" id="app">
-        <NavigationBar/>
 
-          <Dash/>
-          <Practice />
+        <NavigationBar/>
+        <Dash/>
+        <Practice />
+        <LoginPopup />
+        <RegisterPopup />
       </div>
     )
   }

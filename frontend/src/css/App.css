@@ -29,11 +29,3 @@
     transform: rotate(360deg);
   }
 }
-
-
-#app{
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 100;
-}

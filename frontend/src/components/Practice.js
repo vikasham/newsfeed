@@ -32,7 +32,7 @@ class Practice extends Component
   }
   render() {
     return (
-      <div className="App">
+      <div id="practice">
       <h3>Sample text here</h3>
       <code>{this.state.cow}</code>
       <form onSubmit={this.customFunction}>

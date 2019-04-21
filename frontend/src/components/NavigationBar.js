@@ -6,8 +6,6 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import '../css/NavigationBar.css'
 import TopicNav from './TopicNav'
 import TitleNav from './TitleNav'
-import LoginPopup from './LoginPopup'
-import RegisterPopup from './RegisterPopup'
 
 
 class NavigationBar extends Component
@@ -24,14 +22,10 @@ class NavigationBar extends Component
   render()
   {
     return(
-      <div id ="navbar">
         <div class="container-fluid fixed-top">
           <TitleNav />
           <TopicNav />
         </div>
-        <LoginPopup />
-        <RegisterPopup />
-      </div>
     )
   }
 }

@@ -7,7 +7,7 @@ import Comment from './Comment'
 class CommentsList extends Component{
   render(){
     return(
-      <div class="tab-pane active" id="comments-logout">
+      <div class="tab-pane active" id="commentslist">
           <ul class="list-unstyled">
             <Comment />
             <Comment />

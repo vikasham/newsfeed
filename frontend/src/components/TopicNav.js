@@ -16,7 +16,7 @@ class TopicNav extends Component{
   }
   render(){
     return(
-        <div class="row">
+        <div id="topicnav" class="row">
           <nav class="navbar navbar-expand-sm bg-light navbar-light w-100" id="topics" >
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent2" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

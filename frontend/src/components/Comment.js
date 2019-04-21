@@ -48,7 +48,7 @@ class Comment extends Component{
   }
   render(){
     return(
-      <div class="row">
+      <div class="row" id="comment">
         <div id="iconcoltn" class="col-sm-1">
           <center>
             <span class="incdec" id="comments" style={{color: this.state.isMouseInside1 ? 'royalblue' : 'black' }} onMouseEnter={this.hoverOn1} onMouseLeave={this.hoverOff1} onClick={this.increaseScore.bind(this)}><FontAwesomeIcon icon={faArrowCircleUp}/></span><br/>
