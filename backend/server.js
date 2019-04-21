@@ -35,7 +35,7 @@ app.post('/login', cors(), async (req, res, next) => {
     username: `${req.body.username}`,
     password: `${req.body.password}`
   })
-  console.log("Registration was attempted, server received the POST request.")
+  console.log("Login was attempted, server received the POST request.")
   // save the new user to the database
   user.find()
   .then( (doc) => {
