@@ -11,7 +11,7 @@ export default () => (
     height: "100%"
   }
 }
-  >
+  id="particles-js">
   <Particles
   params={
     {
@@ -19,7 +19,7 @@ export default () => (
       {
         "number":
         {
-          "value":30,"density":
+          "value":100,"density":
           {
             "enable":false,"value_area":800
           }
