@@ -30,19 +30,19 @@ class TitleNav extends Component{
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                   <li class="nav-item">
-                    <span class="nav-link" data-toggle="modal" data-target="#myModal1">Log In &nbsp;
+                    <a class="nav-link" data-toggle="modal" data-target="#myModal1">Log In &nbsp;
                       <FontAwesomeIcon icon={faSignInAlt}/>
-                    </span>
+                    </a>
                   </li>
                   <li class="nav-item">
-                    <span class= { this.state.loggedIn ? "nav-link" : "nav-link disabled" }>Log Out &nbsp;
+                    <a class= { this.state.loggedIn ? "nav-link" : "nav-link disabled" }>Log Out &nbsp;
                       <FontAwesomeIcon icon={faSignOutAlt}/>
-                    </span>
+                    </a>
                   </li>
                   <li class="nav-item">
-                    <span class="nav-link" data-toggle="modal" data-target="#myModal2">Register &nbsp;
+                    <a class="nav-link" data-toggle="modal" data-target="#myModal2">Register &nbsp;
                       <FontAwesomeIcon icon={faDoorOpen}/>
-                    </span>
+                    </a>
                   </li>
                   <li class="nav-item">
                       <a class= { this.state.loggedIn ? "nav-link" : "nav-link disabled" } href="/profile">
