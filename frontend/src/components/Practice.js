@@ -26,7 +26,7 @@ class Practice extends Component
     this.setState({ item, text: '' })
   }
   // overwrite default handleChange
-  handleChange (e) {
+  handleChange(e) {
     // overwrite all name-value pairs stored in the state variable
     this.setState({ [e.target.name]: e.target.value })
   }

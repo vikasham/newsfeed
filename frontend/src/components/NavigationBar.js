@@ -21,6 +21,8 @@ class NavigationBar extends Component
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
+
+
   render()
   {
     return(
