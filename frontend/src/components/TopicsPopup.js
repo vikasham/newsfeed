@@ -3,6 +3,17 @@ import { Component } from 'react'
 
 
 class TopicsPopup extends Component{
+  constructor(props){
+    super(props)
+    this.state={
+      loggedIn: this.props.loggedIn
+    }
+    this.saveTopics = this.saveTopics.bind(this);
+  }
+  saveTopics = (e) => {
+    //onclick for save changes button
+    alert('saving topics')
+  };
   render(){
     return(
       <div class="modal fade" id="topicsmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -44,7 +55,7 @@ class TopicsPopup extends Component{
           </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary">Save changes</button>
+              <button onClick={this.saveTopics} type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
           </div>

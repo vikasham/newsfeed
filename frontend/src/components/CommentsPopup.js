@@ -10,7 +10,15 @@ class CommentsPopup extends Component{
     this.state={
       loggedIn: this.props.loggedIn
     }
+    this.postComment = this.postComment.bind(this);
   }
+
+  postComment = (e) => {
+    //onsubmit for comments form
+    e.preventDefault();
+    alert('posting comment')
+  };
+
   render(){
     var disabled = !this.state.loggedIn;
     let message;
@@ -44,7 +52,7 @@ class CommentsPopup extends Component{
                   <CommentsList loggedIn={this.state.loggedIn}/>
                 </div>
                 <div id="menu1" class="tab-pane fade">
-                  <form action="#" method="post" class="form-horizontal" id="commentForm" role="form">
+                  <form onSubmit={this.postComment} class="form-horizontal" id="commentForm" role="form">
 
                       <div class="form-group">
 
