@@ -4,18 +4,25 @@ import '../css/Dashrow.css'
 
 class Dashrow extends Component
 {
+  constructor(props) {
+    super(props)
+    this.state = {
+      loggedIn: this.props.loggedIn,
+    }
+  }
+  
   render(){
     return(
       <div>
         <div id="dashrow" class="row">
           <div class="col-sm-4">
-            <ArticleThumbnail/>
+            <ArticleThumbnail loggedIn={this.state.loggedIn}/>
           </div>
           <div class="col-sm-4">
-            <ArticleThumbnail/>
+            <ArticleThumbnail loggedIn={this.state.loggedIn}/>
           </div>
           <div class="col-sm-4">
-            <ArticleThumbnail/>
+            <ArticleThumbnail loggedIn={this.state.loggedIn}/>
           </div>
         </div>
       </div>

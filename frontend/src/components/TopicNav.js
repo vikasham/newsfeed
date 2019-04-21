@@ -8,7 +8,7 @@ class TopicNav extends Component{
   constructor(props) {
     super(props)
     this.state = {
-      loggedIn: false,
+      loggedIn: this.props.loggedIn,
     }
   }
   changeTitle= (e) =>{

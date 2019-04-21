@@ -13,6 +13,7 @@ class NavigationBar extends Component
   constructor(props) {
     super(props)
     this.state = {
+      loggedIn : this.props.loggedIn
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -25,8 +26,8 @@ class NavigationBar extends Component
   {
     return(
         <div class="container-fluid fixed-top">
-          <TitleNav />
-          <TopicNav />
+          <TitleNav loggedIn={this.state.loggedIn}/>
+          <TopicNav loggedIn={this.state.loggedIn}/>
         </div>
     )
   }

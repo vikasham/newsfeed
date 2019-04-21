@@ -8,7 +8,7 @@ class Dash extends Component
   constructor(props) {
     super(props)
     this.state = {
-      loggedIn: false,
+      loggedIn: this.props.loggedIn,
     }
   }
 
@@ -23,11 +23,11 @@ class Dash extends Component
         <h2 class="text-center">{this.state.loggedIn ? "My Topics" : "All Topics"}</h2>
         </div>
         <br/><br/><br/>
-        <Dashrow/>
+        <Dashrow loggedIn={this.state.loggedIn}/>
         <br/><br/>
-        <Dashrow/>
+        <Dashrow loggedIn={this.state.loggedIn}/>
         <br/><br/>
-        <Dashrow/>
+        <Dashrow loggedIn={this.state.loggedIn}/>
         <br/><br/>
 
       </div>

@@ -17,9 +17,13 @@ class ArticlePage extends Component{
 
     this.state = {
       articlescore: 29,
-      loggedIn: false,
+      loggedIn: true,
       isMouseInside1: false,
       isMouseInside2: false,
+      scoreIncreased: false,
+      scoreDecreased: false,
+      color1: false,
+      color2: false
     }
 
     this.increaseScore = this.increaseScore.bind(this);
@@ -27,14 +31,20 @@ class ArticlePage extends Component{
 
   }
   increaseScore = (e) => {
-    if(this.state.loggedIn){
-      this.setState({ articlescore: this.state.articlescore + 1 });
+    if(this.state.loggedIn && !this.state.scoreDecreased && !this.state.scoreIncreased){
+      this.setState({ articlescore: this.state.articlescore + 1, scoreIncreased: true, color1:true });
+    }
+    else if(this.state.loggedIn && this.state.scoreIncreased){
+      this.setState({ articlescore: this.state.articlescore - 1, scoreIncreased: false, color1: false });
     }
       //increment article score member variable
   };
   decreaseScore = (e) => {
-    if(this.state.loggedIn){
-      this.setState({ articlescore: this.state.articlescore - 1 });
+    if(this.state.loggedIn && !this.state.scoreDecreased && !this.state.scoreIncreased){
+      this.setState({ articlescore: this.state.articlescore - 1, scoreDecreased:true, color2:true });
+    }
+    else if(this.state.loggedIn && this.state.scoreDecreased){
+      this.setState({ articlescore: this.state.articlescore + 1, scoreDecreased: false, color2: false });
     }
       //decrement article score member variable
   };
@@ -83,8 +93,8 @@ class ArticlePage extends Component{
                     &nbsp; <a  id="comments" href="/" data-toggle="modal" data-target="#commentsModal"><FontAwesomeIcon icon={faCommentAlt}/>&nbsp; Comments</a>
                   </div>
                   <div id="iconcol" class="col-sm-4">
-                    <span class="incdec" id="comments" style={{color: this.state.isMouseInside1 ? 'royalblue' : 'black' }} onMouseEnter={this.hoverOn1} onMouseLeave={this.hoverOff1} onClick={this.increaseScore.bind(this)}><FontAwesomeIcon icon={faArrowCircleUp}/></span>&nbsp; {score} &nbsp;
-                    <span class="incdec" id="comments" style={{color: this.state.isMouseInside2 ? 'royalblue' : 'black' }} onMouseEnter={this.hoverOn2} onMouseLeave={this.hoverOff2} onClick={this.decreaseScore.bind(this)}><FontAwesomeIcon icon={faArrowCircleDown}/>  </span>
+                    <span class="incdec" id="comments" style={{color: (this.state.isMouseInside1 || this.state.color1) ? 'royalblue' : 'black' }} onMouseEnter={this.hoverOn1} onMouseLeave={this.hoverOff1} onClick={this.increaseScore.bind(this)}><FontAwesomeIcon icon={faArrowCircleUp}/></span>&nbsp; {score} &nbsp;
+                    <span class="incdec" id="comments" style={{color: (this.state.isMouseInside2 || this.state.color2) ? 'royalblue' : 'black' }} onMouseEnter={this.hoverOn2} onMouseLeave={this.hoverOff2} onClick={this.decreaseScore.bind(this)}><FontAwesomeIcon icon={faArrowCircleDown}/>  </span>
                   </div>
                   <div id="iconcol" class="col-sm-4">
                     <a id="comments" href="/"data-toggle="modal" data-target="#shareModal"><FontAwesomeIcon icon={faPaperPlane}/>&nbsp; Share link</a>&nbsp;

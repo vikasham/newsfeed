@@ -1,5 +1,6 @@
 import React from "react";
 import { Component } from 'react'
+import '../css/Comment.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faArrowCircleUp, faArrowCircleDown} from '@fortawesome/free-solid-svg-icons'
 
@@ -9,9 +10,13 @@ class Comment extends Component{
 
     this.state = {
       articlescore: 29,
-      loggedIn: false,
+      loggedIn: this.props.loggedIn,
       isMouseInside1: false,
       isMouseInside2: false,
+      scoreIncreased: false,
+      scoreDecreased: false,
+      color1: false,
+      color2: false
     }
 
     this.increaseScore = this.increaseScore.bind(this);
@@ -19,14 +24,20 @@ class Comment extends Component{
 
   }
   increaseScore = (e) => {
-    if(this.state.loggedIn){
-      this.setState({ articlescore: this.state.articlescore + 1 });
+    if(this.state.loggedIn && !this.state.scoreDecreased && !this.state.scoreIncreased){
+      this.setState({ articlescore: this.state.articlescore + 1, scoreIncreased: true, color1:true });
+    }
+    else if(this.state.loggedIn && this.state.scoreIncreased){
+      this.setState({ articlescore: this.state.articlescore - 1, scoreIncreased: false, color1: false });
     }
       //increment article score member variable
   };
   decreaseScore = (e) => {
-    if(this.state.loggedIn){
-      this.setState({ articlescore: this.state.articlescore - 1 });
+    if(this.state.loggedIn && !this.state.scoreDecreased && !this.state.scoreIncreased){
+      this.setState({ articlescore: this.state.articlescore - 1, scoreDecreased:true, color2:true });
+    }
+    else if(this.state.loggedIn && this.state.scoreDecreased){
+      this.setState({ articlescore: this.state.articlescore + 1, scoreDecreased: false, color2: false });
     }
       //decrement article score member variable
   };
@@ -49,11 +60,11 @@ class Comment extends Component{
   render(){
     return(
       <div class="row" id="comment">
-        <div id="iconcoltn" class="col-sm-1">
+        <div id="iconcol" class="col-sm-1 vcenter">
           <center>
-            <span class="incdec" id="comments" style={{color: this.state.isMouseInside1 ? 'royalblue' : 'black' }} onMouseEnter={this.hoverOn1} onMouseLeave={this.hoverOff1} onClick={this.increaseScore.bind(this)}><FontAwesomeIcon icon={faArrowCircleUp}/></span><br/>
-            &nbsp; {this.state.articlescore} &nbsp; <br/>
-            <span class="incdec" id="comments" style={{color: this.state.isMouseInside2 ? 'royalblue' : 'black' }} onMouseEnter={this.hoverOn2} onMouseLeave={this.hoverOff2} onClick={this.decreaseScore.bind(this)}><FontAwesomeIcon icon={faArrowCircleDown}/>  </span>
+            <span class="incdec" id="uparrow" style={{color: (this.state.isMouseInside1 || this.state.color1) ? 'royalblue' : 'black' }} onMouseEnter={this.hoverOn1} onMouseLeave={this.hoverOff1} onClick={this.increaseScore.bind(this)}><FontAwesomeIcon icon={faArrowCircleUp}/></span><br/>
+            {this.state.articlescore}<br/>
+            <span class="incdec" id="downarrow" style={{color: (this.state.isMouseInside2 || this.state.color2) ? 'royalblue' : 'black' }} onMouseEnter={this.hoverOn2} onMouseLeave={this.hoverOff2} onClick={this.decreaseScore.bind(this)}><FontAwesomeIcon icon={faArrowCircleDown}/>  </span>
           </center>
         </div>
         <div class="col-sm-11">

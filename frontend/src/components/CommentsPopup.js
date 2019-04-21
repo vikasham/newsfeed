@@ -8,7 +8,7 @@ class CommentsPopup extends Component{
   constructor(props){
     super(props)
     this.state={
-      loggedIn: false
+      loggedIn: this.props.loggedIn
     }
   }
   render(){
@@ -41,7 +41,7 @@ class CommentsPopup extends Component{
               <br/><br/>
               <div class="tab-content">
                 <div id="home" class="tab-pane active">
-                  <CommentsList />
+                  <CommentsList loggedIn={this.state.loggedIn}/>
                 </div>
                 <div id="menu1" class="tab-pane fade">
                   <form action="#" method="post" class="form-horizontal" id="commentForm" role="form">
