@@ -1,5 +1,6 @@
 import React from "react";
 import Particles from "react-particles-js";
+import '../css/Bubbles.css'
 
 export default () => (
   <div
@@ -9,7 +10,7 @@ export default () => (
     left: 0,
     width: "100%",
     height: "100%"
-  }
+  } 
 }
   id="particles-js">
   <Particles
