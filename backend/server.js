@@ -6,6 +6,7 @@ const app = express()
 const router = express.Router()
 const favicon = require('express-favicon')
 const cors = require('cors')
+const mongoose = require('mongoose')
 // support parsing jsons
 app.use(bodyParser.json());
 // load the favicon
@@ -17,40 +18,73 @@ app.use(session({
 // client can look at our server code ^ .join() defaults to the root directory if none is specified
 app.use(express.static(path.join('./frontend/build')))
 
-// serve a testing api route "/cow"
-app.get('/api/cow/:say', cors(), async (req, res, next) => {
-  const text = req.params.say
-  res.status(400).json({
-    hello: `The server received your message: ${text}`,
-    goodbye: "Message from the server: world"
+let User = require('./models/User')
+
+// begin connection to the MongoDB server
+mongoose.connect("mongodb+srv://cluster0-h3iy9.mongodb.net/test", {
+  useNewUrlParser: true,
+  dbName: "newsfeed",
+  poolSize: 5,
+  user: "pillow",
+  pass: "fight"
+})
+
+
+app.post('/login', cors(), async (req, res, next) => {
+  let user = new User({
+    username: `${req.body.username}`,
+    password: `${req.body.password}`
+  })
+  console.log("Registration was attempted, server received the POST request.")
+  // save the new user to the database
+  user.find()
+  .then( (doc) => {
+    // print the output
+    console.log(doc)
+    res.status(200).json({
+      success: true,
+      error: null
+    })
+  })
+  // or catch the error
+  .catch( (err) => {
+    // if the error is code 11000
+    // Then MongoDB has thrown a duplicate key error, username is taken
+    console.log("User already exists")
+    return res.status(500).send({
+      success: false,
+      error: 'Username already exists'
+    })
   })
 })
 
-app.get('/api/register/:username', cors(), async (req, res, next) => {
-  const username = req.params.username
-  //const password = req.params.password
-  console.log("hi1 there")
-  var checker = "SELECT * FROM Users(username, password) WHERE username=" + username
-  connection.query(checker, (err, result) => {
-    if (result) {
-      res.status(400).json({
-        error: "Username already exists!"
-      })
-    } else {
-      console.log("hi there")
-    //  var statement = "INSERT INTO Users(username, password) VALUES ('" + username + "', '" + password + "')"
-      res.status(400).json({
-        error: null
-      })
-    }
+app.post('/register', cors(), async (req, res, next) => {
+  let user = new User({
+    username: `${req.body.username}`,
+    password: `${req.body.password}`,
+    firstname: `${req.body.firstname}`,
+    lastname: `${req.body.lastname}`
   })
-})
-
-// Serve our base route that returns "world"
-app.get('/api/cow/', cors(), async (req, res, next) => {
-  res.status(400).json({
-    hello: "no reason to visit this url directly, how did you *get* here",
-    goodbye: "no reason to visit this url directly, how did you *get* here"
+  console.log("Registration was attempted, server received the POST request.")
+  // save the new user to the database
+  user.save()
+  .then( (doc) => {
+    // print the output
+    console.log(doc)
+    res.status(200).json({
+      success: true,
+      error: null
+    })
+  })
+  // or catch the error
+  .catch( (err) => {
+    // if the error is code 11000
+    // Then MongoDB has thrown a duplicate key error, username is taken
+    console.log("User already exists")
+    return res.status(500).send({
+      success: false,
+      error: 'Username already exists'
+    })
   })
 })
 
@@ -64,4 +98,22 @@ app.listen(PORT, () => {
   console.log(`Mixing it up on port ${PORT}`)
 })
 
-module.exports = app;
+
+
+// serve a testing api route "/cow"
+app.get('/api/cow/:say', cors(), async (req, res, next) => {
+  const text = req.params.say
+  res.status(400).json({
+    hello: `The server received your message: ${text}`,
+    goodbye: "Message from the server: world"
+  })
+})
+
+
+// Serve our base route that returns "world"
+app.get('/api/cow/', cors(), async (req, res, next) => {
+  res.status(400).json({
+    hello: "no reason to visit this url directly, how did you *get* here",
+    goodbye: "no reason to visit this url directly, how did you *get* here"
+  })
+})

@@ -1,37 +1,46 @@
-import mysql from 'mysql';
-import java from 'java';
+// popular database driver to connect to mongodb
+let mongoose = require('mongoose')
 
-const connection = mysql.createConnection({
-  host: "dbinstance.cugdv3txi6k5.us-west-1.rds.amazonaws.com",
-  user: "austintraver",
-  password: "rootbeer",
-  database: "NewsFeed"
+// security game airtight fam
+mongoose.set('user', 'pillow')
+mongoose.set('pass', 'fight')
+
+let User = require('./backend/models/User')
+
+mongoose.connect("mongodb+srv://cluster0-h3iy9.mongodb.net/test", {
+  useNewUrlParser: true,
+  dbName: "newsfeed",
+  poolSize: 5,
+  user: "pillow",
+  pass: "fight"
 })
 
-connection.connect(function(error){
-  if (error) throw error;
-  console.log("Connected");
+// create a new user to insert into the database
+let user = new User({
+  username: "jmiller",
+  password: "phd",
+  firstname: "Jeffrey",
+  lastname: "Miller"
+})
 
-  var select_statement = "SELECT * FROM Users"
-  connection.query(select_statement, function (error, result, fields) {
-    if (error) throw error;
-    console.log(result[0].firstname, result[0].lastname, result[0].username, result[0].password);
-  });
+console.log(user.toJSON())
 
-  var select_comment = "SELECT * FROM Comments where articleID = ??? ";
+// save the new user to the database
+user.save()
+  .then( (doc) => {
+    // print the output
+    console.log(doc)
+  })
+  // or catch the error
+  .catch( (err) => {
+    // if the error is code 11000
+    // Then MongoDB has thrown a duplicate key error, username is taken
+    console.log("User already exists");
+    // return res.status(500).send({ success: false, message: 'User already exist!' });
+  })
 
-  connection.query(select_comment);
 
-  var insert_user = "INSERT INTO Users (username, password, firstname, lastname) VALUES ('optimus','prime','Aaron','Cote'";
-
-  connection.query(insert_user);
-
-  var insert_comment = "INSERT INTO Comments (userID, post) VALUES (???, post)";
-
-  connection.query(insert_comment);
-
-  var sql = "DELETE FROM customers WHERE address = 'Mountain 21'";
-
-)
-
-https://newsapi.org/v2/top-headlines?apiKey=ae32b8b44bde4ae4871588be957c99ad&country=us&category=business
+// mongoose.
+// const Cat = mongoose.model('Cat', { name: String });
+// const kitty = new Cat({ name: 'Zildjian' });
+// kitty.save().then(() => console.log('meow'));
