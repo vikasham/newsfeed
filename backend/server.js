@@ -21,7 +21,7 @@ app.use(express.static(path.join('./frontend/build')))
 app.get('/api/cow/:say', cors(), async (req, res, next) => {
   const text = req.params.say
   res.status(400).json({
-    hello: "Message from the server: world",
+    hello: `The server received your message: ${text}`,
     goodbye: "Message from the server: world"
   })
 })
