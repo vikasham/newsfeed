@@ -4,6 +4,62 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserPlus, faUser, faLock } from '@fortawesome/free-solid-svg-icons'
 
 class RegisterPopup extends Component{
+
+  constructor( props )
+  {
+    super( props )
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.state = {
+      username: "",
+      password: ""
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleChange1 = this.handleChange1.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({username: event.target.value});
+  }
+
+  handleChange1(event) {
+    this.setState({password: event.target.value});
+  }
+
+  customFunction = async (e) => {
+    e.preventDefault()
+    const text = this.state.username
+    const response = await fetch(`/api/cow/${text}`)
+    const custom = await response.json()
+    alert(custom.hello)
+    const item = custom.hello
+    this.setState({ item, text: '' })
+  }
+
+  handleSubmit = async (e) => {
+    e.preventDefault()
+
+    console.log("Something")
+
+    console.log(this.state.username)
+    console.log(this.state.password)
+
+    const username = this.state.username
+    const password = this.state.password
+
+    const response = await fetch(`/api/register/${username}.${password}`)
+    const custom = await response.json()
+    
+
+    if (custom.error == null) {
+      alert("Success!")
+      window.location.href = "/LoginPopup";
+    } else if (custom.error === "Username already exists!") {
+      alert(custom.error)
+    } else {
+      alert("Sorry")
+    };
+  }
+
   render(){
     return(
       <div class="container" id="registerpopup">
@@ -16,17 +72,17 @@ class RegisterPopup extends Component{
                 <button type="button" class="close text-white" data-dismiss="modal">&times;</button>
               </div>
               <div class="modal-body">
-                <form method="POST" action="Register">
+                <form onSubmit = {this.handleSubmit}>
                   <div class="form-group row">
                     <label for="exampleInputEmail1" class="col-sm-1 col-form-label text-secondary"><FontAwesomeIcon icon={faUser }/></label>
                     <div class="col-sm-11">
-                      <input type="user" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Username"/>
+                      <input type="user" class="form-control" onChange = {this.handleChange} id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Username"/>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="exampleInputEmail1" class="col-sm-1 col-form-label text-secondary"><FontAwesomeIcon icon={faLock}/></label>
                     <div class="col-sm-11">
-                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
+                      <input type="password" class="form-control" onChange = {this.handleChange1} id="exampleInputPassword1" placeholder="Password"/>
                     </div>
                   </div>
                   <button type="submit" class="btn btn-primary">Register</button>

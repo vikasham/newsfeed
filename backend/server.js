@@ -26,6 +26,26 @@ app.get('/api/cow/:say', cors(), async (req, res, next) => {
   })
 })
 
+app.get('/api/register/:username', cors(), async (req, res, next) => {
+  const username = req.params.username
+  //const password = req.params.password
+  console.log("hi1 there")
+  var checker = "SELECT * FROM Users(username, password) WHERE username=" + username
+  connection.query(checker, (err, result) => {
+    if (result) {
+      res.status(400).json({
+        error: "Username already exists!"
+      })
+    } else {
+      console.log("hi there")
+    //  var statement = "INSERT INTO Users(username, password) VALUES ('" + username + "', '" + password + "')"
+      res.status(400).json({
+        error: null
+      })
+    }
+  })
+})
+
 // Serve our base route that returns "world"
 app.get('/api/cow/', cors(), async (req, res, next) => {
   res.status(400).json({
