@@ -42,7 +42,26 @@ class NavigationBar extends Component {
       this.setState(data)
       let rows = []
       for (let i = 0 ; i < data.articles.length - 2 ; i += 3){
-        rows.push(<Dashrow first={data.articles[i]} second={data.articles[i+1]} third={data.articles[i+2]} />)
+        // validate SSL for first article
+        if (data.articles[i].url.substring(0,5) !== "https" || data.articles[i].urlToImage.substring(0,5) !== "https")
+        {
+          i-=2
+          continue // will advance forward one index
+        }
+        // validate SSL for second article
+        else if (data.articles[i+1].url.substring(0,5) !== "https" || data.articles[i+1].urlToImage.substring(0,5) !== "https")
+        {
+          i-=1
+          continue // will advance forward two indeces
+        }
+        // validate SSL for third article
+        else if (data.articles[i+2].url.substring(0,5) !== "https" || data.articles[i+2].urlToImage.substring(0,5) !== "https")
+        {
+          continue // will advance forward three indeces
+        }
+        else {
+          rows.push(<Dashrow first={data.articles[i]} second={data.articles[i+1]} third={data.articles[i+2]} />)
+        }
       }
       this.setState({
         topic: `${data.topic}`,
