@@ -28,6 +28,10 @@ class ArticlePage extends Component{
 
     this.increaseScore = this.increaseScore.bind(this);
     this.decreaseScore = this.decreaseScore.bind(this);
+    this.hoverOn1 = this.hoverOn1.bind(this);
+    this.hoverOn2 = this.hoverOn2.bind(this);
+    this.hoverOff1 = this.hoverOff1.bind(this);
+    this.hoverOff2 = this.hoverOff2.bind(this);
 
   }
   increaseScore = (e) => {

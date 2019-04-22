@@ -17,16 +17,10 @@ class Profile extends Component{
         super(props);
         this.toggleClass= this.toggleClass.bind(this);
         this.state = {
-            condition: true,
             loggedIn: true
         };
     }
 
-  toggleClass() {
-    this.setState({
-      condition: !this.state.condition
-    });
-   };
   render(){
     return(
       <div id ="profilepage">
