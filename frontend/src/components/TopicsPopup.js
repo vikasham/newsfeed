@@ -60,7 +60,36 @@ class TopicsPopup extends Component{
   };
   saveTopics = (e) => {
     //onclick for save changes button
-    alert('saving topics')
+    var topicsarr = [];
+
+    var index = 0
+    if(this.refs.entertainment.checked){
+      topicsarr[index] = 'entertainment';
+      index++
+    }
+    if(this.refs.sports.checked){
+      topicsarr[index] = 'sports';
+      index++
+    }
+    if(this.refs.politics.checked){
+      topicsarr[index] = 'politics';
+      index++
+    }
+    if(this.refs.technology.checked){
+      topicsarr[index] = 'technology';
+      index++
+    }
+    if(this.refs.business.checked){
+      topicsarr[index] = 'business';
+      index++
+    }
+    if(this.refs.science.checked){
+      topicsarr[index] = 'science';
+      index++
+    }
+
+    const updatedtopics = JSON.stringify(topicsarr);
+
   };
   render(){
     return(
@@ -77,27 +106,27 @@ class TopicsPopup extends Component{
 
             <div class="funkyradio">
               <div class="funkyradio-other">
-                  <input type="checkbox" name="radio" id="radio1" onClick={this.toggleCheck1} checked={this.state.checked1} />
+                  <input type="checkbox" name="radio" id="radio1"  ref="entertainment" onClick={this.toggleCheck1} checked={this.state.checked1} />
                   <label for="radio1">Entertainment</label>
               </div>
               <div class="funkyradio-primary">
-                  <input type="checkbox" name="radio" id="radio2" onClick={this.toggleCheck2} checked={this.state.checked2}/>
+                  <input type="checkbox" name="radio" id="radio2" ref="sports" onClick={this.toggleCheck2} checked={this.state.checked2}/>
                   <label for="radio2">Sports</label>
               </div>
               <div class="funkyradio-success">
-                  <input type="checkbox" name="radio" id="radio3" onClick={this.toggleCheck3} checked={this.state.checked3}/>
+                  <input type="checkbox" name="radio" id="radio3" ref="politics" onClick={this.toggleCheck3} checked={this.state.checked3}/>
                   <label for="radio3">Politics</label>
               </div>
               <div class="funkyradio-danger">
-                  <input type="checkbox" name="radio" id="radio4" onClick={this.toggleCheck4} checked={this.state.checked4}/>
+                  <input type="checkbox" name="radio" id="radio4" ref="technology" onClick={this.toggleCheck4} checked={this.state.checked4}/>
                   <label for="radio4">Technology</label>
               </div>
               <div class="funkyradio-warning">
-                  <input type="checkbox" name="radio" id="radio5" onClick={this.toggleCheck5} checked={this.state.checked5}/>
+                  <input type="checkbox" name="radio" id="radio5" ref="business" onClick={this.toggleCheck5} checked={this.state.checked5}/>
                   <label for="radio5">Business</label>
               </div>
               <div class="funkyradio-info">
-                  <input type="checkbox" name="radio" id="radio6" onClick={this.toggleCheck6} checked={this.state.checked6}/>
+                  <input type="checkbox" name="radio" id="radio6" ref="science" onClick={this.toggleCheck6} checked={this.state.checked6}/>
                   <label for="radio6">Science</label>
               </div>
           </div>

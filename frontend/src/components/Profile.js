@@ -15,7 +15,6 @@ import '../css/Profile.css'
 class Profile extends Component{
   constructor(props) {
         super(props);
-        this.toggleClass= this.toggleClass.bind(this);
         this.state = {
             loggedIn: true
         };
