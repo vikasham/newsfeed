@@ -64,8 +64,10 @@ class NavigationBar extends Component {
           </div>
           <div>
             <Bubbles/>
-            <h1 class="text-center">{this.state.title}</h1>
-            <h2 class="text-center">{this.state.loggedIn ? "My Topics" : "All Topics"}</h2>
+            < br/>< br/>< br/>< br/>< br/>< br/>
+            <h1 class="text-center">Today's News</h1>
+            <h2 class="text-center">{this.state.topic}</h2>
+
             {this.state.rows}
           </div>
         </div>
