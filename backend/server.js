@@ -21,17 +21,17 @@ app.use(express.static(path.join('./frontend/build')))
 
 let User = require('./models/User')
 
+// options for the database
+let options = {
+  useNewUrlParser: true,
+  dbName: "newsfeed",
+  poolSize: 5,
+  user: "pillow",
+  pass: "fight"
+}
+
 // begin connection to the MongoDB server
-mongoose.connect(
-  "mongodb+srv://cluster0-h3iy9.mongodb.net/test",
-  {
-    useNewUrlParser: true,
-    dbName: "newsfeed",
-    poolSize: 5,
-    user: "pillow",
-    pass: "fight"
-  }
-)
+mongoose.connect("mongodb+srv://cluster0-h3iy9.mongodb.net/test", options)
 
 app.post('/login', cors(), async (request, response) => {
   let query = User.findOne({
