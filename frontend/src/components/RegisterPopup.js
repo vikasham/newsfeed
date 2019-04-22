@@ -76,6 +76,16 @@ class RegisterPopup extends Component{
               <div class="modal-body">
                 <form onSubmit = {this.handleSubmit}>
                   <div class="form-group row">
+                    <div class="col-sm-1">
+                    </div>
+                    <div class="col-sm-6">
+                      <input type="user" class="form-control" placeholder="First Name"/>
+                    </div>
+                    <div class="col-sm-5" >
+                      <input type="user" class="form-control" placeholder="Last Name"/>
+                    </div>
+                  </div>
+                  <div class="form-group row">
                     <label for="exampleInputEmail1" class="col-sm-1 col-form-label text-secondary"><FontAwesomeIcon icon={faUser }/></label>
                     <div class="col-sm-11">
                       <input type="user" class="form-control" onChange = {this.handleChange} id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Username"/>
