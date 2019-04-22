@@ -70,7 +70,7 @@ class ArticlePage extends Component{
       <div id="articlepage">
 
         <div class="container-fluid fixed-top">
-          <TitleNav />
+          <TitleNav loggedIn={this.state.loggedIn}/>
         </div>
         <br /><br /><br />
         <div id="returnhome" class="float-left"><a href="/"><FontAwesomeIcon icon={faUndo}/> Return to homepage</a></div>
