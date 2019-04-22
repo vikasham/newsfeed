@@ -18,6 +18,7 @@ class Profile extends Component{
         this.toggleClass= this.toggleClass.bind(this);
         this.state = {
             condition: true,
+            loggedIn: true
         };
     }
 
@@ -30,7 +31,7 @@ class Profile extends Component{
     return(
       <div id ="profilepage">
         <div class="container-fluid fixed-top" id="navcontainer">
-          <TitleNav />
+          <TitleNav loggedIn={this.state.loggedIn}/>
         </div>
         <div class="center-screen">
         <div class="row w-100">

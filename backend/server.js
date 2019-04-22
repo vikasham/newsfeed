@@ -57,8 +57,8 @@ app.post('/register', cors(), async (req, res) => {
   let user = new User({
     username: `${req.body.username}`,
     password: `${req.body.password}`,
-    firstname: `${req.body.firstname}`,
-    lastname: `${req.body.lastname}`
+    //firstname: `${req.body.firstname}`,
+    //lastname: `${req.body.lastname}`
   })
   console.log("Registration was attempted, server received the POST request.")
   // save the new user to the database
