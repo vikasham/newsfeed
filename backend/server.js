@@ -81,11 +81,6 @@ app.post('/register', cors(), async (request, response) => {
   })
 })
 
-app.post('/updatetopics', cors(), async (req, res))
-{
-
-}
-
 // default redirect, loads the application when the user visits the site
 app.get('/', async (req, res) => {
   res.sendFile(path.join('./frontend/build/index.html'))
