@@ -1,5 +1,7 @@
 let mongoose = require('mongoose')
 
+let Topic = require('./Topic')
+
 let userSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -19,6 +21,10 @@ let userSchema = new mongoose.Schema({
   lastname: {
     type: String,
     required: false
+  },
+  topics: {
+    type: [String],
+    default: ['entertainment', 'sports', 'politics', 'technology', 'business', 'science']
   }
 })
 
