@@ -36,46 +36,23 @@ app.post('/login', cors(), async (req, res, next) => {
     username: `${req.body.username}`,
     password: `${req.body.password}`
   },
-  (error, user) => {
-    if (error) {
+  (error, result) => {
+    if (error || result === null) {
       res.status(400).send({
         success: false,
         error: 'Error: username/password not found'
       })
     }
     else {
-      console.log(`Username: ${person.username}\nPassword: ${person.password}`)
-      res.status(200).send(person)
+      console.log(`Username: ${result.username}\nPassword: ${result.password}`)
+      res.status(200).send(result)
     }
   }
   // specify the fields to return values from
   // 'username password firstname lastname'
 
 )
-  query.exec(
-
-   )
-  console.log("Login was attempted, server received the POST request.")
-  // save the new user to the database
-  user.find()
-  .then( (doc) => {
-    // print the output
-    console.log(doc)
-    res.status(200).json({
-      success: true,
-      error: null
-    })
-  })
-  // or catch the error
-  .catch( (err) => {
-    // if the error is code 11000
-    // Then MongoDB has thrown a duplicate key error, username is taken
-    console.log("User already exists")
-    return res.status(400).send({
-      success: false,
-      error: 'Error: username already exists'
-    })
-  })
+  query.exec()
 })
 
 app.post('/register', cors(), async (req, res, next) => {
