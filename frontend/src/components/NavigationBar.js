@@ -45,18 +45,24 @@ class NavigationBar extends Component {
         // validate SSL for first article
         if (data.articles[i].url.substring(0,5) !== "https" || data.articles[i].urlToImage.substring(0,5) !== "https")
         {
+          console.log(data.articles[i].url)
+          console.log(data.articles[i].urlToImage)
           i-=2
           continue // will advance forward one index
         }
         // validate SSL for second article
         else if (data.articles[i+1].url.substring(0,5) !== "https" || data.articles[i+1].urlToImage.substring(0,5) !== "https")
         {
+          console.log(data.articles[i+1].url)
+          console.log(data.articles[i+1].urlToImage)
           i-=1
           continue // will advance forward two indeces
         }
         // validate SSL for third article
         else if (data.articles[i+2].url.substring(0,5) !== "https" || data.articles[i+2].urlToImage.substring(0,5) !== "https")
         {
+          console.log(data.articles[i+2].url)
+          console.log(data.articles[i+2].urlToImage)
           continue // will advance forward three indeces
         }
         else {
