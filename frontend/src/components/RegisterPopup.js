@@ -50,16 +50,18 @@ class RegisterPopup extends Component{
       password: password1
     }
 
-    fetch(`/register`, {
+    var response = fetch("/register", {
       method: 'POST',
       body: JSON.stringify(data),
       headers:{
         'Content-Type': 'application/json'
       }
     })
-    .then(res => res.json())
-    .then(response => alert("suceess: ", JSON.stringify(response)))
-    .catch(error => console.error('Error:', error));
+    if (response.error) {
+      alert(response.error)
+    } else {
+      alert("Success")
+    }
   }
 
   render(){
