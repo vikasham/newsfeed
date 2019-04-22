@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 import { Component } from 'react'
 import stock from '../img/stock.jpg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -13,7 +13,7 @@ import '../css/ArticlePage.css'
 
 class ArticlePage extends Component{
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       articlescore: 29,
@@ -26,53 +26,82 @@ class ArticlePage extends Component{
       color2: false
     }
 
-    this.increaseScore = this.increaseScore.bind(this);
-    this.decreaseScore = this.decreaseScore.bind(this);
-    this.hoverOn1 = this.hoverOn1.bind(this);
-    this.hoverOn2 = this.hoverOn2.bind(this);
-    this.hoverOff1 = this.hoverOff1.bind(this);
-    this.hoverOff2 = this.hoverOff2.bind(this);
-
+    this.increaseScore = this.increaseScore.bind(this)
+    this.decreaseScore = this.decreaseScore.bind(this)
+    this.hoverOn1 = this.hoverOn1.bind(this)
+    this.hoverOn2 = this.hoverOn2.bind(this)
+    this.hoverOff1 = this.hoverOff1.bind(this)
+    this.hoverOff2 = this.hoverOff2.bind(this)
   }
-  increaseScore = (e) => {
+  
+  //increment article score member variable
+  increaseScore(e){
+    e.preventDefault()
     if(this.state.loggedIn && !this.state.scoreDecreased && !this.state.scoreIncreased){
-      this.setState({ articlescore: this.state.articlescore + 1, scoreIncreased: true, color1:true });
+      this.setState({
+         articlescore: this.state.articlescore + 1,
+         scoreIncreased: true,
+         color1:true
+       })
     }
     else if(this.state.loggedIn && this.state.scoreIncreased){
-      this.setState({ articlescore: this.state.articlescore - 1, scoreIncreased: false, color1: false });
+      this.setState({
+        articlescore: this.state.articlescore - 1,
+        scoreIncreased: false,
+        color1: false
+      })
     }
-      //increment article score member variable
-  };
-  decreaseScore = (e) => {
+  }
+  //decrement article score member variable
+  decreaseScore(e){
+    e.preventDefault()
     if(this.state.loggedIn && !this.state.scoreDecreased && !this.state.scoreIncreased){
-      this.setState({ articlescore: this.state.articlescore - 1, scoreDecreased:true, color2:true });
+      this.setState({
+        articlescore: this.state.articlescore - 1,
+        scoreDecreased:true,
+        color2:true
+      })
     }
     else if(this.state.loggedIn && this.state.scoreDecreased){
-      this.setState({ articlescore: this.state.articlescore + 1, scoreDecreased: false, color2: false });
+      this.setState({
+        articlescore: this.state.articlescore + 1,
+        scoreDecreased: false,
+        color2: false
+      })
     }
-      //decrement article score member variable
-  };
-  hoverOn1 = (e) =>{
-    if(this.state.loggedIn){
-      this.setState({ isMouseInside1: true });
-    }
-  };
-  hoverOff1 = (e)=>{
-    this.setState({ isMouseInside1: false});
   }
-  hoverOn2 = (e) =>{
+  hoverOn1(e){
+    e.preventDefault()
     if(this.state.loggedIn){
-      this.setState({ isMouseInside2: true });
+      this.setState({
+        isMouseInside1: true
+      })
     }
-  };
-  hoverOff2 = (e)=>{
-    this.setState({ isMouseInside2: false});
+  }
+  hoverOff1(e){
+    e.preventDefault()
+    this.setState({
+      isMouseInside1: false
+    })
+  }
+  hoverOn2(e){
+    e.preventDefault()
+    if(this.state.loggedIn){
+      this.setState({
+        isMouseInside2: true
+      })
+    }
+  }
+  hoverOff2(e){
+    e.preventDefault()
+    this.setState({
+      isMouseInside2: false
+    })
   }
   render(){
-    var score = this.state.articlescore;
+    var score = this.state.articlescore
     return(
       <div id="articlepage">
-
         <div class="container-fluid fixed-top">
           <TitleNav loggedIn={this.state.loggedIn}/>
         </div>
@@ -97,8 +126,13 @@ class ArticlePage extends Component{
                     &nbsp; <a  id="comments" href="/" data-toggle="modal" data-target="#commentsModal"><FontAwesomeIcon icon={faCommentAlt}/>&nbsp; Comments</a>
                   </div>
                   <div id="iconcol" class="col-sm-4">
-                    <span class="incdec" id="comments" style={{color: (this.state.isMouseInside1 || this.state.color1) ? 'royalblue' : 'black' }} onMouseEnter={this.hoverOn1} onMouseLeave={this.hoverOff1} onClick={this.increaseScore.bind(this)}><FontAwesomeIcon icon={faArrowCircleUp}/></span>&nbsp; {score} &nbsp;
-                    <span class="incdec" id="comments" style={{color: (this.state.isMouseInside2 || this.state.color2) ? 'royalblue' : 'black' }} onMouseEnter={this.hoverOn2} onMouseLeave={this.hoverOff2} onClick={this.decreaseScore.bind(this)}><FontAwesomeIcon icon={faArrowCircleDown}/>  </span>
+                    <span class="incdec" id="comments" style={{color: (this.state.isMouseInside1 || this.state.color1) ? 'royalblue' : 'black' }} onMouseEnter={this.hoverOn1} onMouseLeave={this.hoverOff1} onClick={this.increaseScore.bind(this)}>
+                    <FontAwesomeIcon icon={faArrowCircleUp}/>
+                    </span>
+                    &nbsp; {score} &nbsp;
+                    <span class="incdec" id="comments" style={{color: (this.state.isMouseInside2 || this.state.color2) ? 'royalblue' : 'black' }} onMouseEnter={this.hoverOn2} onMouseLeave={this.hoverOff2} onClick={this.decreaseScore.bind(this)}>
+                      <FontAwesomeIcon icon={faArrowCircleDown}/>
+                    </span>
                   </div>
                   <div id="iconcol" class="col-sm-4">
                     <a id="comments" href="/"data-toggle="modal" data-target="#shareModal"><FontAwesomeIcon icon={faPaperPlane}/>&nbsp; Share link</a>&nbsp;

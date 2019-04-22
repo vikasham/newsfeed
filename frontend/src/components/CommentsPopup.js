@@ -13,7 +13,7 @@ class CommentsPopup extends Component{
     this.postComment = this.postComment.bind(this);
   }
 
-  postComment = (e) => {
+  postComment(e){
     //onsubmit for comments form
     e.preventDefault();
     alert('posting comment')
@@ -28,7 +28,7 @@ class CommentsPopup extends Component{
       message ="Comment"
     }
     return(
-      <div class="modal fade" id="commentsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade" id="commentsModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -52,7 +52,7 @@ class CommentsPopup extends Component{
                   <CommentsList loggedIn={this.state.loggedIn}/>
                 </div>
                 <div id="menu1" class="tab-pane fade">
-                  <form onSubmit={this.postComment} class="form-horizontal" id="commentForm" role="form">
+                  <form onSubmit={this.postComment} class="form-horizontal" id="commentForm">
 
                       <div class="form-group">
 

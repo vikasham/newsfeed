@@ -83,7 +83,7 @@ app.post('/update', cors(), async (request, response) => {
   let user = new User.findOne({
     username: `${request.body.username}`
   })
-  user.set(request.body.update)
+  user.set(request.body.topics)
   .then ( (document) => {
     response.status(200).json({
       result: "success"

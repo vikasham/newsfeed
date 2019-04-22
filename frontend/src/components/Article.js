@@ -6,7 +6,7 @@ import {faCommentAlt, faArrowCircleUp, faArrowCircleDown, faPaperPlane} from '@f
 import CommentsPopup from './CommentsPopup'
 import SharePopup from './SharePopup'
 
-class ArticleThumbnail extends Component
+class Article extends Component
 {
   constructor(props) {
     super(props)
@@ -30,6 +30,7 @@ class ArticleThumbnail extends Component
     this.hoverOff2 = this.hoverOff2.bind(this);
 
   }
+  //increment article score member variable
   increaseScore(e){
     e.preventDefault()
     if(this.state.loggedIn && !this.state.scoreDecreased && !this.state.scoreIncreased){
@@ -38,8 +39,9 @@ class ArticleThumbnail extends Component
     else if(this.state.loggedIn && this.state.scoreIncreased){
       this.setState({ articlescore: this.state.articlescore - 1, scoreIncreased: false, color1: false });
     }
-      //increment article score member variable
+
   }
+  //decrement article score member variable
   decreaseScore(e){
     e.preventDefault()
     if(this.state.loggedIn && !this.state.scoreDecreased && !this.state.scoreIncreased){
@@ -48,7 +50,7 @@ class ArticleThumbnail extends Component
     else if(this.state.loggedIn && this.state.scoreDecreased){
       this.setState({ articlescore: this.state.articlescore + 1, scoreDecreased: false, color2: false });
     }
-      //decrement article score member variable
+
   }
   hoverOn1(e){
     e.preventDefault()
@@ -79,7 +81,7 @@ class ArticleThumbnail extends Component
       imageUrl=this.props.article.urlToImage
     }
     return(
-      <div id="articlethumbnail" class="card">
+      <div id="articlethumbnail" class="col-sm-4 card">
         <a href="/articlepage">
           <img class="card-img-top" alt="article thumbnail" src={imageUrl}/>
         </a>
@@ -111,4 +113,4 @@ class ArticleThumbnail extends Component
     )
   }
 }
-export default ArticleThumbnail
+export default Article

@@ -5,7 +5,7 @@ import { Component } from 'react'
 class TopicsPopup extends Component{
   constructor(props){
     super(props)
-    this.state={
+    this.state = {
       loggedIn: this.props.loggedIn,
       checked1: true,
       checked2: true,
@@ -14,83 +14,80 @@ class TopicsPopup extends Component{
       checked5: true,
       checked6: true,
     }
-    this.saveTopics = this.saveTopics.bind(this);
+    this.toggleCheck1 = this.toggleCheck1.bind(this)
+    this.toggleCheck2 = this.toggleCheck1.bind(this)
+    this.toggleCheck3 = this.toggleCheck1.bind(this)
+    this.toggleCheck4 = this.toggleCheck1.bind(this)
+    this.toggleCheck5 = this.toggleCheck1.bind(this)
+    this.toggleCheck6 = this.toggleCheck1.bind(this)
+    this.saveTopics = this.saveTopics.bind(this)
   }
-  toggleCheck1 = (e) => {
-    if(this.state.checked1){
-      this.setState({checked1: false})
-    }else{
-      this.setState({checked1: true})
-    }
-  };
-  toggleCheck2 = (e) => {
-    if(this.state.checked2){
-      this.setState({checked2: false})
-    }else{
-      this.setState({checked2: true})
-    }
-  };
-  toggleCheck3 = (e) => {
-    if(this.state.checked3){
-      this.setState({checked3: false})
-    }else{
-      this.setState({checked3: true})
-    }
-  };
-  toggleCheck4 = (e) => {
-    if(this.state.checked4){
-      this.setState({checked4: false})
-    }else{
-      this.setState({checked4: true})
-    }
-  };
-  toggleCheck5 = (e) => {
-    if(this.state.checked5){
-      this.setState({checked5: false})
-    }else{
-      this.setState({checked5: true})
-    }
-  };
-  toggleCheck6 = (e) => {
-    if(this.state.checked6){
-      this.setState({checked6: false})
-    }else{
-      this.setState({checked6: true})
-    }
-  };
-  saveTopics = (e) => {
-    //onclick for save changes button
-    var topicsarr = [];
 
-    var index = 0
+  toggleCheck1(){
+    this.setState({checked1: !this.state.checked1})
+  }
+  toggleCheck2(){
+    this.setState({checked2: !this.state.checked2})
+  }
+  toggleCheck3(){
+    this.setState({checked3: !this.state.checked3})
+  }
+  toggleCheck4(){
+    this.setState({checked4: !this.state.checked4})
+  }
+  toggleCheck5(){
+    this.setState({checked5: !this.state.checked5})
+  }
+  toggleCheck6(){
+    this.setState({checked6: !this.state.checked6})
+  }
+
+  saveTopics(e){
+    e.preventDefault()
+    //onclick for save changes button
+    var interests = []
+
     if(this.refs.entertainment.checked){
-      topicsarr[index] = 'entertainment';
-      index++
+      interests.push('entertainment')
     }
     if(this.refs.sports.checked){
-      topicsarr[index] = 'sports';
-      index++
+      interests.push('sports')
     }
     if(this.refs.politics.checked){
-      topicsarr[index] = 'politics';
-      index++
+      interests.push('politics')
     }
     if(this.refs.technology.checked){
-      topicsarr[index] = 'technology';
-      index++
+      interests.push('technology')
     }
     if(this.refs.business.checked){
-      topicsarr[index] = 'business';
-      index++
+      interests.push('business')
     }
     if(this.refs.science.checked){
-      topicsarr[index] = 'science';
-      index++
+      interests.push('science')
     }
+    let data = {
+      username: `${this.state.username}`,
+      topics: interests
+    }
+    let request = {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+    fetch("/update", request)
+    .then( (response) => {
+      if (response.error) {
+        alert(response.error)
+      }
+      window.location.reload()
+    })
+    .catch( (error) => {
+      alert( error.message )
+    })
+  }
 
-    const updatedtopics = JSON.stringify(topicsarr);
-
-  };
   render(){
     return(
       <div class="modal fade" id="topicsmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

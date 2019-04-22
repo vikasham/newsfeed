@@ -19,47 +19,77 @@ class Comment extends Component{
       color2: false
     }
 
-    this.increaseScore = this.increaseScore.bind(this);
-    this.decreaseScore = this.decreaseScore.bind(this);
-    this.hoverOn1 = this.hoverOn1.bind(this);
-    this.hoverOn2 = this.hoverOn2.bind(this);
-    this.hoverOff1 = this.hoverOff1.bind(this);
-    this.hoverOff2 = this.hoverOff2.bind(this);
+    this.increaseScore = this.increaseScore.bind(this)
+    this.decreaseScore = this.decreaseScore.bind(this)
+    this.hoverOn1 = this.hoverOn1.bind(this)
+    this.hoverOn2 = this.hoverOn2.bind(this)
+    this.hoverOff1 = this.hoverOff1.bind(this)
+    this.hoverOff2 = this.hoverOff2.bind(this)
 
   }
-  increaseScore = (e) => {
+  //increment comment score member variable
+  increaseScore(e){
+    e.preventDefault()
     if(this.state.loggedIn && !this.state.scoreDecreased && !this.state.scoreIncreased){
-      this.setState({ articlescore: this.state.articlescore + 1, scoreIncreased: true, color1:true });
+      this.setState({
+        articlescore: this.state.articlescore + 1,
+        scoreIncreased: true,
+        color1:true
+      })
     }
     else if(this.state.loggedIn && this.state.scoreIncreased){
-      this.setState({ articlescore: this.state.articlescore - 1, scoreIncreased: false, color1: false });
+      this.setState({
+        articlescore: this.state.articlescore - 1,
+        scoreIncreased: false,
+        color1: false
+      })
     }
-      //increment article score member variable
-  };
-  decreaseScore = (e) => {
+  }
+  //decrement article score member variable
+  decreaseScore(e){
+    e.preventDefault()
     if(this.state.loggedIn && !this.state.scoreDecreased && !this.state.scoreIncreased){
-      this.setState({ articlescore: this.state.articlescore - 1, scoreDecreased:true, color2:true });
+      this.setState({
+        articlescore: this.state.articlescore - 1,
+        scoreDecreased:true,
+        color2:true
+      })
     }
     else if(this.state.loggedIn && this.state.scoreDecreased){
-      this.setState({ articlescore: this.state.articlescore + 1, scoreDecreased: false, color2: false });
+      this.setState({
+        articlescore: this.state.articlescore + 1,
+        scoreDecreased: false,
+        color2: false
+      })
     }
-      //decrement article score member variable
-  };
-  hoverOn1 = (e) =>{
-    if(this.state.loggedIn){
-      this.setState({ isMouseInside1: true });
-    }
-  };
-  hoverOff1 = (e)=>{
-    this.setState({ isMouseInside1: false});
   }
-  hoverOn2 = (e) =>{
+  hoverOn1(e){
+    e.preventDefault()
     if(this.state.loggedIn){
-      this.setState({ isMouseInside2: true });
+      this.setState({
+        isMouseInside1: true
+      })
     }
-  };
-  hoverOff2 = (e)=>{
-    this.setState({ isMouseInside2: false});
+  }
+  hoverOff1(e){
+    e.preventDefault()
+    this.setState({
+      isMouseInside1: false
+    })
+  }
+  hoverOn2(e){
+    e.preventDefault()
+    if(this.state.loggedIn){
+      this.setState({
+        isMouseInside2: true
+      })
+    }
+  }
+  hoverOff2(e){
+    e.preventDefault()
+    this.setState({
+      isMouseInside2: false
+    })
   }
   render(){
     return(

@@ -8,121 +8,111 @@ class RegisterPopup extends Component{
   constructor( props )
   {
     super( props )
-    this.handleSubmit = this.handleSubmit.bind(this)
     this.state = {
       username: "",
       password: "",
       firstname: "",
       lastname: ""
     }
-    this.handleChange = this.handleChange.bind(this)
-    this.handleChange1 = this.handleChange1.bind(this)
-    this.handleChange2 = this.handleChange2.bind(this)
-    this.handleChange3 = this.handleChange3.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.setUsername = this.setUsername.bind(this)
+    this.setPassword = this.setPassword.bind(this)
+    this.setFirstName = this.setFirstName.bind(this)
+    this.setLastName = this.setLastName.bind(this)
   }
 
-  handleChange(event) {
+  setUsername(event) {
+    event.preventDefault()
     this.setState({username: event.target.value})
   }
 
-  handleChange1(event) {
+  setPassword(event) {
+    event.preventDefault()
     this.setState({password: event.target.value})
   }
 
-  handleChange2(event) {
+  setFirstName(event) {
+    event.preventDefault()
     this.setState({firstname: event.target.value})
   }
 
-  handleChange3(event) {
+  setLastName(event) {
+    event.preventDefault()
     this.setState({lastname: event.target.value})
   }
 
-  customFunction = async (e) => {
-    e.preventDefault()
-    const text = this.state.username
-    const response = await fetch(`/api/cow/${text}`)
-    const custom = await response.json()
-    alert(custom.hello)
-    const item = custom.hello
-    this.setState({ item, text: '' })
-  }
+  handleSubmit(event){
+    event.preventDefault()
 
-  handleSubmit = async (e) => {
-    e.preventDefault()
-
-    console.log("Something")
-
-    console.log(this.state.username)
-    console.log(this.state.password)
-
-    const username1 = this.state.username
-    const password1 = this.state.password
-    const firstname1 = this.state.firstname
-    const lastname1 = this.state.lastname
-    var data = {
-      username: username1,
-      password: password1,
-      firstname: firstname1,
-      lastname: lastname1
+    let data = {
+      username: `${this.state.username}`,
+      password: `${this.state.password}`,
+      firstname: `${this.state.firstname}`,
+      lastname: `${this.state.lastname}`
     }
 
-    var response = fetch("/register", {
+    let request = {
       method: 'POST',
       body: JSON.stringify(data),
       headers:{
         'Content-Type': 'application/json'
       }
-    })
-    if (response.error) {
-      alert(response.error)
-    } else {
-      alert("Success")
-      window.location.relod()
     }
+
+    fetch("/register", request)
+    .then( (response) => {
+      if (response.error) {
+        alert(response.error)
+      }
+      window.location.reload()
+    })
+    .catch( (error) => {
+      alert(error.message)
+    })
   }
 
   render(){
     return(
       <div class="container" id="registerpopup">
-        <div class="modal fade" id="myModal2" role="dialog">
-          <div class="modal-dialog modal-dialog-centered">
+      <div class="modal fade" id="myModal2" role="dialog">
+      <div class="modal-dialog modal-dialog-centered">
 
-            <div class="modal-content">
-              <div class="modal-header bg-primary text-white">
-                <h4 class="modal-title">Register  <FontAwesomeIcon icon={faUserPlus}/></h4>
-                <button type="button" class="close text-white" data-dismiss="modal">&times;</button>
-              </div>
-              <div class="modal-body">
-                <form onSubmit = {this.handleSubmit}>
-                  <div class="form-group row">
-                    <div class="col-sm-1">
-                    </div>
-                    <div class="col-sm-6">
-                      <input type="user" onChange = {this.handleChange2} class="form-control" placeholder="First Name"/>
-                    </div>
-                    <div class="col-sm-5" >
-                      <input type="user" onChange = {this.handleChange3} class="form-control" placeholder="Last Name"/>
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="exampleInputEmail1" class="col-sm-1 col-form-label text-secondary"><FontAwesomeIcon icon={faUser }/></label>
-                    <div class="col-sm-11">
-                      <input type="user" class="form-control" onChange = {this.handleChange} id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Username"/>
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="exampleInputEmail1" class="col-sm-1 col-form-label text-secondary"><FontAwesomeIcon icon={faLock}/></label>
-                    <div class="col-sm-11">
-                      <input type="password" class="form-control" onChange = {this.handleChange1} id="exampleInputPassword1" placeholder="Password"/>
-                    </div>
-                  </div>
-                  <button type="submit" class="btn btn-primary">Register</button>
-                </form>
-              </div>
-            </div>
+      <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+      <h4 class="modal-title">Register  <FontAwesomeIcon icon={faUserPlus}/></h4>
+      <button type="button" class="close text-white" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+      <form onSubmit = {this.handleSubmit}>
+      <div class="form-group row">
+      <div class="col-sm-1">
+      </div>
+      <div class="col-sm-6">
+      <input type="user" onChange = {this.setFirstName} class="form-control" placeholder="First Name"/>
+      </div>
+      <div class="col-sm-5" >
+      <input type="user" onChange = {this.setLastName} class="form-control" placeholder="Last Name"/>
+      </div>
+      </div>
+      <div class="form-group row">
+      <label for="exampleInputEmail1" class="col-sm-1 col-form-label text-secondary"><FontAwesomeIcon icon={faUser }/></label>
+      <div class="col-sm-11">
+      <input type="user" class="form-control" onChange = {this.setUsername} id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Username"/>
+      </div>
+      </div>
+      <div class="form-group row">
+      <label for="exampleInputEmail1" class="col-sm-1 col-form-label text-secondary"><FontAwesomeIcon icon={faLock}/></label>
+      <div class="col-sm-11">
+      <input type="password" class="form-control" onChange = {this.setPassword} id="exampleInputPassword1" placeholder="Password"/>
+      </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Register</button>
+      </form>
+      </div>
+      </div>
 
-          </div>
-        </div>
+      </div>
+      </div>
       </div>
     )
   }

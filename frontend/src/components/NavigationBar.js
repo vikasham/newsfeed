@@ -4,45 +4,73 @@ import { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import '../css/NavigationBar.css'
-import Dash from './Dash'
+
 import TopicNav from './TopicNav'
 import TitleNav from './TitleNav'
+import Dashrow from './Dashrow'
+import Bubbles from './Bubbles'
 
 
-class NavigationBar extends Component
-{
+
+class NavigationBar extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      loggedIn : this.props.loggedIn,
-      topic: "business"
+    this.loadAll = this.loadAll.bind(this)
+    this.loadAll()
+    // get initial articles
+  }
+  async loadAll(){
+    const response = await fetch(`https://www.polytime.solutions/all`)
+    const data = await response.json()
+    let rows = []
+    if (data !== undefined){
+      for (let i = 0 ; i < data.length - 2 ; i += 3){
+        rows.push(<Dashrow first={data[i]} second={data[i+1]} third={data[i+2]} />)
+      }
+      this.setState({
+        topic: "all",
+        title: "Today's News",
+        rows: rows
+      })
     }
-    this.handleChange = this.handleChange.bind(this);
-    this.childHandler=this.childHandler.bind(this);
   }
-  handleChange(e) {
-    e.preventDefault()
-    this.setState({ [e.target.name]: e.target.value })
+  // called by child component "TopicNav" upon clicking a topic name
+  update(data){
+    // update the topic, the articles, and the title
+    if (data !== undefined){
+      console.log(`navigation bar says new topic is ${data.topic}`)
+      this.setState(data)
+      let rows = []
+      for (let i = 0 ; i < data.articles.length - 2 ; i += 3){
+        rows.push(<Dashrow first={data.articles[i]} second={data.articles[i+1]} third={data.articles[i+2]} />)
+      }
+      this.setState({
+        topic: `${data.topic}`,
+        title: `${data.title}`,
+        rows: rows
+      })
+    }
   }
-
-  childHandler(dataFromChild){
-    this.setState({
-      topic: dataFromChild
-    })
-  }
-
-
-  render()
-  {
-    return(
-      <div>
-        <div class="container-fluid fixed-top">
-          <TitleNav loggedIn={this.state.loggedIn}/>
-          <TopicNav action={this.childHandler} loggedIn={this.state.loggedIn}/>
+  render(){
+    if (this.state == null){
+      return(<div></div>)
+    }
+    else {
+      return(
+        <div>
+          <div class="container-fluid fixed-top">
+            <TitleNav loggedIn={this.props.loggedIn}/>
+            <TopicNav update={this.update.bind(this)} loggedIn={this.props.loggedIn}/>
+          </div>
+          <div>
+            <Bubbles/>
+            <h1 class="text-center">{this.state.title}</h1>
+            <h2 class="text-center">{this.state.loggedIn ? "My Topics" : "All Topics"}</h2>
+            {this.state.rows}
+          </div>
         </div>
-          <Dash topic={this.state.topic} loggedIn={this.state.loggedIn}/>
-      </div>
-    )
+      )
+    }
   }
 }
 

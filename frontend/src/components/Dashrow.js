@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import ArticleThumbnail from './ArticleThumbnail'
+import Article from './Article'
 import '../css/Dashrow.css'
 
 class Dashrow extends Component
 {
+
   constructor(props) {
     super(props)
     this.state = {
@@ -13,20 +14,13 @@ class Dashrow extends Component
 
   render(){
     return(
-      <div>
-        <div id="dashrow" class="row">
-          <div class="col-sm-4">
-            <ArticleThumbnail loggedIn={this.state.loggedIn} article={this.props.first}/>
-          </div>
-          <div class="col-sm-4">
-            <ArticleThumbnail loggedIn={this.state.loggedIn} article={this.props.second}/>
-          </div>
-          <div class="col-sm-4">
-            <ArticleThumbnail loggedIn={this.state.loggedIn} article={this.props.third}/>
-          </div>
-        </div>
+      <div id="dashrow" class="row">
+        <Article loggedIn={this.state.loggedIn} article={this.props.first}/>
+        <Article loggedIn={this.state.loggedIn} article={this.props.second}/>
+        <Article loggedIn={this.state.loggedIn} article={this.props.third}/>
+        <br/>
+        <br/>
       </div>
-
     )
   }
 }

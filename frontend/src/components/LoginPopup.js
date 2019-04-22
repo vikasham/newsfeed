@@ -13,45 +13,46 @@ class LoginPopup extends Component{
       username: "",
       password: "",
     }
-    this.handleChange = this.handleChange.bind(this)
-    this.handleChange1 = this.handleChange1.bind(this)
+    this.setUsername = this.setUsername.bind(this)
+    this.setPassword = this.setPassword.bind(this)
   }
 
-  handleChange(event) {
+  setUsername(event) {
+    event.preventDefault()
     this.setState({username: event.target.value})
   }
 
-  handleChange1(event) {
+  setPassword(event) {
+    event.preventDefault()
     this.setState({password: event.target.value})
   }
 
-  handleSubmit = async (e) => {
-    e.preventDefault()
+  handleSubmit = async (event) => {
+    event.preventDefault()
 
-    console.log(this.state.username)
-    console.log(this.state.password)
-
-    const username1 = this.state.username
-    const password1 = this.state.password
-
-    var data = {
-      username: username1,
-      password: password1,
+    let data = {
+      username: `${this.state.username}`,
+      password: `${this.state.password}`
     }
 
-    var response = fetch("/login", {
+    let request = {
       method: 'POST',
       body: JSON.stringify(data),
-      headers:{
+      headers: {
         'Content-Type': 'application/json'
       }
-    })
-    if (response.error) {
-      alert(response.error)
-    } else {
-      alert("Success")
-      window.location.reload()
     }
+
+    fetch("/login", request)
+    .then( (response) => {
+      if (response.error) {
+        alert(response.error)
+      }
+      window.location.reload()
+    })
+    .catch( (error) => {
+      alert( error.message )
+    })
   }
 
   render(){
@@ -69,13 +70,13 @@ class LoginPopup extends Component{
                   <div class="form-group row">
                     <label for="exampleInputEmail1" class="col-sm-1 col-form-label text-secondary"><FontAwesomeIcon icon={faUser }/></label>
                     <div class="col-sm-11">
-                      <input type="user" class="form-control" onChange = {this.handleChange} id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Username"/>
+                      <input type="user" class="form-control" onChange = {this.setUsername} id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Username"/>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="exampleInputEmail1" class="col-sm-1 col-form-label text-secondary"><FontAwesomeIcon icon={faLock}/></label>
                     <div class="col-sm-11">
-                      <input type="password" onChange = {this.handleChange1} class="form-control" id="exampleInputPassword1" placeholder="Password"/>
+                      <input type="password" onChange = {this.setPassword} class="form-control" id="exampleInputPassword1" placeholder="Password"/>
                     </div>
                   </div>
                   <button type="submit" class="btn btn-primary">Login</button>

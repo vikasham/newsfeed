@@ -1,8 +1,10 @@
-import React from "react";
-import { Component } from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.min.js';
+import React, { Component} from "react"
+
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.min.js'
 import '../css/NavigationBar.css'
+
+import Topic from './Topic'
 
 class TopicNav extends Component {
   constructor(props) {
@@ -10,6 +12,10 @@ class TopicNav extends Component {
     this.state = {
       loggedIn: this.props.loggedIn,
     }
+  }
+  update(data){
+    console.log(`topic nav says new topic is ${data.topic}`)
+    this.props.update(data)
   }
   render(){
     return(
@@ -20,34 +26,13 @@ class TopicNav extends Component {
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent2">
                 <ul class="navbar-nav nav-fill w-100">
-                  <li class="nav-item">
-                        <div id="topic" class="nav-link" onClick={() => this.props.action('all')}>All Categories
-                        </div>
-                      </li>
-                      <li class="nav-item">
-                        <div id="topic" class="nav-link" onClick={() => this.props.action('entertainment')}>Entertainment
-                        </div>
-                      </li>
-                      <li class="nav-item">
-                        <div id="topic" class="nav-link" onClick={() => this.props.action('sports')}>Sports
-                        </div>
-                      </li>
-                      <li class="nav-item">
-                        <div id="topic" class="nav-link"  onClick={() => this.props.action('politics')}>Politics
-                        </div>
-                      </li>
-                      <li class="nav-item">
-                        <div id="topic" class="nav-link" onClick={() => this.props.action('technology')}>Technology
-                        </div>
-                      </li>
-                      <li class="nav-item">
-                        <div id="topic" class="nav-link" onClick={() => this.props.action('business')}>Business
-                        </div>
-                      </li>
-                      <li class="nav-item">
-                        <div id="topic" class="nav-link" onClick={() => this.props.action('business')}>Science
-                        </div>
-                      </li>
+                  <Topic title="All Categories" link="all" update={this.update.bind(this)} />
+                  <Topic title="Entertainment" link="entertainment" update={this.update.bind(this)}/>
+                  <Topic title="Sports" link="sports" update={this.update.bind(this)}/>
+                  <Topic title="Politics" link="politics" update={this.update.bind(this)}/>
+                  <Topic title="Technology" link="technology" update={this.update.bind(this)}/>
+                  <Topic title="Business" link="business" update={this.update.bind(this)}/>
+                  <Topic title="Science" link="science" update={this.update.bind(this)}/>
                 </ul>
               </div>
           </nav>
