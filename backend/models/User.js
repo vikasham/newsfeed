@@ -1,5 +1,4 @@
 let mongoose = require('mongoose')
-let validator = require('mongoose-validator')
 
 let userSchema = new mongoose.Schema({
   username: {

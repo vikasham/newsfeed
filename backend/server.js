@@ -31,10 +31,30 @@ mongoose.connect("mongodb+srv://cluster0-h3iy9.mongodb.net/test", {
 
 
 app.post('/login', cors(), async (req, res, next) => {
-  let user = new User({
+  let query = User.findOne({
+    // query parameters in json
     username: `${req.body.username}`,
     password: `${req.body.password}`
-  })
+  },
+  (error, user) => {
+    if (error) {
+      res.status(400).send({
+        success: false,
+        error: 'Error: username/password not found'
+      })
+    }
+    else {
+      console.log(`Username: ${person.username}\nPassword: ${person.password}`)
+      res.status(200).send(person)
+    }
+  }
+  // specify the fields to return values from
+  // 'username password firstname lastname'
+
+)
+  query.exec(
+
+   )
   console.log("Login was attempted, server received the POST request.")
   // save the new user to the database
   user.find()
@@ -51,9 +71,9 @@ app.post('/login', cors(), async (req, res, next) => {
     // if the error is code 11000
     // Then MongoDB has thrown a duplicate key error, username is taken
     console.log("User already exists")
-    return res.status(500).send({
+    return res.status(400).send({
       success: false,
-      error: 'Username already exists'
+      error: 'Error: username already exists'
     })
   })
 })
