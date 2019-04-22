@@ -14,27 +14,27 @@ class RegisterPopup extends Component{
       password: "",
       firstname: "",
       lastname: ""
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleChange1 = this.handleChange1.bind(this);
-    this.handleChange2 = this.handleChange2.bind(this);
-    this.handleChange3 = this.handleChange3.bind(this);
+    }
+    this.handleChange = this.handleChange.bind(this)
+    this.handleChange1 = this.handleChange1.bind(this)
+    this.handleChange2 = this.handleChange2.bind(this)
+    this.handleChange3 = this.handleChange3.bind(this)
   }
 
   handleChange(event) {
-    this.setState({username: event.target.value});
+    this.setState({username: event.target.value})
   }
 
   handleChange1(event) {
-    this.setState({password: event.target.value});
+    this.setState({password: event.target.value})
   }
 
   handleChange2(event) {
-    this.setState({firstname: event.target.value});
+    this.setState({firstname: event.target.value})
   }
 
   handleChange3(event) {
-    this.setState({lastname: event.target.value});
+    this.setState({lastname: event.target.value})
   }
 
   customFunction = async (e) => {
@@ -77,7 +77,7 @@ class RegisterPopup extends Component{
       alert(response.error)
     } else {
       alert("Success")
-      window.location.href = "http://localhost:3000/";
+      window.location.relod()
     }
   }
 

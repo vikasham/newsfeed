@@ -74,7 +74,7 @@ app.post('/register', cors(), async (request, response) => {
     // if the error is code 11000
     // Then MongoDB has thrown a duplicate key error, username is taken
     console.log("User already exists")
-    return response.status(500).send({
+    return response.status(400).send({
       error: 'Username already exists'
     })
   })

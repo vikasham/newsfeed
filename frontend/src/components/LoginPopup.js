@@ -12,17 +12,17 @@ class LoginPopup extends Component{
     this.state = {
       username: "",
       password: "",
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleChange1 = this.handleChange1.bind(this);
+    }
+    this.handleChange = this.handleChange.bind(this)
+    this.handleChange1 = this.handleChange1.bind(this)
   }
 
   handleChange(event) {
-    this.setState({username: event.target.value});
+    this.setState({username: event.target.value})
   }
 
   handleChange1(event) {
-    this.setState({password: event.target.value});
+    this.setState({password: event.target.value})
   }
 
   handleSubmit = async (e) => {
@@ -50,7 +50,7 @@ class LoginPopup extends Component{
       alert(response.error)
     } else {
       alert("Success")
-      window.location.href = "http://localhost:3000/";
+      window.location.reload()
     }
   }
 
