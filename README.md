@@ -26,5 +26,13 @@ Authors | GitHub|
 
 ## Before Deploying
 
-Clone this repository, type `yarn install` inside of the root directory
-as well as the frontend and backend directories
+Clone this repository, inside of the root directory type the following commands
+`$ yarn install`
+`$ cd ./frontend`
+`$ yarn install`
+`$ cd ../backend`
+`$ yarn install`
+`$ cd ../`
+`$ yarn install`
+`$ yarn global add nodemon`
+`$ yarn global add create-react-app`

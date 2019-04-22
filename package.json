@@ -33,6 +33,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./backend/server.js",
     "heroku-postbuild": "cd frontend && yarn install && yarn build",
-    "local": "nodemon ./backend/server.js"
+    "local": "cd frontend && yarn build && cd ../ && nodemon ./backend/server.js"
   }
 }
