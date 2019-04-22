@@ -53,10 +53,10 @@ app.post('/login', cors(), async (request, response) => {
   query.exec()
 })
 
-app.post('/register', cors(), async (req, res) => {
+app.post('/register', cors(), async (request, response) => {
   let user = new User({
-    username: `${req.body.username}`,
-    password: `${req.body.password}`,
+    username: `${request.body.username}`,
+    password: `${request.body.password}`,
     //firstname: `${req.body.firstname}`,
     //lastname: `${req.body.lastname}`
   })
@@ -66,7 +66,7 @@ app.post('/register', cors(), async (req, res) => {
   .then( (doc) => {
     // print the output
     console.log(doc)
-    res.status(200).json({
+    response.status(200).json({
       error: null
     })
   })
@@ -75,7 +75,7 @@ app.post('/register', cors(), async (req, res) => {
     // if the error is code 11000
     // Then MongoDB has thrown a duplicate key error, username is taken
     console.log("User already exists")
-    return res.status(500).send({
+    return response.status(500).send({
       error: 'Username already exists'
     })
   })
