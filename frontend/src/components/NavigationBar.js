@@ -39,7 +39,6 @@ class NavigationBar extends Component {
     // update the topic, the articles, and the title
     if (data !== undefined){
       console.log(`navigation bar says new topic is ${data.topic}`)
-      this.setState(data)
       let rows = []
       for (let i = 0 ; i < data.articles.length - 2 ; i += 3){
         // validate SSL for first article
