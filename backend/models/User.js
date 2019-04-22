@@ -19,6 +19,10 @@ let userSchema = new mongoose.Schema({
   lastname: {
     type: String,
     required: false
+  },
+  topics: {
+    type: [String],
+    default: ['entertainment', 'sports', 'politics', 'technology', 'business', 'science']
   }
 })
 

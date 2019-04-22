@@ -6,6 +6,7 @@ const app = express()
 const router = express.Router()
 const favicon = require('express-favicon')
 const cors = require('cors')
+// wrapper for MongoDB server access
 const mongoose = require('mongoose')
 // support parsing jsons
 app.use(bodyParser.json());
@@ -21,70 +22,83 @@ app.use(express.static(path.join('./frontend/build')))
 let User = require('./models/User')
 
 // begin connection to the MongoDB server
-mongoose.connect("mongodb+srv://cluster0-h3iy9.mongodb.net/test", {
-  useNewUrlParser: true,
-  dbName: "newsfeed",
-  poolSize: 5,
-  user: "pillow",
-  pass: "fight"
-})
+mongoose.connect(
+  "mongodb+srv://cluster0-h3iy9.mongodb.net/test",
+  {
+    useNewUrlParser: true,
+    dbName: "newsfeed",
+    poolSize: 5,
+    user: "pillow",
+    pass: "fight"
+  })
 
+  app.post('/login', cors(), async (request, response) => {
+    let query = User.findOne({
+      // query parameters in json
+      username: `${request.body.username}`,
+      password: `${request.body.password}`
+    },
+    // callback function for a query, executed when calling query.exec()
+    (error, result) => {
+      if (error || result === null) {
+        response.status(400).send({
+          error: 'Error: username/password not found'
+        })
+      }
+      else {
+        console.log(`Username: ${result.username}\nPassword: ${result.password}`)
+        response.status(200).send(result)
+      }
+    })
+    query.exec()
+  })
 
-app.post('/login', cors(), async (req, res, next) => {
-  let query = User.findOne({
-    // query parameters in json
-    username: `${req.body.username}`,
-    password: `${req.body.password}`
-  },
-  (error, result) => {
-    if (error || result === null) {
-      res.status(400).send({
-        success: false,
-        error: 'Error: username/password not found'
+  app.post('/register', cors(), async (request, response) => {
+    let user = new User({
+      username: `${request.body.username}`,
+      password: `${request.body.password}`,
+      //firstname: `${req.body.firstname}`,
+      //lastname: `${req.body.lastname}`
+    })
+    console.log("Registration was attempted, server received the POST request.")
+    // save the new user to the database
+    user.save()
+    .then( (doc) => {
+      // print the output
+      console.log(doc)
+      response.status(200).json(doc)
+    })
+    // or catch the error
+    .catch( (err) => {
+      // if the error is code 11000
+      // Then MongoDB has thrown a duplicate key error, username is taken
+      console.log("User already exists")
+      return response.status(500).send({
+        error: 'Username already exists'
       })
-    }
-    else {
-      console.log(`Username: ${result.username}\nPassword: ${result.password}`)
-      res.status(200).send(result)
-    }
-  }
-  // specify the fields to return values from
-  // 'username password firstname lastname'
-
-)
-  query.exec()
-})
-
-app.post('/register', cors(), async (req, res, next) => {
-  let user = new User({
-    username: `${req.body.username}`,
-    password: `${req.body.password}`,
-    //firstname: `${req.body.firstname}`,
-    //lastname: `${req.body.lastname}`
-  })
-  console.log("Registration was attempted, server received the POST request.")
-  // save the new user to the database
-  user.save()
-  .then( (doc) => {
-    // print the output
-    console.log(doc)
-    res.status(200).json({
-      success: true,
-      error: null
     })
   })
-  // or catch the error
-  .catch( (err) => {
-    // if the error is code 11000
-    // Then MongoDB has thrown a duplicate key error, username is taken
-    console.log("User already exists")
-    return res.status(500).send({
-      success: false,
-      error: 'Username already exists'
+
+  app.post('/updatetopics', cors(), async (request, response) => {
+    Person.find({
+      occupation: /host/,
+      'name.last': 'Ghost',
+      age: { $gt: 17, $lt: 66 },
+      likes: { $in: ['vaporizing', 'talking'] }
     })
-  })
+    .limit(10)
+    .sort({ occupation: -1 })
+    .select({ name: 1, occupation: 1 })
+    .exec( (err, person) {
+      if (err) return handleError(err)
+      // Prints "Space Ghost is a talk show host."
+      console.log('%s %s is a %s.', person.name.first, person.name.last,
+      person.occupation)
+    })
+  )
 })
 
+// default redirect, loads the application when the user visits the site
 app.get('/', async (req, res) => {
   res.sendFile(path.join('./frontend/build/index.html'))
 })
@@ -93,24 +107,4 @@ app.get('/', async (req, res) => {
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => {
   console.log(`Mixing it up on port ${PORT}`)
-})
-
-
-
-// serve a testing api route "/cow"
-app.get('/api/cow/:say', cors(), async (req, res, next) => {
-  const text = req.params.say
-  res.status(400).json({
-    hello: `The server received your message: ${text}`,
-    goodbye: "Message from the server: world"
-  })
-})
-
-
-// Serve our base route that returns "world"
-app.get('/api/cow/', cors(), async (req, res, next) => {
-  res.status(400).json({
-    hello: "no reason to visit this url directly, how did you *get* here",
-    goodbye: "no reason to visit this url directly, how did you *get* here"
-  })
 })

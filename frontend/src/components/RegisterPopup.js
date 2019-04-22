@@ -25,6 +25,14 @@ class RegisterPopup extends Component{
     this.setState({password: event.target.value});
   }
 
+  handleChange2(event) {
+    this.setState({firstname: event.target.value});
+  }
+
+  handleChange3(event) {
+    this.setState({lastname: event.target.value});
+  }
+
   customFunction = async (e) => {
     e.preventDefault()
     const text = this.state.username
@@ -45,9 +53,13 @@ class RegisterPopup extends Component{
 
     const username1 = this.state.username
     const password1 = this.state.password
+    const firstname1 = this.state.firstname
+    const lastname1 = this.state.lastname
     var data = {
       username: username1,
-      password: password1
+      password: password1,
+      firstname: firstname1,
+      lastname: lastname1
     }
 
     var response = fetch("/register", {
@@ -77,6 +89,16 @@ class RegisterPopup extends Component{
               </div>
               <div class="modal-body">
                 <form onSubmit = {this.handleSubmit}>
+                  <div class="form-group row">
+                    <div class="col-sm-1">
+                    </div>
+                    <div class="col-sm-6">
+                      <input type="user" onChange = {this.handleChange2} class="form-control" placeholder="First Name"/>
+                    </div>
+                    <div class="col-sm-5" >
+                      <input type="user" onChange = {this.handleChange3} class="form-control" placeholder="Last Name"/>
+                    </div>
+                  </div>
                   <div class="form-group row">
                     <label for="exampleInputEmail1" class="col-sm-1 col-form-label text-secondary"><FontAwesomeIcon icon={faUser }/></label>
                     <div class="col-sm-11">
