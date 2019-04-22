@@ -6,6 +6,7 @@ const app = express()
 const router = express.Router()
 const favicon = require('express-favicon')
 const cors = require('cors')
+// wrapper for MongoDB server access
 const mongoose = require('mongoose')
 // support parsing jsons
 app.use(bodyParser.json());
@@ -21,7 +22,9 @@ app.use(express.static(path.join('./frontend/build')))
 let User = require('./models/User')
 
 // begin connection to the MongoDB server
-mongoose.connect("mongodb+srv://cluster0-h3iy9.mongodb.net/test", {
+mongoose.connect(
+  "mongodb+srv://cluster0-h3iy9.mongodb.net/test",
+{
   useNewUrlParser: true,
   dbName: "newsfeed",
   poolSize: 5,
@@ -29,36 +32,31 @@ mongoose.connect("mongodb+srv://cluster0-h3iy9.mongodb.net/test", {
   pass: "fight"
 })
 
-
-app.post('/login', cors(), async (req, res, next) => {
+app.post('/login', cors(), async (request, response) => {
   let query = User.findOne({
     // query parameters in json
-    username: `${req.body.username}`,
-    password: `${req.body.password}`
+    username: `${request.body.username}`,
+    password: `${request.body.password}`
   },
+  // callback function for a query, executed when calling query.exec()
   (error, result) => {
     if (error || result === null) {
-      res.status(400).send({
-        success: false,
+      response.status(400).send({
         error: 'Error: username/password not found'
       })
     }
     else {
       console.log(`Username: ${result.username}\nPassword: ${result.password}`)
-      res.status(200).send(result)
+      response.status(200).send(result)
     }
-  }
-  // specify the fields to return values from
-  // 'username password firstname lastname'
-
-)
+  })
   query.exec()
 })
 
-app.post('/register', cors(), async (req, res, next) => {
+app.post('/register', cors(), async (request, response) => {
   let user = new User({
-    username: `${req.body.username}`,
-    password: `${req.body.password}`,
+    username: `${request.body.username}`,
+    password: `${request.body.password}`,
     //firstname: `${req.body.firstname}`,
     //lastname: `${req.body.lastname}`
   })
@@ -68,8 +66,7 @@ app.post('/register', cors(), async (req, res, next) => {
   .then( (doc) => {
     // print the output
     console.log(doc)
-    res.status(200).json({
-      success: true,
+    response.status(200).json({
       error: null
     })
   })
@@ -78,13 +75,13 @@ app.post('/register', cors(), async (req, res, next) => {
     // if the error is code 11000
     // Then MongoDB has thrown a duplicate key error, username is taken
     console.log("User already exists")
-    return res.status(500).send({
-      success: false,
+    return response.status(500).send({
       error: 'Username already exists'
     })
   })
 })
 
+// default redirect, loads the application when the user visits the site
 app.get('/', async (req, res) => {
   res.sendFile(path.join('./frontend/build/index.html'))
 })
@@ -93,24 +90,4 @@ app.get('/', async (req, res) => {
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => {
   console.log(`Mixing it up on port ${PORT}`)
-})
-
-
-
-// serve a testing api route "/cow"
-app.get('/api/cow/:say', cors(), async (req, res, next) => {
-  const text = req.params.say
-  res.status(400).json({
-    hello: `The server received your message: ${text}`,
-    goodbye: "Message from the server: world"
-  })
-})
-
-
-// Serve our base route that returns "world"
-app.get('/api/cow/', cors(), async (req, res, next) => {
-  res.status(400).json({
-    hello: "no reason to visit this url directly, how did you *get* here",
-    goodbye: "no reason to visit this url directly, how did you *get* here"
-  })
 })
