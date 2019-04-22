@@ -11,10 +11,14 @@ class RegisterPopup extends Component{
     this.handleSubmit = this.handleSubmit.bind(this)
     this.state = {
       username: "",
-      password: ""
+      password: "",
+      firstname: "",
+      lastname: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleChange1 = this.handleChange1.bind(this);
+    this.handleChange2 = this.handleChange2.bind(this);
+    this.handleChange3 = this.handleChange3.bind(this);
   }
 
   handleChange(event) {
@@ -73,7 +77,7 @@ class RegisterPopup extends Component{
       alert(response.error)
     } else {
       alert("Success")
-      window.location.href = "https://www.theta.dev/";
+      window.location.href = "http://localhost:3000/";
     }
   }
 
