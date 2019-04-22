@@ -30,72 +30,54 @@ mongoose.connect(
     poolSize: 5,
     user: "pillow",
     pass: "fight"
-  })
+  }
+)
 
-  app.post('/login', cors(), async (request, response) => {
-    let query = User.findOne({
-      // query parameters in json
-      username: `${request.body.username}`,
-      password: `${request.body.password}`
-    },
-    // callback function for a query, executed when calling query.exec()
-    (error, result) => {
-      if (error || result === null) {
-        response.status(400).send({
-          error: 'Error: username/password not found'
-        })
-      }
-      else {
-        console.log(`Username: ${result.username}\nPassword: ${result.password}`)
-        response.status(200).send(result)
-      }
-    })
-    query.exec()
-  })
-
-  app.post('/register', cors(), async (request, response) => {
-    let user = new User({
-      username: `${request.body.username}`,
-      password: `${request.body.password}`,
-      //firstname: `${req.body.firstname}`,
-      //lastname: `${req.body.lastname}`
-    })
-    console.log("Registration was attempted, server received the POST request.")
-    // save the new user to the database
-    user.save()
-    .then( (doc) => {
-      // print the output
-      console.log(doc)
-      response.status(200).json(doc)
-    })
-    // or catch the error
-    .catch( (err) => {
-      // if the error is code 11000
-      // Then MongoDB has thrown a duplicate key error, username is taken
-      console.log("User already exists")
-      return response.status(500).send({
-        error: 'Username already exists'
+app.post('/login', cors(), async (request, response) => {
+  let query = User.findOne({
+    // query parameters in json
+    username: `${request.body.username}`,
+    password: `${request.body.password}`
+  },
+  // callback function for a query, executed when calling query.exec()
+  (error, doc) => {
+    if (error || doc === null) {
+      response.status(400).send({
+        error: 'Error: username/password not found'
       })
+    }
+    else {
+      console.log(`Username: ${doc.username}\nPassword: ${doc.password}`)
+      response.status(200).send(doc)
+    }
+  })
+  query.exec()
+})
+
+app.post('/register', cors(), async (request, response) => {
+  let user = new User({
+    username: `${request.body.username}`,
+    password: `${request.body.password}`,
+    //firstname: `${req.body.firstname}`,
+    //lastname: `${req.body.lastname}`
+  })
+  console.log("Registration was attempted, server received the POST request.")
+  // save the new user to the database
+  user.save()
+  .then( (doc) => {
+    // print the output
+    console.log(doc)
+    response.status(200).json(doc)
+  })
+  // or catch the error
+  .catch( (err) => {
+    // if the error is code 11000
+    // Then MongoDB has thrown a duplicate key error, username is taken
+    console.log("User already exists")
+    return response.status(500).send({
+      error: 'Username already exists'
     })
   })
-
-  app.post('/updatetopics', cors(), async (request, response) => {
-    Person.find({
-      occupation: /host/,
-      'name.last': 'Ghost',
-      age: { $gt: 17, $lt: 66 },
-      likes: { $in: ['vaporizing', 'talking'] }
-    })
-    .limit(10)
-    .sort({ occupation: -1 })
-    .select({ name: 1, occupation: 1 })
-    .exec( (err, person) {
-      if (err) return handleError(err)
-      // Prints "Space Ghost is a talk show host."
-      console.log('%s %s is a %s.', person.name.first, person.name.last,
-      person.occupation)
-    })
-  )
 })
 
 // default redirect, loads the application when the user visits the site
