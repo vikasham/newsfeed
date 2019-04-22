@@ -25,6 +25,14 @@ class RegisterPopup extends Component{
     this.setState({password: event.target.value});
   }
 
+  handleChange2(event) {
+    this.setState({firstname: event.target.value});
+  }
+
+  handleChange3(event) {
+    this.setState({lastname: event.target.value});
+  }
+
   customFunction = async (e) => {
     e.preventDefault()
     const text = this.state.username
@@ -45,21 +53,27 @@ class RegisterPopup extends Component{
 
     const username1 = this.state.username
     const password1 = this.state.password
+    const firstname1 = this.state.firstname
+    const lastname1 = this.state.lastname
     var data = {
       username: username1,
-      password: password1
+      password: password1,
+      firstname: firstname1,
+      lastname: lastname1
     }
 
-    fetch(`/register`, {
+    var response = fetch("/register", {
       method: 'POST',
       body: JSON.stringify(data),
       headers:{
         'Content-Type': 'application/json'
       }
     })
-    .then(res => res.json())
-    .then(response => alert("suceess: ", JSON.stringify(response)))
-    .catch(error => console.error('Error:', error));
+    if (response.error) {
+      alert(response.error)
+    } else {
+      alert("Success")
+    }
   }
 
   render(){
@@ -79,10 +93,10 @@ class RegisterPopup extends Component{
                     <div class="col-sm-1">
                     </div>
                     <div class="col-sm-6">
-                      <input type="user" class="form-control" placeholder="First Name"/>
+                      <input type="user" onChange = {this.handleChange2} class="form-control" placeholder="First Name"/>
                     </div>
                     <div class="col-sm-5" >
-                      <input type="user" class="form-control" placeholder="Last Name"/>
+                      <input type="user" onChange = {this.handleChange3} class="form-control" placeholder="Last Name"/>
                     </div>
                   </div>
                   <div class="form-group row">

@@ -24,13 +24,14 @@ let User = require('./models/User')
 // begin connection to the MongoDB server
 mongoose.connect(
   "mongodb+srv://cluster0-h3iy9.mongodb.net/test",
-{
-  useNewUrlParser: true,
-  dbName: "newsfeed",
-  poolSize: 5,
-  user: "pillow",
-  pass: "fight"
-})
+  {
+    useNewUrlParser: true,
+    dbName: "newsfeed",
+    poolSize: 5,
+    user: "pillow",
+    pass: "fight"
+  }
+)
 
 app.post('/login', cors(), async (request, response) => {
   let query = User.findOne({
@@ -39,15 +40,15 @@ app.post('/login', cors(), async (request, response) => {
     password: `${request.body.password}`
   },
   // callback function for a query, executed when calling query.exec()
-  (error, result) => {
-    if (error || result === null) {
+  (error, doc) => {
+    if (error || doc === null) {
       response.status(400).send({
         error: 'Error: username/password not found'
       })
     }
     else {
-      console.log(`Username: ${result.username}\nPassword: ${result.password}`)
-      response.status(200).send(result)
+      console.log(`Username: ${doc.username}\nPassword: ${doc.password}`)
+      response.status(200).send(doc)
     }
   })
   query.exec()
@@ -66,9 +67,7 @@ app.post('/register', cors(), async (request, response) => {
   .then( (doc) => {
     // print the output
     console.log(doc)
-    response.status(200).json({
-      error: null
-    })
+    response.status(200).json(doc)
   })
   // or catch the error
   .catch( (err) => {
