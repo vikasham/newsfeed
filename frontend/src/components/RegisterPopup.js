@@ -73,6 +73,7 @@ class RegisterPopup extends Component{
       alert(response.error)
     } else {
       alert("Success")
+      window.location.href = "https://www.theta.dev/";
     }
   }
 
