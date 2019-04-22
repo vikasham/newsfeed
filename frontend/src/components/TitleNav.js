@@ -54,7 +54,7 @@ class TitleNav extends Component{
 
                 <form class="navbar-search form-inline my-2 my-lg-0">
                   <input class="form-control mr-sm-2 diabled" type="search" placeholder="Search" aria-label="Search" disabled={ disabled }/>
-                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit" disabled={ disabled }>Search</button>
+                  <button class="btn btn-outline-light my-2 my-sm-0" type="submit" disabled={ disabled }>Search</button>
                 </form>
               </div>
 
