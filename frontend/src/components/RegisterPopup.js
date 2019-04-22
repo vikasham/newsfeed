@@ -43,21 +43,23 @@ class RegisterPopup extends Component{
     console.log(this.state.username)
     console.log(this.state.password)
 
-    const username = this.state.username
-    const password = this.state.password
+    const username1 = this.state.username
+    const password1 = this.state.password
+    var data = {
+      username: username1,
+      password: password1
+    }
 
-    const response = await fetch(`/api/register/${username}.${password}`)
-    const custom = await response.json()
-    
-
-    if (custom.error == null) {
-      alert("Success!")
-      window.location.href = "/LoginPopup";
-    } else if (custom.error === "Username already exists!") {
-      alert(custom.error)
-    } else {
-      alert("Sorry")
-    };
+    fetch(`/register`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then(response => alert("suceess: ", JSON.stringify(response)))
+    .catch(error => console.error('Error:', error));
   }
 
   render(){
