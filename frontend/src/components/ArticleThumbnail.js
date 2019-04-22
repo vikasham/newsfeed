@@ -6,10 +6,10 @@ import {faCommentAlt, faArrowCircleUp, faArrowCircleDown, faPaperPlane} from '@f
 import CommentsPopup from './CommentsPopup'
 import SharePopup from './SharePopup'
 
-class Dash extends Component
+class ArticleThumbnail extends Component
 {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       articlescore: 29,
@@ -30,7 +30,8 @@ class Dash extends Component
     this.hoverOff2 = this.hoverOff2.bind(this);
 
   }
-  increaseScore = (e) => {
+  increaseScore(e){
+    e.preventDefault()
     if(this.state.loggedIn && !this.state.scoreDecreased && !this.state.scoreIncreased){
       this.setState({ articlescore: this.state.articlescore + 1, scoreIncreased: true, color1:true });
     }
@@ -38,8 +39,9 @@ class Dash extends Component
       this.setState({ articlescore: this.state.articlescore - 1, scoreIncreased: false, color1: false });
     }
       //increment article score member variable
-  };
-  decreaseScore = (e) => {
+  }
+  decreaseScore(e){
+    e.preventDefault()
     if(this.state.loggedIn && !this.state.scoreDecreased && !this.state.scoreIncreased){
       this.setState({ articlescore: this.state.articlescore - 1, scoreDecreased:true, color2:true });
     }
@@ -47,34 +49,45 @@ class Dash extends Component
       this.setState({ articlescore: this.state.articlescore + 1, scoreDecreased: false, color2: false });
     }
       //decrement article score member variable
-  };
-  hoverOn1 = (e) =>{
-    if(this.state.loggedIn){
-      this.setState({ isMouseInside1: true });
-    }
-  };
-  hoverOff1 = (e)=>{
-    this.setState({ isMouseInside1: false});
   }
-  hoverOn2 = (e) =>{
+  hoverOn1(e){
+    e.preventDefault()
     if(this.state.loggedIn){
-      this.setState({ isMouseInside2: true });
+      this.setState({ isMouseInside1: true })
     }
-  };
-  hoverOff2 = (e)=>{
-    this.setState({ isMouseInside2: false});
+  }
+  hoverOff1(e){
+    e.preventDefault()
+    this.setState({ isMouseInside1: false})
+  }
+  hoverOn2(e){
+    e.preventDefault()
+    if(this.state.loggedIn){
+      this.setState({ isMouseInside2: true })
+    }
+  }
+  hoverOff2(e){
+    e.preventDefault()
+    this.setState({ isMouseInside2: false})
   }
   render(){
+    var imageUrl
+    if(!this.props.article.urlToImage){
+      imageUrl=stock
+    }
+    else{
+      imageUrl=this.props.article.urlToImage
+    }
     return(
       <div id="articlethumbnail" class="card">
         <a href="/articlepage">
-          <img class="card-img-top" alt="article thumbnail" src={stock}/>
+          <img class="card-img-top" alt="article thumbnail" src={imageUrl}/>
         </a>
         <div class="card-body">
           <a href="/articlepage">
-            <h5 class="text-center card-title">Article Title</h5>
+            <h5 class="text-center card-title">{this.props.article.title}</h5>
           </a>
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id.</p>
+          <p class="card-text">{this.props.article.description}</p>
         </div>
 
         <div class="card-body row text-center" id="comments">
@@ -98,4 +111,4 @@ class Dash extends Component
     )
   }
 }
-export default Dash
+export default ArticleThumbnail

@@ -4,15 +4,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import '../css/NavigationBar.css'
 
-class TopicNav extends Component{
+class TopicNav extends Component {
   constructor(props) {
     super(props)
     this.state = {
       loggedIn: this.props.loggedIn,
     }
-  }
-  changeTitle= (e) =>{
-
   }
   render(){
     return(
@@ -24,31 +21,31 @@ class TopicNav extends Component{
               <div class="collapse navbar-collapse" id="navbarSupportedContent2">
                 <ul class="navbar-nav nav-fill w-100">
                   <li class="nav-item">
-                        <div id="topic" class="nav-link" onClick={this.changeTitle}>All Categories
+                        <div id="topic" class="nav-link" onClick={() => this.props.action('all')}>All Categories
                         </div>
                       </li>
                       <li class="nav-item">
-                        <div id="topic" class="nav-link" onClick={this.changeTitle}>Entertainment
+                        <div id="topic" class="nav-link" onClick={() => this.props.action('entertainment')}>Entertainment
                         </div>
                       </li>
                       <li class="nav-item">
-                        <div id="topic" class="nav-link" onClick={this.changeTitle}>Sports
+                        <div id="topic" class="nav-link" onClick={() => this.props.action('sports')}>Sports
                         </div>
                       </li>
                       <li class="nav-item">
-                        <div id="topic" class="nav-link" onClick={this.changeTitle}>Politics
+                        <div id="topic" class="nav-link"  onClick={() => this.props.action('politics')}>Politics
                         </div>
                       </li>
                       <li class="nav-item">
-                        <div id="topic" class="nav-link" onClick={this.changeTitle}>Technology
+                        <div id="topic" class="nav-link" onClick={() => this.props.action('technology')}>Technology
                         </div>
                       </li>
                       <li class="nav-item">
-                        <div id="topic" class="nav-link" onClick={this.changeTitle}>Business
+                        <div id="topic" class="nav-link" onClick={() => this.props.action('business')}>Business
                         </div>
                       </li>
                       <li class="nav-item">
-                        <div id="topic" class="nav-link" onClick={this.changeTitle}>Science
+                        <div id="topic" class="nav-link" onClick={() => this.props.action('business')}>Science
                         </div>
                       </li>
                 </ul>

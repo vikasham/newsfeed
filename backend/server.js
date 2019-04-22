@@ -38,20 +38,19 @@ app.post('/login', cors(), async (request, response) => {
     // query parameters in json
     username: `${request.body.username}`,
     password: `${request.body.password}`
-  },
-  // callback function for a query, executed when calling query.exec()
-  (error, doc) => {
-    if (error || doc === null) {
-      response.status(400).send({
-        error: 'Error: username/password not found'
-      })
-    }
-    else {
-      console.log(`Username: ${doc.username}\nPassword: ${doc.password}`)
-      response.status(200).send(doc)
-    }
   })
+  // callback function for a query, executed when calling query.exec()
+  console.log("Login was attempted, server received the POST request.")
   query.exec()
+  // callback function for a query, executed when calling query.exec()
+  .then( (doc) => {
+    response.status(200).send(doc)
+  })
+  .catch( (error) => {
+    response.status(400).send({
+      error: 'Error: username/password not found'
+    })
+  })
 })
 
 app.post('/register', cors(), async (request, response) => {
@@ -76,6 +75,23 @@ app.post('/register', cors(), async (request, response) => {
     console.log("User already exists")
     return response.status(400).send({
       error: 'Username already exists'
+    })
+  })
+})
+
+app.post('/update', cors(), async (request, response) => {
+  let user = new User.findOne({
+    username: `${request.body.username}`
+  })
+  user.set(request.body.update)
+  .then ( (document) => {
+    response.status(200).json({
+      result: "success"
+    })
+  })
+  .catch( (error) => {
+    response.status(500).json({
+      error: "Error: server was unable to update topics"
     })
   })
 })
