@@ -27,6 +27,7 @@ class NavigationBar extends Component {
       for (let i = 0 ; i < data.length - 2 ; i += 3){
         rows.push(<Dashrow first={data[i]} second={data[i+1]} third={data[i+2]} />)
       }
+      // load all topics of news
       this.setState({
         topic: "all",
         title: "Today's News",
@@ -38,35 +39,10 @@ class NavigationBar extends Component {
   update(data){
     // update the topic, the articles, and the title
     if (data !== undefined){
-      console.log(`navigation bar says new topic is ${data.topic}`)
       let rows = []
+      // render all of the articles of the requested topic for the user
       for (let i = 0 ; i < data.articles.length - 2 ; i += 3){
-        // validate SSL for first article
-        if (data.articles[i].url.substring(0,5) !== "https" || data.articles[i].urlToImage.substring(0,5) !== "https")
-        {
-          console.log(data.articles[i].url)
-          console.log(data.articles[i].urlToImage)
-          i-=2
-          continue // will advance forward one index
-        }
-        // validate SSL for second article
-        else if (data.articles[i+1].url.substring(0,5) !== "https" || data.articles[i+1].urlToImage.substring(0,5) !== "https")
-        {
-          console.log(data.articles[i+1].url)
-          console.log(data.articles[i+1].urlToImage)
-          i-=1
-          continue // will advance forward two indeces
-        }
-        // validate SSL for third article
-        else if (data.articles[i+2].url.substring(0,5) !== "https" || data.articles[i+2].urlToImage.substring(0,5) !== "https")
-        {
-          console.log(data.articles[i+2].url)
-          console.log(data.articles[i+2].urlToImage)
-          continue // will advance forward three indeces
-        }
-        else {
-          rows.push(<Dashrow first={data.articles[i]} second={data.articles[i+1]} third={data.articles[i+2]} />)
-        }
+        rows.push(<Dashrow first={data.articles[i]} second={data.articles[i+1]} third={data.articles[i+2]} />)
       }
       this.setState({
         topic: `${data.topic}`,
@@ -91,7 +67,10 @@ class NavigationBar extends Component {
             < br/>< br/>< br/>< br/>< br/>< br/>
             <h1 class="text-center">Today's News</h1>
             <h2 class="text-center">{this.state.title}</h2>
-
+            {/* 
+            👇🏻 this state variable below is where
+              the articles are currently rendered from
+            */}
             {this.state.rows}
           </div>
         </div>

@@ -15,11 +15,11 @@ class TopicsPopup extends Component{
       checked6: true,
     }
     this.toggleCheck1 = this.toggleCheck1.bind(this)
-    this.toggleCheck2 = this.toggleCheck1.bind(this)
-    this.toggleCheck3 = this.toggleCheck1.bind(this)
-    this.toggleCheck4 = this.toggleCheck1.bind(this)
-    this.toggleCheck5 = this.toggleCheck1.bind(this)
-    this.toggleCheck6 = this.toggleCheck1.bind(this)
+    this.toggleCheck2 = this.toggleCheck2.bind(this)
+    this.toggleCheck3 = this.toggleCheck3.bind(this)
+    this.toggleCheck4 = this.toggleCheck4.bind(this)
+    this.toggleCheck5 = this.toggleCheck5.bind(this)
+    this.toggleCheck6 = this.toggleCheck6.bind(this)
     this.saveTopics = this.saveTopics.bind(this)
   }
 

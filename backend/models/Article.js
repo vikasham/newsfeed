@@ -6,30 +6,39 @@ function buildModel(name, schema) {
 }
 
 // also contained "updatedAt" and "createdAt"
-const User = buildModel('User', {
-  username: {
+const Article = buildModel('Article', {
+  source: {
     type: String,
     required: true,
-    unique: true,
-    uniqueCaseInsensitive: true,
   },
-  password: {
+  title: {
     type: String,
     required: true,
-    uniqueCaseInsensitive: false,
   },
-  firstname: {
+  description: {
+    type: String,
+    required: true
+  },
+  url: {
     type: String,
     required: false
   },
-  lastname: {
+  urlToImage: {
     type: String,
-    required: false
+    required: true
+  },
+  score: {
+    type: Number,
+    default: 1
   },
   topic: {
-    type: [String],
-    default: ['entertainment', 'sports', 'politics', 'technology', 'business', 'science']
+    type: Number,
+    default: "all"
+  },
+  comment: {
+    type: [Schema.Types.ObjectID],
+    ref: "Article"
   }
 })
 
-module.exports.User = User
+module.exports.Article = Article

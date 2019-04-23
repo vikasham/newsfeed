@@ -21,28 +21,28 @@ class RegisterPopup extends Component{
     this.setLastName = this.setLastName.bind(this)
   }
 
-  setUsername(event) {
-    event.preventDefault()
-    this.setState({username: event.target.value})
+  setUsername(e) {
+    e.preventDefault()
+    this.setState({username: e.target.value})
   }
 
-  setPassword(event) {
-    event.preventDefault()
-    this.setState({password: event.target.value})
+  setPassword(e) {
+    e.preventDefault()
+    this.setState({password: e.target.value})
   }
 
-  setFirstName(event) {
-    event.preventDefault()
-    this.setState({firstname: event.target.value})
+  setFirstName(e) {
+    e.preventDefault()
+    this.setState({firstname: e.target.value})
   }
 
-  setLastName(event) {
-    event.preventDefault()
-    this.setState({lastname: event.target.value})
+  setLastName(e) {
+    e.preventDefault()
+    this.setState({lastname: e.target.value})
   }
 
-  handleSubmit(event){
-    event.preventDefault()
+  handleSubmit(e){
+    e.preventDefault()
 
     let data = {
       username: `${this.state.username}`,
@@ -58,12 +58,10 @@ class RegisterPopup extends Component{
         'Content-Type': 'application/json'
       }
     }
-
+    // POST request to register a user in the database
     fetch("/register", request)
     .then( (response) => {
-      if (response.error) {
-        alert(response.error)
-      }
+      alert(response) // TODO remove, purpose is for debug
       window.location.reload()
     })
     .catch( (error) => {
@@ -74,45 +72,55 @@ class RegisterPopup extends Component{
   render(){
     return(
       <div class="container" id="registerpopup">
-      <div class="modal fade" id="myModal2" role="dialog">
-      <div class="modal-dialog modal-dialog-centered">
-
-      <div class="modal-content">
-      <div class="modal-header bg-primary text-white">
-      <h4 class="modal-title">Register  <FontAwesomeIcon icon={faUserPlus}/></h4>
-      <button type="button" class="close text-white" data-dismiss="modal">&times;</button>
-      </div>
-      <div class="modal-body">
-      <form onSubmit = {this.handleSubmit}>
-      <div class="form-group row">
-      <div class="col-sm-1">
-      </div>
-      <div class="col-sm-6">
-      <input type="user" onChange = {this.setFirstName} class="form-control" placeholder="First Name"/>
-      </div>
-      <div class="col-sm-5" >
-      <input type="user" onChange = {this.setLastName} class="form-control" placeholder="Last Name"/>
-      </div>
-      </div>
-      <div class="form-group row">
-      <label for="exampleInputEmail1" class="col-sm-1 col-form-label text-secondary"><FontAwesomeIcon icon={faUser }/></label>
-      <div class="col-sm-11">
-      <input type="user" class="form-control" onChange = {this.setUsername} id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Username"/>
-      </div>
-      </div>
-      <div class="form-group row">
-      <label for="exampleInputEmail1" class="col-sm-1 col-form-label text-secondary"><FontAwesomeIcon icon={faLock}/></label>
-      <div class="col-sm-11">
-      <input type="password" class="form-control" onChange = {this.setPassword} id="exampleInputPassword1" placeholder="Password"/>
-      </div>
-      </div>
-      <button type="submit" class="btn btn-primary">Register</button>
-      </form>
-      </div>
-      </div>
-
-      </div>
-      </div>
+        <div class="modal fade" id="myModal2" role="dialog">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header bg-primary text-white">
+                <h4 class="modal-title">Register  <FontAwesomeIcon icon={faUserPlus}/>
+                </h4>
+                <button type="button" class="close text-white" data-dismiss="modal">
+                  &times;
+                </button>
+              </div>
+              <div class="modal-body">
+                <form onSubmit = {this.handleSubmit}>
+                  <div class="form-group row">
+                    <div class="col-sm-1">
+                    </div>
+                    <div class="col-sm-6">
+                      <input type="user" onChange = {this.setFirstName} class="form-control" placeholder="First Name">
+                      </input>
+                    </div>
+                    <div class="col-sm-5" >
+                      <input type="user" onChange = {this.setLastName} class="form-control" placeholder="Last Name">
+                      </input>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="exampleInputEmail1" class="col-sm-1 col-form-label text-secondary">
+                      <FontAwesomeIcon icon={faUser }/>
+                    </label>
+                    <div class="col-sm-11">
+                      <input type="user" class="form-control" onChange = {this.setUsername} id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Username">
+                      </input>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="exampleInputEmail1" class="col-sm-1 col-form-label text-secondary"><FontAwesomeIcon icon={faLock}/>
+                    </label>
+                    <div class="col-sm-11">
+                      <input type="password" class="form-control" onChange = {this.setPassword} id="exampleInputPassword1" placeholder="Password">
+                      </input>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary">
+                    Register
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }

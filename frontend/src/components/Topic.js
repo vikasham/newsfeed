@@ -14,12 +14,16 @@ class Topic extends Component {
   componentWillUnmount(){
     this.handleClickThrottled.cancel()
   }
+  // GET request to the Express server
+  // delivers articles from the database to avoid overusing NewsAPI calls
   async handleClick(){
-    let response = await fetch(`https://www.polytime.solutions/${this.props.link}`)
-    let data = await response.json()
-    console.log(`new topic should be ${this.props.link}`)
+    let response = await fetch(`/${this.props.link}`)
+    let newArticles = await response.json()
+    // calls the update() function of the parent component, NavigationBar
+    // and sets the state of the NavigationBar component, to have
+    // "newArticles" the new articles that we have pulled
     this.props.update({
-      articles: data,
+      articles: newArticles,
       topic: `${this.props.link}`,
       title: `${this.props.title}`
     })
