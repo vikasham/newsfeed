@@ -7,13 +7,24 @@ import {faPaperPlane} from '@fortawesome/free-solid-svg-icons'
 
 
 class SharePopup extends Component{
+  constructor(params){
+    super(params){
+      this.copyToClipboard = this.copyToClipboard.bind(this)
+    }
+  }
 
-  copyToClipboard = (e) => {
+  copyToClipboard(e){
       this.textArea.select();
       document.execCommand('copy')
       // This is just personal preference.
       // I prefer to not show the the whole text area selected.
       e.target.focus();
+    }
+
+    sendMessage(e){
+      let sid = process.env.TWILIO_SID
+      let token = process.env.TWILIO_TOKEN
+      let process = process.env.TWILIO_NUMBER
     }
 
   render(){
