@@ -59,6 +59,7 @@ class RegisterPopup extends Component{
       }
     })
     .then(function(response) {
+      console.log("Hello")
       return response.json()
     })
     .then(function(myJson) {
