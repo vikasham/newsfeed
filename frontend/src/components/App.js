@@ -4,6 +4,7 @@ import '../css/App.css'
 import NavigationBar from './NavigationBar'
 import LoginPopup from './LoginPopup'
 import RegisterPopup from './RegisterPopup'
+import Profile from './Profile'
 
 class App extends Component
 {
@@ -20,6 +21,7 @@ class App extends Component
         <NavigationBar loggedIn={this.state.loggedIn}/>
         <LoginPopup />
         <RegisterPopup />
+        <Profile />
       </div>
     )
   }

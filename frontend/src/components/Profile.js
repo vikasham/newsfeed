@@ -22,39 +22,34 @@ class Profile extends Component{
 
   render(){
     return(
-      <div id ="profilepage">
-        <div class="container-fluid fixed-top" id="navcontainer">
-          <TitleNav loggedIn={this.state.loggedIn}/>
-        </div>
-        <div class="center-screen">
-        <div class="row w-100">
-          <div class="col">
-          </div>
-          <div class="col-xl-auto">
-            <div class="card bg-light align-middle" id="profilecard" >
-              <div class="card-body" >
-                <center>
-                  <FontAwesomeIcon icon={faUserCircle} size="8x"/><br />
-                  <h1 class="display-3"><strong>Claire Powers</strong></h1>
-                  <h5>@username</h5><br /><br />
-                  <div class="container">
-                    <button type="button" class="btn btn-outline-dark btn-lg" data-toggle="modal" data-target="#topicsmodal"><FontAwesomeIcon icon={faListUl} /> Topics</button>  &nbsp;
-                    <button type="button" class="btn btn-outline-dark btn-lg" data-toggle="modal" data-target="#modal2"> <FontAwesomeIcon icon={faHistory} /> History</button>
-                  </div>
-                </center>
+      <div class="modal hide fade" id="profilemodal" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
 
-              </div>
+          <div class="modal-content">
+
+            <div class="modal-header bg-light">
+              <h4 class="modal-title">Profile </h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-          </div>
-          <div class="col">
+
+            <div class="modal-body">
+            <center>
+                <FontAwesomeIcon icon={faUserCircle} size="8x"/><br />
+                <h1 class="display-3"><strong>Claire Powers</strong></h1>
+                <h5>@username</h5><br /><br />
+                <div class="container">
+                  <button type="button" class="btn btn-outline-dark btn-lg" data-toggle="modal" data-target="#topicsmodal"><FontAwesomeIcon icon={faListUl} /> Topics</button>  &nbsp;
+                  <button type="button" class="btn btn-outline-dark btn-lg" data-toggle="modal" data-target="#modal2"> <FontAwesomeIcon icon={faHistory} /> History</button>
+                </div>
+              </center>
+            </div>
+
           </div>
         </div>
-      </div>
         <TopicsPopup />
         <HistoryPopup />
-        <LoginPopup />
-        <RegisterPopup />
       </div>
+
     )
   }
 }

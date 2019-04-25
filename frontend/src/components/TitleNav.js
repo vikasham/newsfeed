@@ -45,7 +45,7 @@ class TitleNav extends Component{
                     </a>
                   </li>
                   <li class="nav-item">
-                      <a class= { this.state.loggedIn ? "nav-link" : "nav-link disabled" } href="/profile">
+                      <a class= { this.state.loggedIn ? "nav-link" : "nav-link disabled" } data-toggle="modal" data-target="#profilemodal" href="/">
                       Profile &nbsp;<FontAwesomeIcon icon={faAddressCard}/>
 
                       </a>

@@ -91,7 +91,7 @@ class TopicsPopup extends Component{
   render(){
     return(
       <div class="modal fade" id="topicsmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">My Topics</h5>
@@ -129,8 +129,8 @@ class TopicsPopup extends Component{
           </div>
             </div>
             <div class="modal-footer">
-              <button onClick={this.saveTopics} type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button onClick={this.saveTopics} type="button" class="btn btn-primary" data-toggle="modal" data-target="#topicsmodal">Save changes</button>
+              <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#topicsmodal">Close</button>
             </div>
           </div>
         </div>

@@ -7,7 +7,7 @@ class HistoryPopup extends Component{
   render(){
     return(
       <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">History <FontAwesomeIcon icon={faHistory}/></h5>
@@ -25,7 +25,7 @@ class HistoryPopup extends Component{
               </ul>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modal2">Close</button>
             </div>
           </div>
         </div>
