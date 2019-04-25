@@ -16,9 +16,9 @@ class Profile extends Component{
     this.state = {
       loggedIn: true,
       user: {
-        firstname: "Claire",
-        lastname: "Powers",
-        username: "clairepo"
+        firstname: "Austin",
+        lastname: "Traver",
+        username: "austintraver"
       }
     }
   }
