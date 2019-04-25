@@ -51,23 +51,26 @@ class RegisterPopup extends Component{
       lastname: `${this.state.lastname}`
     }
 
-    let request = {
+    fetch("/register", {
       method: 'POST',
       body: JSON.stringify(data),
       headers:{
         'Content-Type': 'application/json'
       }
-    }
-    // POST request to register a user in the database
-    fetch("/register", request)
-    .then( (response) => {
-      alert(response) // TODO remove, purpose is for debug
-      window.location.reload()
     })
-    .catch( (error) => {
-      alert(error.message)
+    .then(function(response) {
+      return response.json()
     })
-  }
+    .then(function(myJson) {
+      console.log(myJson.error);
+      if (myJson.error != null) {
+        alert(myJson.error)
+      } else {
+        alert("Success!")
+        window.location.reload()
+      }
+    });
+  };
 
   render(){
     return(
