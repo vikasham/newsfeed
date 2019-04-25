@@ -120,8 +120,8 @@ class ArticlePage extends Component{
 
             <div class="modal-body">
               <img class="float-center" alt="article thumbnail" src={imageUrl}/>
-              <div class="row text-center" id="comments">
-                  <div id="iconcol" class="col-sm-4">
+              <div class="card-body row text-center" id="comments">
+                  <div id="iconcol1" class="col-sm-4" align="center">
                     &nbsp; <a  id="comments" href="/" data-toggle="modal" data-target={commentsid}><FontAwesomeIcon icon={faCommentAlt}/>&nbsp; Comments</a>
                   </div>
                   <div id="iconcol1" class="col-sm-4">
@@ -133,15 +133,15 @@ class ArticlePage extends Component{
                       <FontAwesomeIcon icon={faArrowCircleDown}/>
                     </span>
                   </div>
-                  <div id="iconcol" class="col-sm-4">
+                  <div id="iconcol1" class="col-sm-4">
                     <a id="comments" href="/" data-toggle="modal" data-target={shareid}><FontAwesomeIcon icon={faPaperPlane}/>&nbsp; Share link</a>&nbsp;
                   </div>
+
                   <hr />
                   <div id="articleAuthor"><strong>By {this.props.article.author}</strong></div>
                   <hr />
                   <p align="left" id="articleContent">{this.props.article.description}</p>
                 </div>
-
             </div>
 
           </div>
