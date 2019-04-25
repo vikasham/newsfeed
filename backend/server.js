@@ -1,7 +1,7 @@
 const express = require('express')
 const path = require('path')
 const bodyParser = require('body-parser')
-const session = require('express-session')
+const session = require('cookie-session')
 const app = express()
 const router = express.Router()
 const favicon = require('express-favicon')
@@ -12,10 +12,7 @@ const mongoose = require('mongoose')
 app.use(bodyParser.json());
 // load the favicon
 app.use(favicon(path.join('./frontend/build/favicon.ico')))
-// store session variables
-app.use(session({
-  secret: "hashedforprotection"
-}))
+
 // client can look at our server code ^ .join() defaults to the root directory if none is specified
 app.use(express.static(path.join('./frontend/build')))
 

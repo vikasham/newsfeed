@@ -67,8 +67,8 @@ class NavigationBar extends Component {
             < br/>< br/>< br/>< br/>< br/>< br/>
             <h1 class="text-center">Today's News</h1>
             <h2 class="text-center">{this.state.title}</h2>
-            {/* 
-            👇🏻 this state variable below is where
+            {/*
+              this state variable below is where
               the articles are currently rendered from
             */}
             {this.state.rows}
