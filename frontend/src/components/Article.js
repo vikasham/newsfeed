@@ -6,6 +6,8 @@ import {faCommentAlt, faArrowCircleUp, faArrowCircleDown, faPaperPlane} from '@f
 import CommentsPopup from './CommentsPopup'
 import SharePopup from './SharePopup'
 
+import {upvote, downvote} from './tools.js'
+
 
 class Article extends Component
 {
@@ -13,7 +15,7 @@ class Article extends Component
     super(props)
 
     this.state = {
-      articlescore: 29,
+      articlescore: this.props.article.score,
       // loggedIn: this.props.loggedIn,
       loggedIn: true,
       isMouseInside1: false,
@@ -23,54 +25,49 @@ class Article extends Component
       color1: false,
       color2: false
     }
-
-    this.increaseScore = this.increaseScore.bind(this);
-    this.decreaseScore = this.decreaseScore.bind(this);
-    this.hoverOn1 = this.hoverOn1.bind(this);
-    this.hoverOn2 = this.hoverOn2.bind(this);
-    this.hoverOff1 = this.hoverOff1.bind(this);
-    this.hoverOff2 = this.hoverOff2.bind(this);
-
   }
   //increment article score member variable
-  increaseScore(e){
+  increaseScore = async (e) => {
     e.preventDefault()
     if(this.state.loggedIn && !this.state.scoreDecreased && !this.state.scoreIncreased){
-      this.setState({ articlescore: this.state.articlescore + 1, scoreIncreased: true, color1:true });
+      this.setState({ articlescore: this.state.articlescore + 1, scoreIncreased: true, color1:true })
+      await(upvote())
     }
     else if(this.state.loggedIn && this.state.scoreIncreased){
-      this.setState({ articlescore: this.state.articlescore - 1, scoreIncreased: false, color1: false });
+      this.setState({ articlescore: this.state.articlescore - 1, scoreIncreased: false, color1: false })
+      await(downvote())
     }
-
   }
   //decrement article score member variable
-  decreaseScore(e){
+  decreaseScore = async (e) => {
     e.preventDefault()
     if(this.state.loggedIn && !this.state.scoreDecreased && !this.state.scoreIncreased){
       this.setState({ articlescore: this.state.articlescore - 1, scoreDecreased:true, color2:true });
+      await(downvote())
     }
     else if(this.state.loggedIn && this.state.scoreDecreased){
       this.setState({ articlescore: this.state.articlescore + 1, scoreDecreased: false, color2: false });
+      await(upvote())
     }
 
   }
-  hoverOn1(e){
+  hoverOn1 = async (e) => {
     e.preventDefault()
     if(this.state.loggedIn){
       this.setState({ isMouseInside1: true })
     }
   }
-  hoverOff1(e){
+  hoverOff1 = async (e) => {
     e.preventDefault()
     this.setState({ isMouseInside1: false})
   }
-  hoverOn2(e){
+  hoverOn2 = async (e) => {
     e.preventDefault()
     if(this.state.loggedIn){
       this.setState({ isMouseInside2: true })
     }
   }
-  hoverOff2(e){
+  hoverOff2 = async (e) => {
     e.preventDefault()
     this.setState({ isMouseInside2: false})
   }

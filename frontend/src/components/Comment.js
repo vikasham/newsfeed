@@ -4,6 +4,8 @@ import '../css/Comment.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faArrowCircleUp, faArrowCircleDown} from '@fortawesome/free-solid-svg-icons'
 
+import {upvote, downvote} from './tools.js'
+
 class Comment extends Component{
   constructor(props) {
     super(props);
@@ -28,7 +30,7 @@ class Comment extends Component{
 
   }
   //increment comment score member variable
-  increaseScore(e){
+  increaseScore = async (e) => {
     e.preventDefault()
     if(this.state.loggedIn && !this.state.scoreDecreased && !this.state.scoreIncreased){
       this.setState({
@@ -36,6 +38,7 @@ class Comment extends Component{
         scoreIncreased: true,
         color1:true
       })
+      await(upvote)
     }
     else if(this.state.loggedIn && this.state.scoreIncreased){
       this.setState({
@@ -43,10 +46,11 @@ class Comment extends Component{
         scoreIncreased: false,
         color1: false
       })
+      await(downvote)
     }
   }
   //decrement article score member variable
-  decreaseScore(e){
+  decreaseScore = async (e) => {
     e.preventDefault()
     if(this.state.loggedIn && !this.state.scoreDecreased && !this.state.scoreIncreased){
       this.setState({
@@ -54,6 +58,7 @@ class Comment extends Component{
         scoreDecreased:true,
         color2:true
       })
+      await(downvote)
     }
     else if(this.state.loggedIn && this.state.scoreDecreased){
       this.setState({
@@ -61,9 +66,10 @@ class Comment extends Component{
         scoreDecreased: false,
         color2: false
       })
+      await(upvote)
     }
   }
-  hoverOn1(e){
+  hoverOn1 = async (e) => {
     e.preventDefault()
     if(this.state.loggedIn){
       this.setState({
@@ -71,13 +77,13 @@ class Comment extends Component{
       })
     }
   }
-  hoverOff1(e){
+  hoverOff1 = async (e) => {
     e.preventDefault()
     this.setState({
       isMouseInside1: false
     })
   }
-  hoverOn2(e){
+  hoverOn2 = async (e) => {
     e.preventDefault()
     if(this.state.loggedIn){
       this.setState({
@@ -85,7 +91,7 @@ class Comment extends Component{
       })
     }
   }
-  hoverOff2(e){
+  hoverOff2 = async (e) => {
     e.preventDefault()
     this.setState({
       isMouseInside2: false

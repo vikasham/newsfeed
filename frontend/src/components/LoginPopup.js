@@ -8,27 +8,24 @@ class LoginPopup extends Component{
   constructor( props )
   {
     super( props )
-    this.handleSubmit = this.handleSubmit.bind(this)
     this.state = {
       username: "",
       password: "",
     }
-    this.setUsername = this.setUsername.bind(this)
-    this.setPassword = this.setPassword.bind(this)
   }
 
-  setUsername(event) {
-    event.preventDefault()
-    this.setState({username: event.target.value})
+  setUsername = async (e) => {
+    e.preventDefault()
+    this.setState({username: e.target.value})
   }
 
-  setPassword(event) {
-    event.preventDefault()
-    this.setState({password: event.target.value})
+  setPassword = async (e) => {
+    e.preventDefault()
+    this.setState({password: e.target.value})
   }
 
-  handleSubmit = async (event) => {
-    event.preventDefault()
+  handleSubmit = async (e) => {
+    e.preventDefault()
 
     let data = {
       username: `${this.state.username}`,
@@ -43,16 +40,19 @@ class LoginPopup extends Component{
       }
     }
 
-    fetch("/login", request)
-    .then( (response) => {
-      if (response.error) {
-        alert(response.error)
+    try {
+      let response = await fetch("/login", request)
+      if (response.ok) {
+        alert("Welcome back!")
+        window.location.reload()
       }
-      window.location.reload()
-    })
-    .catch( (error) => {
-      alert( error.message )
-    })
+      else {
+        alert("Invalid username/password, please try again")
+      }
+    }
+    catch (error) {
+      alert("Error, something went wrong")
+    }
   }
 
   render(){

@@ -11,10 +11,9 @@ class CommentsPopup2 extends Component{
     this.state={
       loggedIn: this.props.loggedIn
     }
-    this.postComment = this.postComment.bind(this);
   }
 
-  postComment(e){
+  postComment = async (e) => {
     //onsubmit for comments form
     e.preventDefault();
     alert('posting comment')

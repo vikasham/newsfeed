@@ -8,12 +8,14 @@ import SharePopup2 from './SharePopup2'
 import {faCommentAlt, faArrowCircleUp, faArrowCircleDown, faPaperPlane} from '@fortawesome/free-solid-svg-icons'
 import '../css/ArticlePage.css'
 
+import {upvote, downvote} from './tools.js'
+
 class ArticlePage extends Component{
   constructor(props) {
     super(props)
 
     this.state = {
-      articlescore: 29,
+      articlescore: this.props.score,
       loggedIn: true,
       isMouseInside1: false,
       isMouseInside2: false,
@@ -22,17 +24,10 @@ class ArticlePage extends Component{
       color1: false,
       color2: false
     }
-
-    this.increaseScore = this.increaseScore.bind(this)
-    this.decreaseScore = this.decreaseScore.bind(this)
-    this.hoverOn1 = this.hoverOn1.bind(this)
-    this.hoverOn2 = this.hoverOn2.bind(this)
-    this.hoverOff1 = this.hoverOff1.bind(this)
-    this.hoverOff2 = this.hoverOff2.bind(this)
   }
 
   //increment article score member variable
-  increaseScore(e){
+  increaseScore = async (e) => {
     e.preventDefault()
     if(this.state.loggedIn && !this.state.scoreDecreased && !this.state.scoreIncreased){
       this.setState({
@@ -40,6 +35,7 @@ class ArticlePage extends Component{
          scoreIncreased: true,
          color1:true
        })
+       await(upvote)
     }
     else if(this.state.loggedIn && this.state.scoreIncreased){
       this.setState({
@@ -47,10 +43,11 @@ class ArticlePage extends Component{
         scoreIncreased: false,
         color1: false
       })
+      await(downvote)
     }
   }
   //decrement article score member variable
-  decreaseScore(e){
+  decreaseScore = async (e) => {
     e.preventDefault()
     if(this.state.loggedIn && !this.state.scoreDecreased && !this.state.scoreIncreased){
       this.setState({
@@ -58,6 +55,7 @@ class ArticlePage extends Component{
         scoreDecreased:true,
         color2:true
       })
+      await(downvote)
     }
     else if(this.state.loggedIn && this.state.scoreDecreased){
       this.setState({
@@ -65,9 +63,10 @@ class ArticlePage extends Component{
         scoreDecreased: false,
         color2: false
       })
+      await(upvote)
     }
   }
-  hoverOn1(e){
+  hoverOn1 = async (e) => {
     e.preventDefault()
     if(this.state.loggedIn){
       this.setState({
@@ -75,13 +74,13 @@ class ArticlePage extends Component{
       })
     }
   }
-  hoverOff1(e){
+  hoverOff1 = async (e) => {
     e.preventDefault()
     this.setState({
       isMouseInside1: false
     })
   }
-  hoverOn2(e){
+  hoverOn2 = async (e) =>{
     e.preventDefault()
     if(this.state.loggedIn){
       this.setState({
@@ -89,7 +88,7 @@ class ArticlePage extends Component{
       })
     }
   }
-  hoverOff2(e){
+  hoverOff2 = async (e) => {
     e.preventDefault()
     this.setState({
       isMouseInside2: false

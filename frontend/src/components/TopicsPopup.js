@@ -23,51 +23,50 @@ class TopicsPopup extends Component{
     this.saveTopics = this.saveTopics.bind(this)
   }
 
-  toggleCheck1(){
+  toggleCheck1 = async () => {
     this.setState({checked1: !this.state.checked1})
   }
-  toggleCheck2(){
+  toggleCheck2 = async () => {
     this.setState({checked2: !this.state.checked2})
   }
-  toggleCheck3(){
+  toggleCheck3 = async () => {
     this.setState({checked3: !this.state.checked3})
   }
-  toggleCheck4(){
+  toggleCheck4 = async () => {
     this.setState({checked4: !this.state.checked4})
   }
-  toggleCheck5(){
+  toggleCheck5 = async () => {
     this.setState({checked5: !this.state.checked5})
   }
-  toggleCheck6(){
+  toggleCheck6 = async () => {
     this.setState({checked6: !this.state.checked6})
   }
 
-  saveTopics(e){
+  saveTopics = async (e) => {
     e.preventDefault()
     //onclick for save changes button
-    var interests = []
+    let update = []
 
     if(this.refs.entertainment.checked){
-      interests.push('entertainment')
+      update.push('entertainment')
     }
     if(this.refs.sports.checked){
-      interests.push('sports')
+      update.push('sports')
     }
     if(this.refs.politics.checked){
-      interests.push('politics')
+      update.push('politics')
     }
     if(this.refs.technology.checked){
-      interests.push('technology')
+      update.push('technology')
     }
     if(this.refs.business.checked){
-      interests.push('business')
+      update.push('business')
     }
     if(this.refs.science.checked){
-      interests.push('science')
+      update.push('science')
     }
     let data = {
-      username: `${this.state.username}`,
-      topics: interests
+      topic: update
     }
     let request = {
       method: 'POST',
@@ -76,16 +75,12 @@ class TopicsPopup extends Component{
         'Content-Type': 'application/json'
       }
     }
-    fetch("/update", request)
-    .then( (response) => {
-      if (response.error) {
-        alert(response.error)
-      }
-      window.location.reload()
-    })
-    .catch( (error) => {
+    try {
+      fetch("/update", request)
+    }
+    catch (error) {
       alert( error.message )
-    })
+    }
   }
 
   render(){
