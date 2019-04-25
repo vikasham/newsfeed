@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faCommentAlt} from '@fortawesome/free-solid-svg-icons'
 
 
-class CommentsPopup extends Component{
+class CommentsPopup2 extends Component{
   constructor(props){
     super(props)
     this.state={
@@ -28,13 +28,15 @@ class CommentsPopup extends Component{
     }else{
       message ="Comment"
     }
+    var shareid = "comments" + this.props.id
+    var shareidclose = "#comments" + this.props.id
     return(
-      <div class="modal fade" id="commentsModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+      <div class="modal fade" id={shareid} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel"><FontAwesomeIcon icon={faCommentAlt}/></h5>
-              <button type="button" class="close" data-toggle="modal" data-target="#commentsModal" aria-label="Close">
+              <button type="button" class="close" data-toggle="modal" data-target={shareidclose} aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
@@ -72,7 +74,7 @@ class CommentsPopup extends Component{
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#commentsModal">Close</button>
+              <button type="button" class="btn btn-secondary" data-toggle="modal" data-target={shareidclose}>Close</button>
             </div>
           </div>
         </div>
@@ -81,4 +83,4 @@ class CommentsPopup extends Component{
   }
 }
 
-export default CommentsPopup
+export default CommentsPopup2

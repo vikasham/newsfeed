@@ -2,13 +2,10 @@ import React from "react"
 import { Component } from 'react'
 import stock from '../img/stock.jpg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import TitleNav from './TitleNav'
-import LoginPopup from './LoginPopup'
-import RegisterPopup from './RegisterPopup'
 
-import CommentsPopup from './CommentsPopup'
-import SharePopup from './SharePopup'
-import {faCommentAlt, faArrowCircleUp, faArrowCircleDown, faPaperPlane, faUndo, faNewspaper} from '@fortawesome/free-solid-svg-icons'
+import CommentsPopup2 from './CommentsPopup2'
+import SharePopup2 from './SharePopup2'
+import {faCommentAlt, faArrowCircleUp, faArrowCircleDown, faPaperPlane} from '@fortawesome/free-solid-svg-icons'
 import '../css/ArticlePage.css'
 
 class ArticlePage extends Component{
@@ -33,7 +30,7 @@ class ArticlePage extends Component{
     this.hoverOff1 = this.hoverOff1.bind(this)
     this.hoverOff2 = this.hoverOff2.bind(this)
   }
-  
+
   //increment article score member variable
   increaseScore(e){
     e.preventDefault()
@@ -100,32 +97,34 @@ class ArticlePage extends Component{
   }
   render(){
     var score = this.state.articlescore
+    var imageUrl
+    if(!this.props.article.urlToImage){
+      imageUrl=stock
+    }
+    else{
+      imageUrl=this.props.article.urlToImage
+    }
+    var shareid = "#share" + this.props.id
+    var commentsid = "#comments" + this.props.id
+    var close = "#" + this.props.id
     return(
-      <div id="articlepage">
-        <div class="container-fluid fixed-top">
-          <TitleNav loggedIn={this.state.loggedIn}/>
-        </div>
-        <br /><br /><br />
-        <div id="returnhome" class="float-left"><a href="/"><FontAwesomeIcon icon={faUndo}/> Return to homepage</a></div>
-        <div id="originalarticle" class="float-right"><a href="/"><FontAwesomeIcon icon={faNewspaper}/> View original article</a></div>
-        <br />
-        <div class="container">
-          <div class="row justify-content-md-center">
-            <div class="col col-lg-2">
-            </div>
-            <div class="col-md">
-                <h1 class="text-center" id="articleTitle"><strong>Article Title</strong></h1>
+      <div class="modal hide fade" id={this.props.id} role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
 
-                <br />
-                <div class="text-center">
-                  <img class="float-center" alt="article thumbnail" src={stock}/>
-                </div>
-                <br />
-                <div class="row text-center" id="comments">
+          <div class="modal-content">
+
+            <div class="modal-header bg-light">
+              <h4 class="modal-title">{this.props.article.title}</h4>
+              <button type="button" class="close" data-toggle="modal" data-target={close}>&times;</button>
+            </div>
+
+            <div class="modal-body">
+              <img class="float-center" alt="article thumbnail" src={imageUrl}/>
+              <div class="row text-center" id="comments">
                   <div id="iconcol" class="col-sm-4">
-                    &nbsp; <a  id="comments" href="/" data-toggle="modal" data-target="#commentsModal"><FontAwesomeIcon icon={faCommentAlt}/>&nbsp; Comments</a>
+                    &nbsp; <a  id="comments" href="/" data-toggle="modal" data-target={commentsid}><FontAwesomeIcon icon={faCommentAlt}/>&nbsp; Comments</a>
                   </div>
-                  <div id="iconcol" class="col-sm-4">
+                  <div id="iconcol1" class="col-sm-4">
                     <span class="incdec" id="comments" style={{color: (this.state.isMouseInside1 || this.state.color1) ? 'royalblue' : 'black' }} onMouseEnter={this.hoverOn1} onMouseLeave={this.hoverOff1} onClick={this.increaseScore.bind(this)}>
                     <FontAwesomeIcon icon={faArrowCircleUp}/>
                     </span>
@@ -135,25 +134,20 @@ class ArticlePage extends Component{
                     </span>
                   </div>
                   <div id="iconcol" class="col-sm-4">
-                    <a id="comments" href="/"data-toggle="modal" data-target="#shareModal"><FontAwesomeIcon icon={faPaperPlane}/>&nbsp; Share link</a>&nbsp;
+                    <a id="comments" href="/" data-toggle="modal" data-target={shareid}><FontAwesomeIcon icon={faPaperPlane}/>&nbsp; Share link</a>&nbsp;
                   </div>
+                  <hr />
+                  <div id="articleAuthor"><strong>By {this.props.article.author}</strong></div>
+                  <hr />
+                  <p align="left" id="articleContent">{this.props.article.description}</p>
                 </div>
-                <br />
-                <hr />
-                <div id="articleAuthor"><strong>By Author Name</strong></div>
-                <hr />
-                <br />
-                <p id="articleContent">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id.</p>
-                <br /><br />
+
             </div>
-            <div class="col col-lg-2">
-            </div>
+
           </div>
         </div>
-        <LoginPopup />
-        <RegisterPopup />
-        <CommentsPopup />
-        <SharePopup />
+        <CommentsPopup2 id={this.props.id}/>
+        <SharePopup2 id={this.props.id}/>
       </div>
     )
   }

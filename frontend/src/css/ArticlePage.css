@@ -17,12 +17,20 @@ a{
 }
 
 #iconcol{
-  font-size: 16pt;
+  font-size: 1vw;
+}
+#iconcol1{
+	font-size: 1vw;
+	align-content: center;
+  padding-left: 8%;
+  padding-right: 8%;
 }
 
 #articleAuthor, #articleDate{
-  font-size: 20pt;
+  font-size: 16pt;
+	padding-left: 10px;
 }
 #articleContent{
-  font-size: 16pt;
+  font-size: 12pt;
+	padding-left: 10px;
 }

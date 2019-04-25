@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faPaperPlane} from '@fortawesome/free-solid-svg-icons'
 
 
-class SharePopup extends Component{
+class SharePopup2 extends Component{
   constructor(params){
     super(params)
     this.handleMessage = this.handleMessage.bind(this)
@@ -62,14 +62,16 @@ class SharePopup extends Component{
   }
 
   render(){
+    var shareid = "share" + this.props.id
+    var shareidclose = "#share" + this.props.id
     return(
-      <div class="modal fade" id="shareModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+      <div class="modal fade" id={shareid} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel"><FontAwesomeIcon icon={faPaperPlane}/>
               </h5>
-              <button type="button" class="close" data-toggle="modal" data-target="#shareModal" aria-label="Close">
+              <button type="button" class="close" data-toggle="modal" data-target={shareidclose} aria-label="Close">
                 <span aria-hidden="true">
                   &times;
                 </span>
@@ -107,7 +109,7 @@ class SharePopup extends Component{
               </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#shareModal">Close</button>
+              <button type="button" class="btn btn-secondary" data-toggle="modal" data-target={shareidclose}>Close</button>
             </div>
           </div>
         </div>
@@ -115,4 +117,4 @@ class SharePopup extends Component{
     )
   }
 }
-export default SharePopup
+export default SharePopup2

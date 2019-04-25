@@ -6,6 +6,7 @@ import {faCommentAlt, faArrowCircleUp, faArrowCircleDown, faPaperPlane} from '@f
 import CommentsPopup from './CommentsPopup'
 import SharePopup from './SharePopup'
 
+
 class Article extends Component
 {
   constructor(props) {
@@ -80,13 +81,14 @@ class Article extends Component
     else{
       imageUrl=this.props.article.urlToImage
     }
+    var dataTarget = "#" + this.props.id
     return(
       <div id="articlethumbnail" class="col-sm-4 card">
-        <a href="/articlepage">
+        <a href="/" data-toggle="modal" data-target={dataTarget}>
           <img class="card-img-top" alt="article thumbnail" src={imageUrl}/>
         </a>
         <div class="card-body">
-          <a href="/articlepage">
+          <a href="/" data-toggle="modal" data-target={dataTarget}>
             <h5 class="text-center card-title">{this.props.article.title}</h5>
           </a>
           <p class="card-text">{this.props.article.description}</p>
@@ -108,6 +110,7 @@ class Article extends Component
         <CommentsPopup loggedIn={this.state.loggedIn}/>
 
         <SharePopup/>
+
       </div>
 
     )

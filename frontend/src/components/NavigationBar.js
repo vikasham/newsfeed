@@ -25,7 +25,7 @@ class NavigationBar extends Component {
     let rows = []
     if (data !== undefined){
       for (let i = 0 ; i < data.length - 2 ; i += 3){
-        rows.push(<Dashrow first={data[i]} second={data[i+1]} third={data[i+2]} />)
+        rows.push(<Dashrow first={data[i]} second={data[i+1]} third={data[i+2]} rownum={i}/>)
       }
       // load all topics of news
       this.setState({
@@ -42,7 +42,7 @@ class NavigationBar extends Component {
       let rows = []
       // render all of the articles of the requested topic for the user
       for (let i = 0 ; i < data.articles.length - 2 ; i += 3){
-        rows.push(<Dashrow first={data.articles[i]} second={data.articles[i+1]} third={data.articles[i+2]} />)
+        rows.push(<Dashrow first={data.articles[i]} second={data.articles[i+1]} third={data.articles[i+2]} rownum={i} />)
       }
       this.setState({
         topic: `${data.topic}`,
@@ -67,7 +67,7 @@ class NavigationBar extends Component {
             < br/>< br/>< br/>< br/>< br/>< br/>
             <h1 class="text-center">Today's News</h1>
             <h2 class="text-center">{this.state.title}</h2>
-            {/* 
+            {/*
             👇🏻 this state variable below is where
               the articles are currently rendered from
             */}

@@ -267,7 +267,7 @@ class Dash extends Component
           }
           if(i%3==2){
             third=array[i];
-            row.push(<Dashrow first={first} second={second} third={third} topic={this.state.topic}/>)
+            row.push(<Dashrow first={first} second={second} third={third} topic={this.state.topic} rownum={i}/>)
             row.push(<br/>)
             row.push(<br/>)
           }
@@ -309,7 +309,7 @@ class Dash extends Component
         }
         if(i%3==2){
           third=array[i];
-          row.push(<Dashrow first={first} second={second} third={third} />)
+          row.push(<Dashrow first={first} second={second} third={third} rownum={i}/>)
           row.push(<br/>)
           row.push(<br/>)
         }
