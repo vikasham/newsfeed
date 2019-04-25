@@ -78,9 +78,7 @@ class RegisterPopup extends Component{
       // if MongoDB throws a duplicate key error
       if (response.code === 11000) {
         alert("Error: username taken")
-
       }
-      if
       console.log(response.error);
       if (response.error != null) {
         alert(response.error)
