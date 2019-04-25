@@ -21,7 +21,8 @@ const Article = buildModel('Article', {
   },
   url: {
     type: String,
-    required: false
+    required: true,
+    unique: true
   },
   urlToImage: {
     type: String,
@@ -32,8 +33,12 @@ const Article = buildModel('Article', {
     default: 1
   },
   topic: {
-    type: Number,
+    type: String,
     default: "all"
+  },
+  content: {
+    type: String,
+    required: true
   },
   comment: {
     type: [Schema.Types.ObjectID],
@@ -41,4 +46,4 @@ const Article = buildModel('Article', {
   }
 })
 
-module.exports.Article = Article
+module.exports = Article

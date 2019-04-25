@@ -8,6 +8,7 @@ const favicon = require('express-favicon')
 const cors = require('cors')
 // wrapper for MongoDB server access
 const mongoose = require('mongoose')
+const encrypt = require('mongoose-encryption')
 // support parsing jsons
 app.use(bodyParser.json());
 // load the favicon
@@ -16,13 +17,17 @@ app.use(favicon(path.join('./frontend/build/favicon.ico')))
 // client can look at our server code ^ .join() defaults to the root directory if none is specified
 app.use(express.static(path.join('./frontend/build')))
 
+// import the schemas for the database entries
 let User = require('./models/User')
+let Article = require('./models/Article')
+let Search = require('./models/Search')
+let Comment = require('./models/Comment')
 
 // options for the database
 let options = {
   useNewUrlParser: true,
   dbName: "newsfeed",
-  poolSize: 5,
+  poolSize: 100,
   user: "pillow",
   pass: "fight"
 }
@@ -132,9 +137,25 @@ app.post('/share', cors(), async (request, response) => {
   .then(message => response.status(200).json(message.sid))
 })
 
+// tested, successfully pulls articles, but response is 10 seconds
+let getArticles = async (topic) => {
+  let response = await fetch(`https://www.polytime.solutions/${topic}`)
+  let articles = await response.json()
+  console.log(articles)
+}
+
 // GET request to for recent articles in the "all" category
 app.get('/all', cors(), async (request, response) => {
-  // TODO
+  let response = await fetch(`/all`)
+  let articles = await response.json()
+  // calls the update() function of the parent component, NavigationBar
+  // and sets the state of the NavigationBar component, to have
+  // "newArticles" the new articles that we have pulled
+  this.props.update({
+    articles: newArticles,
+    topic: `${this.props.link}`,
+    title: `${this.props.title}`
+  })
 })
 // GET request for recent articles in the "entertainment" category
 app.get('/entertainment', cors(), async (request, response) => {

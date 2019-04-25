@@ -125,7 +125,7 @@ class ArticlePage extends Component{
                     &nbsp; <a  id="comments" href="/" data-toggle="modal" data-target={commentsid}><FontAwesomeIcon icon={faCommentAlt}/>&nbsp; Comments</a>
                   </div>
                   <div id="iconcol1" class="col-sm-4">
-                    <span class="incdec" id="comments" style={{color: (this.state.isMouseInside1 || this.state.color1) ? 'royalblue' : 'black' }} onMouseEnter={this.hoverOn1} onMouseLeave={this.hoverOff1} onClick={this.increaseScore.bind(this)}>
+                    <span class="incdec" id="comments" style={{color: (this.state.isMouseInside1 || this.state.color1) ? 'orange' : 'black' }} onMouseEnter={this.hoverOn1} onMouseLeave={this.hoverOff1} onClick={this.increaseScore.bind(this)}>
                     <FontAwesomeIcon icon={faArrowCircleUp}/>
                     </span>
                     &nbsp; {score} &nbsp;

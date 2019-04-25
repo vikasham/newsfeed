@@ -1,7 +1,7 @@
-import React from 'react'
-import { Component } from 'react'
+import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserPlus, faUser, faLock } from '@fortawesome/free-solid-svg-icons'
+import validator from 'validator';
 
 class RegisterPopup extends Component{
 
@@ -51,20 +51,39 @@ class RegisterPopup extends Component{
       lastname: `${this.state.lastname}`
     }
 
+    if validator.isEmpty(data.username) {
+      alert("Error: username can not be left blank.")
+    }
+    if validator.isEmpty(data.password) {
+      alert("Error: password can not be left blank.")
+    }
+    if validator.isEmpty(data.firstname) {
+      alert("Error: first name can not be left blank.")
+    }
+    if validator.isEmpty(data.lastname) {
+      alert("Error: last name can not be left blank.")
+    }
+
     fetch("/register", {
       method: 'POST',
       body: JSON.stringify(data),
-      headers:{
+      headers: {
         'Content-Type': 'application/json'
       }
     })
-    .then(function(response) {
+    .then( (response) => {
       return response.json()
     })
-    .then(function(myJson) {
-      console.log(myJson.error);
-      if (myJson.error != null) {
-        alert(myJson.error)
+    .then( (response ) => {
+      // if MongoDB throws a duplicate key error
+      if (response.code === 11000) {
+        alert("Error: username taken")
+
+      }
+      if
+      console.log(response.error);
+      if (response.error != null) {
+        alert(response.error)
       } else {
         alert("Success!")
         window.location.reload()

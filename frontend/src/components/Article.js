@@ -14,7 +14,8 @@ class Article extends Component
 
     this.state = {
       articlescore: 29,
-      loggedIn: this.props.loggedIn,
+      // loggedIn: this.props.loggedIn,
+      loggedIn: true,
       isMouseInside1: false,
       isMouseInside2: false,
       scoreIncreased: false,
@@ -99,7 +100,7 @@ class Article extends Component
             &nbsp; <a  id="commentstn" href="/" data-toggle="modal" data-target="#commentsModal"><FontAwesomeIcon icon={faCommentAlt}/>&nbsp; Comments</a>
           </div>
           <div id="iconcoltn" class="col-sm-4">
-            <span class="incdec" id="comments" style={{color: (this.state.isMouseInside1 || this.state.color1) ? 'royalblue' : 'black' }} onMouseEnter={this.hoverOn1} onMouseLeave={this.hoverOff1} onClick={this.increaseScore.bind(this)}><FontAwesomeIcon icon={faArrowCircleUp}/></span>&nbsp; {this.state.articlescore} &nbsp;
+            <span class="incdec" id="comments" style={{color: (this.state.isMouseInside1 || this.state.color1) ? 'orange' : 'black' }} onMouseEnter={this.hoverOn1} onMouseLeave={this.hoverOff1} onClick={this.increaseScore.bind(this)}><FontAwesomeIcon icon={faArrowCircleUp}/></span>&nbsp; {this.state.articlescore} &nbsp;
             <span class="incdec" id="comments" style={{color: (this.state.isMouseInside2 || this.state.color2) ? 'royalblue' : 'black' }} onMouseEnter={this.hoverOn2} onMouseLeave={this.hoverOff2} onClick={this.decreaseScore.bind(this)}><FontAwesomeIcon icon={faArrowCircleDown}/>  </span>
           </div>
           <div id="iconcoltn" class="col-sm-4">
