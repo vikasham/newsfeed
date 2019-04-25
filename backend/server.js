@@ -120,7 +120,7 @@ app.post('/search', cors(), async (request, response) => {
 })
 
 // POST request to share the user's current article with a phone number
-app.post('/share', cors() async (request, response) => {
+app.post('/share', cors(), async (request, response) => {
   let accountSid = process.env.TWILIO_SID
   let authToken = process.env.TWILIO_TOKEN
   let myNumber = process.env.TWILIO_NUMBER
@@ -136,31 +136,31 @@ app.post('/share', cors() async (request, response) => {
 })
 
 // GET request to for recent articles in the "all" category
-app.get('/all', cors() async (request, response) => {
+app.get('/all', cors(), async (request, response) => {
   // TODO
 })
 // GET request for recent articles in the "entertainment" category
-app.get('/entertainment', cors() async (request, response) => {
+app.get('/entertainment', cors(), async (request, response) => {
   // TODO
 })
 // GET request for recent articles in the "sports" category
-app.get('/sports', cors() async (request, response) => {
+app.get('/sports', cors(), async (request, response) => {
   // TODO
 })
 // GET request for recent articles in the "politics" category
-app.get('/sports', cors() async (request, response) => {
+app.get('/politics', cors(), async (request, response) => {
   // TODO
 })
 // GET request for recent articles in the "technology" category
-app.get('/sports', cors() async (request, response) => {
+app.get('/technology', cors(), async (request, response) => {
   // TODO
 })
 // GET request for recent articles in the "business" category
-app.get('/sports', cors() async (request, response) => {
+app.get('/business', cors(), async (request, response) => {
   // TODO
 })
 // GET request for recent articles in the "science" category
-app.get('/sports', cors() async (request, response) => {
+app.get('/science', cors(), async (request, response) => {
   // TODO
 })
 
