@@ -4,13 +4,31 @@ import '../css/Comment.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faArrowCircleUp, faArrowCircleDown} from '@fortawesome/free-solid-svg-icons'
 
+import {upvote, downvote, whoami} from './tools.js'
+
 class Comment extends Component{
   constructor(props) {
     super(props);
 
+    let user = this.findMyself()
+    if (this.user !== null){
+      this.state = {
+        loggedIn: true,
+        user: user
+      }
+    }
+    else {
+      this.state = {
+        loggedIn: false,
+        user: {
+          firstname: "",
+          lastname: "",
+          username: ""
+        }
+      }
+    }
     this.state = {
-      articlescore: 29,
-      loggedIn: this.props.loggedIn,
+      articlescore: 1, // TODO hardcoded
       isMouseInside1: false,
       isMouseInside2: false,
       scoreIncreased: false,
@@ -18,17 +36,12 @@ class Comment extends Component{
       color1: false,
       color2: false
     }
-
-    this.increaseScore = this.increaseScore.bind(this)
-    this.decreaseScore = this.decreaseScore.bind(this)
-    this.hoverOn1 = this.hoverOn1.bind(this)
-    this.hoverOn2 = this.hoverOn2.bind(this)
-    this.hoverOff1 = this.hoverOff1.bind(this)
-    this.hoverOff2 = this.hoverOff2.bind(this)
-
+  }
+  findMyself = async () => {
+    return await whoami()
   }
   //increment comment score member variable
-  increaseScore(e){
+  increaseScore = async (e) => {
     e.preventDefault()
     if(this.state.loggedIn && !this.state.scoreDecreased && !this.state.scoreIncreased){
       this.setState({
@@ -36,6 +49,7 @@ class Comment extends Component{
         scoreIncreased: true,
         color1:true
       })
+      await(upvote)
     }
     else if(this.state.loggedIn && this.state.scoreIncreased){
       this.setState({
@@ -43,10 +57,11 @@ class Comment extends Component{
         scoreIncreased: false,
         color1: false
       })
+      await(downvote)
     }
   }
   //decrement article score member variable
-  decreaseScore(e){
+  decreaseScore = async (e) => {
     e.preventDefault()
     if(this.state.loggedIn && !this.state.scoreDecreased && !this.state.scoreIncreased){
       this.setState({
@@ -54,6 +69,7 @@ class Comment extends Component{
         scoreDecreased:true,
         color2:true
       })
+      await(downvote)
     }
     else if(this.state.loggedIn && this.state.scoreDecreased){
       this.setState({
@@ -61,9 +77,10 @@ class Comment extends Component{
         scoreDecreased: false,
         color2: false
       })
+      await(upvote)
     }
   }
-  hoverOn1(e){
+  hoverOn1 = async (e) => {
     e.preventDefault()
     if(this.state.loggedIn){
       this.setState({
@@ -71,13 +88,13 @@ class Comment extends Component{
       })
     }
   }
-  hoverOff1(e){
+  hoverOff1 = async (e) => {
     e.preventDefault()
     this.setState({
       isMouseInside1: false
     })
   }
-  hoverOn2(e){
+  hoverOn2 = async (e) => {
     e.preventDefault()
     if(this.state.loggedIn){
       this.setState({
@@ -85,7 +102,7 @@ class Comment extends Component{
       })
     }
   }
-  hoverOff2(e){
+  hoverOff2 = async (e) => {
     e.preventDefault()
     this.setState({
       isMouseInside2: false
@@ -96,7 +113,7 @@ class Comment extends Component{
       <div class="row" id="comment">
         <div id="iconcol" class="col-sm-1 vcenter">
           <center>
-            <span class="incdec" id="uparrow" style={{color: (this.state.isMouseInside1 || this.state.color1) ? 'royalblue' : 'black' }} onMouseEnter={this.hoverOn1} onMouseLeave={this.hoverOff1} onClick={this.increaseScore.bind(this)}><FontAwesomeIcon icon={faArrowCircleUp}/></span><br/>
+            <span class="incdec" id="uparrow" style={{color: (this.state.isMouseInside1 || this.state.color1) ? 'orange' : 'black' }} onMouseEnter={this.hoverOn1} onMouseLeave={this.hoverOff1} onClick={this.increaseScore.bind(this)}><FontAwesomeIcon icon={faArrowCircleUp}/></span><br/>
             {this.state.articlescore}<br/>
             <span class="incdec" id="downarrow" style={{color: (this.state.isMouseInside2 || this.state.color2) ? 'royalblue' : 'black' }} onMouseEnter={this.hoverOn2} onMouseLeave={this.hoverOff2} onClick={this.decreaseScore.bind(this)}><FontAwesomeIcon icon={faArrowCircleDown}/>  </span>
           </center>
@@ -105,12 +122,12 @@ class Comment extends Component{
           <li class="media bg-light">
             <div class="media-body">
               <div class="card card-body bg-light">
-                  <h4 class="media-heading text-uppercase reviews">Marco </h4>
+                  <h4 class="media-heading text-uppercase reviews"> </h4>
                   <div class="media-date text-uppercase reviews list-inline">
-                    <small>April 17, 2019 7:55pm</small>
+                    <small> </small>
                   </div>
                   <p class="media-comment">
-                    Great snippet! Thanks for sharing.
+                    
                   </p>
               </div>
             </div>

@@ -6,12 +6,63 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import '../css/NavigationBar.css'
 
+import {whoami} from './tools.js'
+
 
 class TitleNav extends Component{
   constructor(props){
     super(props)
+    let user = this.findMyself()
+    if (this.user !== null){
+      this.state = {
+        loggedIn: true,
+        user: user
+      }
+    }
+    else {
+      this.state = {
+        loggedIn: false,
+        user: {
+          firstname: "",
+          lastname: "",
+          username: ""
+        }
+      }
+    }
     this.state = {
-      loggedIn: this.props.loggedIn,
+      search: "",
+      loggedIn: true
+    }
+  }
+  findMyself = async () => {
+    return await whoami()
+  }
+  handleSearch = async (e) => {
+    e.preventDefault()
+    this.setState({
+      search: e.target.value
+    })
+  }
+  handleSubmit = async (e) => {
+    e.preventDefault()
+    let data = {
+      content: this.state.search
+    }
+    this.setState({
+      search: ""
+    })
+    let request = {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+    try {
+      await fetch("/search", request)
+    }
+    catch (error) {
+      alert( error.message )
     }
   }
   render(){
@@ -52,8 +103,8 @@ class TitleNav extends Component{
                   </li>
                 </ul>
 
-                <form class="navbar-search form-inline my-2 my-lg-0">
-                  <input class="form-control mr-sm-2 diabled" type="search" placeholder="Search" aria-label="Search" disabled={ disabled }/>
+                <form class="navbar-search form-inline my-2 my-lg-0" onSubmit={this.handleSubmit}>
+                  <input class="form-control mr-sm-2 diabled" type="search" placeholder="Search" value={this.state.search} onChange={this.handleSearch} aria-label="Search" disabled={ disabled }/>
                   <button class="btn btn-outline-light my-2 my-sm-0" type="submit" disabled={ disabled }>Search</button>
                 </form>
               </div>

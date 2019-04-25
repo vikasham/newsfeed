@@ -17,4 +17,4 @@ const Search = buildModel('Search', {
   }
 })
 
-module.exports.Search = Search
+module.exports = Search

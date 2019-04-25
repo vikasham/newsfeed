@@ -15,28 +15,37 @@ import Bubbles from './Bubbles'
 class NavigationBar extends Component {
   constructor(props) {
     super(props)
-    this.loadAll = this.loadAll.bind(this)
     this.loadAll()
+    this.state = {
+      loggedIn: true
+    }
     // get initial articles
   }
-  async loadAll(){
-    const response = await fetch(`https://www.polytime.solutions/all`)
-    const data = await response.json()
-    let rows = []
-    if (data !== undefined){
-      for (let i = 0 ; i < data.length - 2 ; i += 3){
-        rows.push(<Dashrow first={data[i]} second={data[i+1]} third={data[i+2]} rownum={i}/>)
+  loadAll = async () => {
+    try {
+      let response = await fetch(`/all`)
+      let articles = await response.json()
+      let rows = []
+      if (articles !== undefined) {
+        // format each article as JSON
+        for (let i = 0 ; i < articles.length - 2 ; i += 3){
+          rows.push(<Dashrow first={articles[i]} second={articles[i+1]} third={articles[i+2]} rownum={i}/>)
+        }
+        // load all topics of news
+        this.setState({
+          topic: "all",
+          title: "Today's News",
+          rows: rows
+        })
       }
-      // load all topics of news
-      this.setState({
-        topic: "all",
-        title: "Today's News",
-        rows: rows
-      })
+    }
+    catch (error) {
+      // Nice error message in case this goes wrong
+      alert("Nothing newsworthy today, try again later!")
     }
   }
   // called by child component "TopicNav" upon clicking a topic name
-  update(data){
+  update = async (data) => {
     // update the topic, the articles, and the title
     if (data !== undefined){
       let rows = []
@@ -59,8 +68,8 @@ class NavigationBar extends Component {
       return(
         <div>
           <div class="container-fluid fixed-top">
-            <TitleNav loggedIn={this.props.loggedIn}/>
-            <TopicNav update={this.update.bind(this)} loggedIn={this.props.loggedIn}/>
+            <TitleNav />
+            <TopicNav update={this.update.bind(this)}/>
           </div>
           <div>
             <Bubbles/>
@@ -68,11 +77,8 @@ class NavigationBar extends Component {
             <h1 class="text-center">Today's News</h1>
             <h2 class="text-center">{this.state.title}</h2>
             {/*
-<<<<<<< HEAD
-            👇🏻 this state variable below is where
-=======
               this state variable below is where
->>>>>>> b2116c92ff0e2868ef0ea09bd58d8a6e84611a42
+              this state variable below is where
               the articles are currently rendered from
             */}
             {this.state.rows}

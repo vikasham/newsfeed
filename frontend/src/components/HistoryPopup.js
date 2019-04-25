@@ -3,7 +3,32 @@ import { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faHistory} from '@fortawesome/free-solid-svg-icons'
 
+import {whoami} from './tools.js'
+
 class HistoryPopup extends Component{
+  constructor(props) {
+    super(props)
+    let user = this.findMyself()
+    if (this.user !== null){
+      this.state = {
+        loggedIn: true,
+        user: user
+      }
+    }
+    else {
+      this.state = {
+        loggedIn: true,
+        user: {
+          firstname: "",
+          lastname: "",
+          username: ""
+        }
+      }
+    }
+  }
+  findMyself = async () => {
+    return await whoami()
+  }
   render(){
     return(
       <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -17,11 +42,7 @@ class HistoryPopup extends Component{
             </div>
             <div class="modal-body">
               <ul class="list-group">
-                <li class="list-group-item">Cras justo odio</li>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
-                <li class="list-group-item">Morbi leo risus</li>
-                <li class="list-group-item">Porta ac consectetur ac</li>
-                <li class="list-group-item">Vestibulum at eros</li>
+                <li class="list-group-item">" "</li>
               </ul>
             </div>
             <div class="modal-footer">

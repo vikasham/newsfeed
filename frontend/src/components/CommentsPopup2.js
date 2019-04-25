@@ -4,21 +4,39 @@ import CommentsList from './CommentsList'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faCommentAlt} from '@fortawesome/free-solid-svg-icons'
 
+import {whoami} from './tools.js'
+
 
 class CommentsPopup2 extends Component{
-  constructor(props){
+  constructor(props) {
     super(props)
-    this.state={
-      loggedIn: this.props.loggedIn
+    let user = this.findMyself()
+    if (this.user !== null){
+      this.state = {
+        loggedIn: true,
+        user: user
+      }
     }
-    this.postComment = this.postComment.bind(this);
+    else {
+      this.state = {
+        loggedIn: false,
+        user: {
+          firstname: "",
+          lastname: "",
+          username: ""
+        }
+      }
+    }
+  }
+  findMyself = async () => {
+    return await whoami()
   }
 
-  postComment(e){
+  postComment = async (e) => {
     //onsubmit for comments form
     e.preventDefault();
-    alert('posting comment')
-  };
+    alert(`You must be logged in to comment`)
+  }
 
   render(){
     var disabled = !this.state.loggedIn;

@@ -11,14 +11,14 @@ class App extends Component
   constructor(props) {
     super(props)
     this.state = {
-      loggedIn: true,
+      loggedIn: false,
     }
   }
 
   render() {
     return (
       <div className="App" id="app">
-        <NavigationBar loggedIn={this.state.loggedIn}/>
+        <NavigationBar/>
         <LoginPopup />
         <RegisterPopup />
         <Profile />

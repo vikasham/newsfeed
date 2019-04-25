@@ -10,12 +10,12 @@ class TopicNav extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      loggedIn: this.props.loggedIn,
+      loggedIn: true,
     }
   }
-  update(data){
+  update = async (data) => {
     console.log(`topic nav says new topic is ${data.topic}`)
-    this.props.update(data)
+    await this.props.update(data)
   }
   render(){
     return(

@@ -17,4 +17,4 @@ const Comment = buildModel('Comment', {
   }
 })
 
-module.exports.Comment = Comment
+module.exports = Comment
