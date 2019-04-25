@@ -5,12 +5,12 @@ const Schema = mongoose.Schema
 
 function buildModel(name, input) {
   let schema = new Schema(input, {timestamps: true})
-  var encKey = process.env.SOME_32BYTE_BASE64_STRING
-  var sigKey = process.env.SOME_64BYTE_BASE64_STRING
-  schema.plugin(encrypt, {
-    secret: "shh", // secret key is a string
-    encryptedFields: ['password']
-  })
+  // var encKey = process.env.SOME_32BYTE_BASE64_STRING
+  // var sigKey = process.env.SOME_64BYTE_BASE64_STRING
+  // // schema.plugin(encrypt, {
+  // //   secret: "shh", // secret key is a string
+  // //   encryptedFields: ['password']
+  // // })
   // This adds _ct and _ac fields to the schema, as well as pre 'init' and pre 'save' middleware,
   // and encrypt, decrypt, sign, and authenticate instance methods
   return mongoose.model(name, schema)

@@ -1,12 +1,29 @@
 import React from 'react'
 import { Component } from 'react'
 
+import {whoami} from './tools.js'
 
 class TopicsPopup extends Component{
   constructor(props){
     super(props)
+    let user = this.findMyself()
+    if (this.user !== null){
+      this.state = {
+        loggedIn: true,
+        user: user
+      }
+    }
+    else {
+      this.state = {
+        loggedIn: false,
+        user: {
+          firstname: "",
+          lastname: "",
+          username: ""
+        }
+      }
+    }
     this.state = {
-      loggedIn: this.props.loggedIn,
       checked1: true,
       checked2: true,
       checked3: true,
@@ -21,6 +38,9 @@ class TopicsPopup extends Component{
     this.toggleCheck5 = this.toggleCheck5.bind(this)
     this.toggleCheck6 = this.toggleCheck6.bind(this)
     this.saveTopics = this.saveTopics.bind(this)
+  }
+  findMyself = async () => {
+    return await whoami()
   }
 
   toggleCheck1 = async () => {

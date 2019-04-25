@@ -49,21 +49,32 @@ mongoose.connect("mongodb+srv://cluster0-h3iy9.mongodb.net/test", options)
 
 // POST request to login a new user
 app.post('/login', async (request, response) => {
+  console.log("logging in")
   try {
+    console.log("user in")
     let user = await User.findOne({
       // query parameters in json
       username: `${request.body.username}`,
       password: `${request.body.password}`
     })
-    user = user.lean() // lean() for plain javascript object
+    console.log(user.username)
+    console.log(user.password)
+    // lean() for plain javascript object
     // callback function for a query, executed when calling query.exec()
     // callback function for a query, executed when calling query.exec()
     request.session.user = user
-    response.status(200).send(doc)
+    let result = {
+      success: true
+    }
+    response.status(200).json(result)
   }
   catch (error) {
+    console.log(error.stack)
     request.session = null
-    response.status(400).send(error)
+    let result = {
+      success: false
+    }
+    response.status(400).json(result)
   }
 })
 
@@ -71,24 +82,36 @@ app.get('/logout', async (request, response) => {
   request.session = null
 })
 
+app.post('/whoami', async (request, response) => {
+  console.log("Who am I request")
+  console.log(request.session)
+  if (this.session === null) {
+    response.status(200).json("{}")
+  }
+  else {
+    response.status(200).json(request.session.user)
+  }
+})
+
 // POST request to register a new user
 app.post('/register', async (request, response) => {
   try {
-    let user = await User.create({
+    let user = new User({
       username: `${request.body.username}`,
       password: `${request.body.password}`,
       firstname: `${request.body.firstname}`,
       lastname: `${request.body.lastname}`
     })
-    request.session.user = user.lean()
+    user = await user.save()
+    request.session.user = user
     response.status(200).json(user)
   }
   // or catch the error
   catch (error) {
-    console.error("[ERROR]: " + error.message)
+    console.log(error.stack)
     // if the error is code 11000
     // Then MongoDB has thrown a duplicate key error, username is taken
-    return response.status(400).send(error)
+    return response.status(400).json(error)
   }
 })
 
@@ -101,7 +124,7 @@ app.post('/update', async (request, response) => {
     response.status(200).json(user)
   }
   catch (error) {
-    console.error("[ERROR]: " + error.message)
+    console.log(error.stack)
     response.status(500).json(error)
   }
 })
@@ -118,7 +141,7 @@ app.post('/comment', async (request, response) => {
     response.status(200).json(comment)
   }
   catch (error) {
-    console.error("[ERROR]: " + error.message)
+    console.log(error.stack)
     response.status(500).json(error)
   }
 })
@@ -142,13 +165,14 @@ app.post('/search', async (request, response) => {
     response.status(200).json(result)
   }
   catch (error) {
-    console.error("[ERROR]: " + error.message)
+    console.log(error.stack)
     response.status(500).json(error)
   }
 })
 
 app.post('/upvote', async (request, response) => {
   try {
+    console.log("[UPVOTE]: ")
     let article = request.body.article
     let score = request.body.score + 1
     let result = await Article.updateOne(request.body, {
@@ -157,13 +181,14 @@ app.post('/upvote', async (request, response) => {
     response.status(200).json(result)
   }
   catch (error) {
-    console.error("[ERROR]: " + error.message)
+    console.log(error.stack)
     response.status(500).json(error)
   }
 })
 
 app.post('/downvote', async (request, response) => {
   try {
+    console.log("[DOWNVOTE]: ")
     let article = request.body.article
     let score = request.body.score + 1
     let result = await Article.updateOne(request.body, {
@@ -172,7 +197,7 @@ app.post('/downvote', async (request, response) => {
     response.status(200).json(result)
   }
   catch (error) {
-    console.error("[ERROR]: " + error.message)
+    console.log(error.stack)
     response.status(500).json(error)
   }
 })
@@ -224,6 +249,7 @@ app.get('/entertainment', async (request, response) => {
     return response.status(200).json(result)
   }
   catch (err) {
+    console.log(error.stack)
     return response.status(400).json(err)
   }
 })
@@ -241,6 +267,7 @@ app.get('/sports', async (request, response) => {
     return response.status(200).json(result)
   }
   catch (err) {
+    console.log(error.stack)
     return response.status(400).json(err)
   }
 })
@@ -258,6 +285,7 @@ app.get('/politics', async (request, response) => {
     return response.status(200).json(result)
   }
   catch (err) {
+    console.log(error.stack)
     return response.status(400).json(err)
   }
 })
@@ -275,6 +303,7 @@ app.get('/technology', async (request, response) => {
     return response.status(200).json(result)
   }
   catch (err) {
+    console.log(error.stack)
     return response.status(400).json(err)
   }
 })
@@ -292,6 +321,7 @@ app.get('/business', async (request, response) => {
     return response.status(200).json(result)
   }
   catch (err) {
+    console.log(error.stack)
     return response.status(400).json(err)
   }
 })
@@ -309,6 +339,7 @@ app.get('/science', async (request, response) => {
     return response.status(200).json(result)
   }
   catch (err) {
+    console.log(error.stack)
     return response.status(400).json(err)
   }
 })

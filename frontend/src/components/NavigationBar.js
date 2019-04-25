@@ -16,6 +16,9 @@ class NavigationBar extends Component {
   constructor(props) {
     super(props)
     this.loadAll()
+    this.state = {
+      loggedIn: true
+    }
     // get initial articles
   }
   loadAll = async () => {
@@ -65,8 +68,8 @@ class NavigationBar extends Component {
       return(
         <div>
           <div class="container-fluid fixed-top">
-            <TitleNav loggedIn={this.props.loggedIn}/>
-            <TopicNav update={this.update.bind(this)} loggedIn={this.props.loggedIn}/>
+            <TitleNav />
+            <TopicNav update={this.update.bind(this)}/>
           </div>
           <div>
             <Bubbles/>

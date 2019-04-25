@@ -8,7 +8,7 @@ import SharePopup2 from './SharePopup2'
 import {faCommentAlt, faArrowCircleUp, faArrowCircleDown, faPaperPlane} from '@fortawesome/free-solid-svg-icons'
 import '../css/ArticlePage.css'
 
-import {upvote, downvote} from './tools.js'
+import {upvote, downvote, whoami} from './tools.js'
 
 class ArticlePage extends Component{
   constructor(props) {
@@ -16,7 +16,6 @@ class ArticlePage extends Component{
 
     this.state = {
       articlescore: this.props.score,
-      loggedIn: true,
       isMouseInside1: false,
       isMouseInside2: false,
       scoreIncreased: false,
@@ -24,6 +23,26 @@ class ArticlePage extends Component{
       color1: false,
       color2: false
     }
+    let user = this.findMyself()
+    if (this.user !== null){
+      this.state = {
+        loggedIn: true,
+        user: user
+      }
+    }
+    else {
+      this.state = {
+        loggedIn: false,
+        user: {
+          firstname: "",
+          lastname: "",
+          username: ""
+        }
+      }
+    }
+  }
+  findMyself = async () => {
+    return await whoami()
   }
 
   //increment article score member variable
@@ -138,7 +157,7 @@ class ArticlePage extends Component{
                   <hr />
                   <div id="articleAuthor"><strong>By {this.props.article.author}</strong></div>
                   <hr />
-                  <p align="left" id="articleContent">{this.props.article.description}</p>
+                  <p align="left" id="articleContent">{this.props.article.content}</p>
                 </div>
 
             </div>

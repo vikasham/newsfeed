@@ -8,15 +8,23 @@ import HistoryPopup from './HistoryPopup'
 import TopicsPopup from './TopicsPopup'
 import '../css/Profile.css'
 
+import {whoami} from './tools.js'
 
 class Profile extends Component{
   constructor(props) {
-        super(props);
-        this.state = {
-            loggedIn: true
-        };
+    super(props)
+    this.state = {
+      loggedIn: true,
+      user: {
+        firstname: "Claire",
+        lastname: "Powers",
+        username: "clairepo"
+      }
     }
-
+  }
+  findMyself = async () => {
+    return await whoami()
+  }
   render(){
     return(
       <div class="modal hide fade" id="profilemodal" role="dialog">
@@ -32,8 +40,8 @@ class Profile extends Component{
             <div class="modal-body">
             <center>
                 <FontAwesomeIcon icon={faUserCircle} size="8x"/><br />
-                <h1 class="display-3"><strong>Claire Powers</strong></h1>
-                <h5>@username</h5><br /><br />
+                <h1 class="display-3"><strong>{`${this.state.user.firstname}\n${this.state.user.lastname}`}</strong></h1>
+                <h5>{`@${this.state.user.username}`}</h5><br /><br />
                 <div class="container">
                   <button type="button" class="btn btn-outline-dark btn-lg" data-toggle="modal" data-target="#topicsmodal"><FontAwesomeIcon icon={faListUl} /> Topics</button>  &nbsp;
                   <button type="button" class="btn btn-outline-dark btn-lg" data-toggle="modal" data-target="#modal2"> <FontAwesomeIcon icon={faHistory} /> History</button>

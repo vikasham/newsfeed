@@ -6,14 +6,36 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import '../css/NavigationBar.css'
 
+import {whoami} from './tools.js'
+
 
 class TitleNav extends Component{
   constructor(props){
     super(props)
-    this.state = {
-      loggedIn: this.props.loggedIn,
-      search: ""
+    let user = this.findMyself()
+    if (this.user !== null){
+      this.state = {
+        loggedIn: true,
+        user: user
+      }
     }
+    else {
+      this.state = {
+        loggedIn: false,
+        user: {
+          firstname: "",
+          lastname: "",
+          username: ""
+        }
+      }
+    }
+    this.state = {
+      search: "",
+      loggedIn: true
+    }
+  }
+  findMyself = async () => {
+    return await whoami()
   }
   handleSearch = async (e) => {
     e.preventDefault()

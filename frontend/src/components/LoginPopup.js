@@ -41,12 +41,16 @@ class LoginPopup extends Component{
     }
 
     try {
-      let response = await fetch("/login", request)
-      if (response.ok) {
+      console.log(this.state.username)
+      console.log(this.state.password)
+      let result = await fetch("/login", request)
+      let response = await result.json()
+      if (response.success === true) {
         alert("Welcome back!")
         window.location.reload()
       }
       else {
+        console.log("else")
         alert("Invalid username/password, please try again")
       }
     }

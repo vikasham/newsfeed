@@ -6,18 +6,33 @@ import {faCommentAlt, faArrowCircleUp, faArrowCircleDown, faPaperPlane} from '@f
 import CommentsPopup from './CommentsPopup'
 import SharePopup from './SharePopup'
 
-import {upvote, downvote} from './tools.js'
+import {upvote, downvote, whoami} from './tools.js'
 
 
 class Article extends Component
 {
   constructor(props) {
     super(props)
-
+    let user = this.findMyself()
+    if (this.user !== null){
+      this.state = {
+        loggedIn: true,
+        user: user
+      }
+    }
+    else {
+      this.state = {
+        loggedIn: false,
+        user: {
+          firstname: "",
+          lastname: "",
+          username: ""
+        }
+      }
+    }
     this.state = {
       articlescore: this.props.article.score,
       // loggedIn: this.props.loggedIn,
-      loggedIn: true,
       isMouseInside1: false,
       isMouseInside2: false,
       scoreIncreased: false,
@@ -25,6 +40,9 @@ class Article extends Component
       color1: false,
       color2: false
     }
+  }
+  findMyself = async () => {
+    return await whoami()
   }
   //increment article score member variable
   increaseScore = async (e) => {

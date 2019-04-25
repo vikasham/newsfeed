@@ -10,7 +10,7 @@ class TopicNav extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      loggedIn: this.props.loggedIn,
+      loggedIn: true,
     }
   }
   update = async (data) => {

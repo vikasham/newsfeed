@@ -3,9 +3,34 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import '../css/NavigationBar.css'
 
+import {whoami} from './tools.js'
+
 class Topic extends Component {
-  componentWillUnmount(){
-    this.handleClickThrottled.cancel()
+  constructor(props){
+    super(props)
+    let user = this.findMyself()
+    if (this.user !== null){
+      this.state = {
+        loggedIn: true,
+        user: user
+      }
+    }
+    else {
+      this.state = {
+        loggedIn: false,
+        user: {
+          firstname: "",
+          lastname: "",
+          username: ""
+        }
+      }
+    }
+    this.state = {
+      search: ""
+    }
+  }
+  findMyself = async () => {
+    return await whoami()
   }
   // GET request to the Express server
   // delivers articles from the database to avoid overusing NewsAPI calls

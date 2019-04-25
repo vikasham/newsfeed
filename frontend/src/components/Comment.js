@@ -4,15 +4,31 @@ import '../css/Comment.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faArrowCircleUp, faArrowCircleDown} from '@fortawesome/free-solid-svg-icons'
 
-import {upvote, downvote} from './tools.js'
+import {upvote, downvote, whoami} from './tools.js'
 
 class Comment extends Component{
   constructor(props) {
     super(props);
 
+    let user = this.findMyself()
+    if (this.user !== null){
+      this.state = {
+        loggedIn: true,
+        user: user
+      }
+    }
+    else {
+      this.state = {
+        loggedIn: false,
+        user: {
+          firstname: "",
+          lastname: "",
+          username: ""
+        }
+      }
+    }
     this.state = {
-      articlescore: 29,
-      loggedIn: this.props.loggedIn,
+      articlescore: 1, // TODO hardcoded
       isMouseInside1: false,
       isMouseInside2: false,
       scoreIncreased: false,
@@ -20,14 +36,9 @@ class Comment extends Component{
       color1: false,
       color2: false
     }
-
-    this.increaseScore = this.increaseScore.bind(this)
-    this.decreaseScore = this.decreaseScore.bind(this)
-    this.hoverOn1 = this.hoverOn1.bind(this)
-    this.hoverOn2 = this.hoverOn2.bind(this)
-    this.hoverOff1 = this.hoverOff1.bind(this)
-    this.hoverOff2 = this.hoverOff2.bind(this)
-
+  }
+  findMyself = async () => {
+    return await whoami()
   }
   //increment comment score member variable
   increaseScore = async (e) => {
